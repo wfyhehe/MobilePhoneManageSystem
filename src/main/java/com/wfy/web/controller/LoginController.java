@@ -1,6 +1,7 @@
 package com.wfy.web.controller;
 
 import com.wfy.web.model.User;
+import com.wfy.web.model.UserStatus;
 import com.wfy.web.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,10 +41,11 @@ public class LoginController {
                 ("verificationCode"))) {
             request.setAttribute("error", "verificationCode");
             return "user_login";
-        } else if (!userService.exists(new User(username, password))) {
+        } else if (!userService.exists(new User(username, password,
+                UserStatus.ONLINE))) {
             request.setAttribute("error", "username");
             return "user_login";
-        } else if (!userService.match(new User(username, password))) {
+        } else if (!userService.match(new User(username, password, UserStatus.ONLINE))) {
             request.setAttribute("error", "password");
             return "user_login";
         } else {

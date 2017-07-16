@@ -50,12 +50,17 @@
         </listener-class>
     </listener>
 
-    <!-- Servlet Configuration ========================================== -->
-
-
     <!-- URL space mappings ============================================= -->
+    <context-param>
+        <param-name>contextConfigLocation</param-name>
+        <param-value>
+            classpath:applicationContext.xml,
+            classpath:hibernate-config.xml
+        </param-value>
+    </context-param>
 
 
+    <!-- Servlet Configuration ========================================== -->
     <servlet>
         <servlet-name>ManageSystem</servlet-name>
         <servlet-class>
@@ -64,7 +69,8 @@
         <init-param>
             <param-name>contextConfigLocation</param-name>
             <param-value>
-                /WEB-INF/applicationContext.xml
+                classpath:applicationContext.xml,
+                classpath:hibernate-config.xml
             </param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>

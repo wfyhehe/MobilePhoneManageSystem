@@ -4,6 +4,7 @@ new Vue({
     el: "#menu",
     data: {
         menuData: null,
+        menuFocus: [],
         menuItems: {
             id1: {
                 id: "id1",
@@ -62,6 +63,21 @@ new Vue({
         }
     },
     methods: {
+        show: function (id) {
+            var subMenus = document.getElementById(id).getElementsByTagName("div");
+            for(var i = 0; i < subMenus.length; i++) {
+                subMenus[i].setAttribute("style", "display: block;");
+            }
+        },
+        hide: function (id) {
+            var subMenus = document.getElementById(id).getElementsByTagName("div");
+            for(var i = 0; i < subMenus.length; i++) {
+                subMenus[i].setAttribute("style", "display: none;");
+            }
+        },
+        action: function (action) {
+            window.location.href = action;
+        },
         drawMenu: function (data) {
             var id;
             var menuName;

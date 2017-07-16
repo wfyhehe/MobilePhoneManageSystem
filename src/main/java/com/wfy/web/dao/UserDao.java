@@ -1,9 +1,10 @@
 package com.wfy.web.dao;
 
 import com.wfy.web.model.User;
-import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
@@ -11,7 +12,7 @@ import javax.annotation.Resource;
 /**
  * Created by Administrator on 2017/7/14.
  */
-@Component
+@Repository
 @Transactional
 public class UserDao {
     private User user;

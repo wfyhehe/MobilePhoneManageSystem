@@ -28,10 +28,17 @@
 <body>
 <div class="container-fluid">
     <div class="menu" id="menu">
-        <button v-for="(v, k) in menuItems" id="k">{{v.name}}</button>
-        <div class="user">欢迎！
-            <a href="javascript:void(0);">SuperAdmin
-                ${sessionScope.username}</a></div>
+        <div :id="k" v-for="(v, k) in menuItems" class="menus"
+             @mouseenter="show(k)" @mouseleave="hide(k)">
+            {{v.name}}
+            <div :id="k1" v-for="(v1, k1) in v.subMenu" class="sub-menus"
+                 @click="action(v1.action)">
+                {{v1.name}}
+            </div>
+        </div>
+        <div class="user">欢迎
+            <a href="javascript:void(0);">SuperAdmin${sessionScope.username}</a>
+        </div>
     </div>
     <div class="main">
         <div class="content">
