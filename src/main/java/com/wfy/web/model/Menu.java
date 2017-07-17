@@ -1,5 +1,8 @@
 package com.wfy.web.model;
 
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -44,7 +47,8 @@ public class Menu implements Serializable {
     }
 
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "parent")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,
+            mappedBy = "parent")
     public List<Menu> getChildren() {
         return children;
     }
@@ -53,8 +57,10 @@ public class Menu implements Serializable {
         this.children = children;
     }
 
+
     @ManyToOne
     @JoinColumn(name = "parent_id")
+    @JsonIgnore
     public Menu getParent() {
         return parent;
     }
@@ -122,10 +128,11 @@ public class Menu implements Serializable {
     }
 
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "t_role_menu",
             joinColumns = @JoinColumn(name = "menu_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
+    @JsonIgnore
     public List<Role> getRoles() {
         return roles;
     }
@@ -133,6 +140,7 @@ public class Menu implements Serializable {
     public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
+
 
     @Override
     public String toString() {
@@ -142,10 +150,25 @@ public class Menu implements Serializable {
                 ", remark='" + remark + '\'' +
                 ", type=" + type +
                 ", sortOrder=" + sortOrder +
-                ", parent=" + //parent +
+                ", parent=" + parent +
+                //", children=" + children + //若既有children又有parent会无限递归爆栈
                 ", action=" + action +
                 ", roles=" + roles +
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Menu menu = (Menu) o;
+
+        return id == menu.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return id;
+    }
 }

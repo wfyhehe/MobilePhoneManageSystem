@@ -56,6 +56,7 @@
         <param-value>
             classpath:applicationContext.xml,
             classpath:hibernate-config.xml
+            <!--classpath:jackson-config.xml-->
         </param-value>
     </context-param>
 
@@ -71,6 +72,7 @@
             <param-value>
                 classpath:applicationContext.xml,
                 classpath:hibernate-config.xml
+                <!--classpath:jackson-config.xml-->
             </param-value>
         </init-param>
         <load-on-startup>1</load-on-startup>
@@ -79,6 +81,11 @@
     <servlet-mapping>
         <servlet-name>ManageSystem</servlet-name>
         <url-pattern>*.do</url-pattern>
+    </servlet-mapping>
+
+    <servlet-mapping>
+        <servlet-name>ManageSystem</servlet-name>
+        <url-pattern>*.json</url-pattern>
     </servlet-mapping>
 
     <servlet>

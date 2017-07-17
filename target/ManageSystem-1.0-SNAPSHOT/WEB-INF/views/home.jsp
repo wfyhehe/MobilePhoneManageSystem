@@ -29,7 +29,7 @@
 <div class="container-fluid">
     <div class="menu" id="menu">
         <div :id="k" v-for="(v, k) in menuItems" class="menus"
-             @mouseenter="show(k)" @mouseleave="hide(k)">
+             @mouseenter="show(k)" @mouseleave="hide(k)" v-if="menuLoad">
             {{v.name}}
             <div :id="k1" v-for="(v1, k1) in v.subMenu" class="sub-menus"
                  @click="action(v1.action)">

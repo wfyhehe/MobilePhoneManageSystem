@@ -12,7 +12,6 @@ import javax.annotation.Resource;
  */
 
 @Repository
-@Transactional
 public class RoleDao {
     private Role role;
     private HibernateTemplate hibernateTemplate;

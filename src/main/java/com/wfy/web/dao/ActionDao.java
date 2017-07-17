@@ -11,7 +11,6 @@ import javax.annotation.Resource;
  * Created by Administrator on 2017/7/16.
  */
 @Repository
-@Transactional
 public class ActionDao {
     private Action action;
     private HibernateTemplate hibernateTemplate;

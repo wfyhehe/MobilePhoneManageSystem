@@ -13,7 +13,6 @@ import javax.annotation.Resource;
  * Created by Administrator on 2017/7/14.
  */
 @Repository
-@Transactional
 public class UserDao {
     private User user;
     private HibernateTemplate hibernateTemplate;
