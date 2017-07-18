@@ -69,7 +69,7 @@ public class Menu implements Serializable {
         this.parent = parent;
     }
 
-    @OneToOne
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "action_id")
     public Action getAction() {
         return action;

@@ -28,10 +28,10 @@
 <body>
 <div class="container-fluid">
     <div class="menu" id="menu">
-        <div :id="k" v-for="(v, k) in menuItems" class="menus"
-             @mouseenter="show(k)" @mouseleave="hide(k)" v-if="menuLoad">
+        <div :id="v.id" v-for="(v, k) in menuItems" class="menus"
+             @mouseenter="show(v.id)" @mouseleave="hide(v.id)" v-show="menuLoad">
             {{v.name}}
-            <div :id="k1" v-for="(v1, k1) in v.subMenu" class="sub-menus"
+            <div :id="v1.id" v-for="(v1, k1) in v.children" class="sub-menus"
                  @click="action(v1.action)">
                 {{v1.name}}
             </div>
@@ -45,7 +45,6 @@
         </div>
     </div>
 </div>
-<script src="${pageContext.request.contextPath}/js/home.js?randomId=" +
-        <%=Math.random()%>></script>
+<script src="${pageContext.request.contextPath}/js/home.js?randomId=<%=Math.random()%>"></script>
 </body>
 </html>

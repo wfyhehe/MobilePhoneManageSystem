@@ -23,7 +23,7 @@ public class JsonController {
 
     @RequestMapping(value = "menu.json", method = RequestMethod.GET)
     public @ResponseBody List<Menu> menuJson() {
-        List<Menu> list = menuService.getMenus(null,null);
+        List<Menu> list = menuService.getTopMenus(null);
         return list;
     }
 

@@ -7,9 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Administrator on 2017/7/16.
@@ -37,6 +35,10 @@ public class MenuService {
 //            }
 //        }
         return menus;
+    }
 
+    public List<Menu> getTopMenus(List<Role> roles) {
+        List<Menu> menus = menuDao.getTopMenus(roles);
+        return menus;
     }
 }

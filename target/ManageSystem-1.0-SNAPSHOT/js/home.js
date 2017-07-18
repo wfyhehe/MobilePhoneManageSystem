@@ -1,21 +1,23 @@
-"use strict";
-
-var v = new Vue({
+new Vue({
     el: "#menu",
-    data: {
-        menuData: null,
-        menuLoad: false,
-        menuItems: {}
+    data () {
+        return {
+            menuData: null,
+            menuLoad: true,
+            menuItems: {},
+        }
     },
     methods: {
         show: function (id) {
             var subMenus = document.getElementById(id).getElementsByTagName("div");
+            console.log(id);
             for (var i = 0; i < subMenus.length; i++) {
                 subMenus[i].setAttribute("style", "display: block;");
             }
         },
         hide: function (id) {
             var subMenus = document.getElementById(id).getElementsByTagName("div");
+
             for (var i = 0; i < subMenus.length; i++) {
                 subMenus[i].setAttribute("style", "display: none;");
             }
@@ -32,11 +34,15 @@ var v = new Vue({
         },
         getJson: function (callback) {
             var url = "menu.json";
+            var self = this;
             $.getJSON(url, null, function (data) {
-                this.menuData = data;
-                this.menuLoad = true;
+                self.menuItems = data;
+                self.menuLoad = true;
                 callback(data);
             });
         }
+    },
+    created: function () {
+        this.getJson(console.log);
     }
 });

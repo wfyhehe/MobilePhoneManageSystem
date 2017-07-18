@@ -45,7 +45,7 @@ body {
 }
 
 .menu .menus {
-    width: 140px;
+    width: 100px;
     height: 26px;
     float: left;
     border: none;
@@ -60,7 +60,7 @@ body {
 }
 
 .menu .sub-menus {
-    width: 140px;
+    width: 100px;
     height: 26px;
     float: top;
     border: 1px solid #269abc;
