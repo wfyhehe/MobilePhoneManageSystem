@@ -1,17 +1,15 @@
 CREATE TABLE t_role_user (
-  id int PRIMARY KEY AUTO_INCREMENT,
-  user_id INT NOT NULL,
-  role_id INT NOT NULL,
-  constraint fk_ru_user_id
-  foreign key (user_id) references ssm.t_user (id),
-  constraint fk_ru_role_id
-  foreign key (role_id) references ssm.t_role (id)
+  id      INT PRIMARY KEY AUTO_INCREMENT,
+  user_id CHAR(32) NOT NULL,
+  role_id CHAR(32) NOT NULL,
+  CONSTRAINT fk_ru_user_id
+  FOREIGN KEY (user_id) REFERENCES ssm.t_user (id),
+  CONSTRAINT fk_ru_role_id
+  FOREIGN KEY (role_id) REFERENCES ssm.t_role (id)
 );
 
-create index index_ru_user_id
-  on t_role_user (user_id)
-;
+CREATE INDEX index_ru_user_id
+  ON t_role_user (user_id);
 
-create index index_ru_role_id
-  on t_role_user (role_id)
-;
+CREATE INDEX index_ru_role_id
+  ON t_role_user (role_id);

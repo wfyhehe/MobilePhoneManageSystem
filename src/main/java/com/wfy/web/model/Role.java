@@ -1,5 +1,7 @@
 package com.wfy.web.model;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -10,7 +12,7 @@ import java.util.List;
 @Entity
 @Table(name = "t_role")
 public class Role implements Serializable {
-    private int id;
+    private String id;
     private String name;
     private String remark;
     private RoleStatus status;
@@ -27,13 +29,14 @@ public class Role implements Serializable {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid")
     @Column(name = "id")
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

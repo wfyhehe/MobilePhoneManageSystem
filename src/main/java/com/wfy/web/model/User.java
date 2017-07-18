@@ -2,7 +2,7 @@ package com.wfy.web.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import org.springframework.stereotype.Component;
+import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -16,22 +16,30 @@ import java.util.List;
 @Table(name = "t_user")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User implements Serializable {
-    private int id;
+    private String id;
     private String username;
     private String password;
     private String remark;
+    private Employee employee;
     private Date createTime;
     private Date lastLoginTime;
     private UserStatus status;
     private List<Role> roles;
-
     public User() {
     }
-
     public User(String username, String password, UserStatus status) {
         this.username = username;
         this.password = password;
         this.status = status;
+    }
+
+    @OneToOne(mappedBy = "user")
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     @ManyToMany(cascade = CascadeType.ALL)
@@ -84,13 +92,14 @@ public class User implements Serializable {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid")
     @Column(name = "id")
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -139,6 +148,6 @@ public class User implements Serializable {
 
     @Override
     public int hashCode() {
-        return id;
+        return id.hashCode();
     }
 }

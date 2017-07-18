@@ -46,7 +46,6 @@ public class ModelsTest {
         User user = new User();
         user.setCreateTime(new Date());
         user.setLastLoginTime(new Date());
-        user.setId(15);
         user.setPassword("123456");
         user.setRemark("haha");
         user.setUsername("CJ");

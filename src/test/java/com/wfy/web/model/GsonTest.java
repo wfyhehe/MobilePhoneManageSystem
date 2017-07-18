@@ -15,7 +15,7 @@ public class GsonTest {
     public void test1() {
         User user = new User("wfyhehe", "123456", UserStatus.ONLINE);
         user.setRemark("a very clever guy");
-        user.setId(118);
+        user.setId(String.valueOf(118));
         user.setCreateTime(new Date());
         user.setLastLoginTime(new Date());
         Role role = new Role("idiot", RoleStatus.ONLINE);

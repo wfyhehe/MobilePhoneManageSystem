@@ -45,16 +45,44 @@ public class SpringModelsTest extends AbstractJUnit4SpringContextTests {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        Role role = new Role("admi3471232112332n", RoleStatus.ONLINE);
+        Role role = new Role("admi3478631232112332n", RoleStatus.ONLINE);
         List<Role> roles = new ArrayList<>();
         roles.add(role);
-        User user = new User("asd1314732123", "123123", UserStatus.ONLINE);
+        User user = new User("asd1314738882123", "123123", UserStatus.ONLINE);
         user.setRoles(roles);
         user.setCreateTime(new Date());
         user.setLastLoginTime(new Date());
         user.setStatus(UserStatus.ONLINE);
 
         session.save(user);
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    @Test
+    public void testEmployee() {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+
+        User user = new User("asd1314732123", "123123", UserStatus.ONLINE);
+        user.setCreateTime(new Date());
+        user.setLastLoginTime(new Date());
+        user.setStatus(UserStatus.ONLINE);
+
+        Employee employee = new Employee("aaa",EmployeeType.SALES);
+        employee.setUser(user);
+        List<Employee> employees = new ArrayList<>();
+        employees.add(employee);
+
+        Department department = new Department("ha","peking");
+        department.setEmployees(employees);
+
+        employee.setDepartment(department);
+
+        session.save(department);
+        session.save(user);
+        session.save(employee);
         session.getTransaction().commit();
         session.close();
     }
@@ -94,13 +122,13 @@ public class SpringModelsTest extends AbstractJUnit4SpringContextTests {
     @Test
     public void testMenuDao() {
         Menu menu = new Menu();
-        menu.setId(6);
+        menu.setId(String.valueOf(6));
         List<Role> roles = new ArrayList<>();
         Role r1 = new Role();
-        r1.setId(7);
+        r1.setId(String.valueOf(7));
         roles.add(r1);
         Role r2 = new Role();
-        r2.setId(12);
+        r2.setId(String.valueOf(12));
         roles.add(r2);
         menu.setRoles(roles);
         List list = menuDao.getMenus(menu, roles);
