@@ -15,6 +15,7 @@ import java.util.*;
 /**
  * Created by Administrator on 2017/7/17.
  */
+@CrossOrigin // 开发使用，发布时必须取消
 @Controller
 public class JsonController {
 

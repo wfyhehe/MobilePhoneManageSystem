@@ -1,6 +1,7 @@
 package com.wfy.web.model;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -27,6 +28,7 @@ public class User implements Serializable {
     private List<Role> roles;
     public User() {
     }
+
     public User(String username, String password, UserStatus status) {
         this.username = username;
         this.password = password;
@@ -42,7 +44,7 @@ public class User implements Serializable {
         this.employee = employee;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "t_role_user",
             joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
@@ -113,6 +115,7 @@ public class User implements Serializable {
     }
 
     @Column(name = "password")
+    @JsonIgnore
     public String getPassword() {
         return password;
     }

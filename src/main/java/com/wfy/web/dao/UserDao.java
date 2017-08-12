@@ -1,13 +1,12 @@
 package com.wfy.web.dao;
 
 import com.wfy.web.model.User;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.wfy.web.model.UserStatus;
 import org.springframework.orm.hibernate5.HibernateTemplate;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/7/14.
@@ -42,16 +41,35 @@ public class UserDao {
     }
 
     public boolean exists(User user) {
-        String username = user.getUsername();
-        String hql = "from User u where u.username = ?";
-        return hibernateTemplate.find(hql, username).size() > 0;
-
+        return exists(user.getUsername());
     }
 
-    public boolean match(User user) {
-        String username = user.getUsername();
-        String password = user.getPassword();
-        String hql = "from User u where u.username = ? and password = ?";
-        return hibernateTemplate.find(hql, username, password).size() > 0;
+    public boolean exists(String username) {
+        String hql = "from User u where u.username = ?";
+        return hibernateTemplate.find(hql, username).size() > 0;
+    }
+
+    public User selectLogin(String username, String password) {
+        String hql = "from User u where u.username = ? and u.password = ?";
+        List<User> users = (List<User>) hibernateTemplate.find(hql, username, password);
+        if (users.size() > 0) {
+            return users.get(0);
+        } else {
+            return null;
+        }
+    }
+
+    public void insert(User user) throws Exception {
+        hibernateTemplate.save(user);
+    }
+
+    public int updatePasswordByUsername(String username, String passwordNew) {
+        String hql = "update User u set u.password = ? where u.username = ?";
+        return hibernateTemplate.bulkUpdate(hql, passwordNew, username);
+    }
+
+    public int checkPassword(String password, String id) {
+        String hql = "from User u where u.id = ? and password = ?";
+        return hibernateTemplate.find(hql, id, password).size();
     }
 }

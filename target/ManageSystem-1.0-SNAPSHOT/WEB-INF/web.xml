@@ -27,7 +27,6 @@
 
     <!-- Filter mappings ================================================ -->
 
-
     <!-- Servlet Context Listener ======================================= -->
 
     <!--
@@ -83,22 +82,7 @@
         <url-pattern>*.do</url-pattern>
     </servlet-mapping>
 
-    <servlet-mapping>
-        <servlet-name>ManageSystem</servlet-name>
-        <url-pattern>*.json</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>AuthImage</servlet-name>
-        <servlet-class>com.wfy.web.utils.AuthImage</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>AuthImage</servlet-name>
-        <url-pattern>/authImage</url-pattern>
-    </servlet-mapping>
-
     <welcome-file-list>
-        <welcome-file>index.jsp</welcome-file>
         <welcome-file>index.html</welcome-file>
     </welcome-file-list>
 

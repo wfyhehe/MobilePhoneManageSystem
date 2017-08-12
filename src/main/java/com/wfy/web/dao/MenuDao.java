@@ -86,7 +86,7 @@ public class MenuDao {
                     sql.append(" and r.id = r_m.role_id");
                     sql.append(" where m.parent_id is null");
                     if (roles != null) {
-                        sql.append(" where r.id in (?)");
+                        sql.append(" and r.id in (?)");
                         strRoles = new StringBuffer(); // 拼接roleIds
                         for (Role role : roles) {
                             strRoles.append(role.getId());

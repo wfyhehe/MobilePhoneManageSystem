@@ -1,11 +1,13 @@
 package com.wfy.web.model;
 
 import com.wfy.web.dao.MenuDao;
+import com.wfy.web.service.IUserService;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
@@ -28,12 +30,16 @@ import java.util.List;
 public class SpringModelsTest extends AbstractJUnit4SpringContextTests {
 
     @Autowired
-    public HibernateTemplate hibernateTemplate;
+    private HibernateTemplate hibernateTemplate;
 
     @Autowired
-    MenuDao menuDao;
+    private MenuDao menuDao;
 
-//    @Before
+    @Autowired
+    @Qualifier("iUserService")
+    private IUserService iUserService;
+
+    //    @Before
 //    public void myInitMethod(){
 //        sessionFactory.getCurrentSession().setFlushMode(FlushModeType.AUTO);
 //    }
@@ -70,12 +76,12 @@ public class SpringModelsTest extends AbstractJUnit4SpringContextTests {
         user.setLastLoginTime(new Date());
         user.setStatus(UserStatus.ONLINE);
 
-        Employee employee = new Employee("aaa",EmployeeType.SALES);
+        Employee employee = new Employee("aaa", EmployeeType.SALES);
         employee.setUser(user);
         List<Employee> employees = new ArrayList<>();
         employees.add(employee);
 
-        Department department = new Department("ha","peking");
+        Department department = new Department("ha", "peking");
         department.setEmployees(employees);
 
         employee.setDepartment(department);
@@ -133,5 +139,28 @@ public class SpringModelsTest extends AbstractJUnit4SpringContextTests {
         menu.setRoles(roles);
         List list = menuDao.getMenus(menu, roles);
         System.out.println(list);
+    }
+
+    @Test
+    public void testUser() {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        User user = new User("admin", "admin", UserStatus.ONLINE);
+        user.setCreateTime(new Date());
+        user.setLastLoginTime(new Date());
+
+        session.save(user);
+        session.getTransaction().commit();
+        session.close();
+    }
+
+    @Test
+    public void testInsert() {
+        User user = new User("admin", "admin", UserStatus.ONLINE);
+        user.setCreateTime(new Date());
+        user.setLastLoginTime(new Date());
+
+        iUserService.register(user);
     }
 }
