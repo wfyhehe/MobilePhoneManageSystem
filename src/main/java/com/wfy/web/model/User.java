@@ -26,6 +26,7 @@ public class User implements Serializable {
     private Date lastLoginTime;
     private UserStatus status;
     private List<Role> roles;
+
     public User() {
     }
 

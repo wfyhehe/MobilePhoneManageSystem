@@ -1,7 +1,6 @@
 package com.wfy.web.dao;
 
 import com.wfy.web.model.User;
-import com.wfy.web.model.UserStatus;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -71,5 +70,15 @@ public class UserDao {
     public int checkPassword(String password, String id) {
         String hql = "from User u where u.id = ? and password = ?";
         return hibernateTemplate.find(hql, id, password).size();
+    }
+
+    public User getUserById(String id) {
+        String hql = "from User u where u.id = ?";
+        List<User> users = (List<User>) hibernateTemplate.find(hql, id);
+        if (users.size() > 0) {
+            return users.get(0);
+        } else {
+            return null;
+        }
     }
 }
