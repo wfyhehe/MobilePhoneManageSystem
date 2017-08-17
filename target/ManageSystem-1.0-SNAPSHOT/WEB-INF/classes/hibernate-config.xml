@@ -2,14 +2,13 @@
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:aop="http://www.springframework.org/schema/aop"
-       xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans-4.3.xsd
 		http://www.springframework.org/schema/aop
 		http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
-		http://www.springframework.org/schema/context
-		http://www.springframework.org/schema/context/spring-context-4.3.xsd
+
+
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx-4.3.xsd">
 
@@ -22,7 +21,7 @@
                   value="com.mysql.cj.jdbc.Driver">
         </property>
         <property name="url" value="jdbc:mysql://localhost:3306/ssm
-        ?useSSL=true&amp;useUnicode=true&amp;serverTimezone=UTC&amp;characterEncoding=UTF-8"/>
+        ?useSSL=true&amp;useUnicode=true&amp;serverTimezone=GMT%2b8&amp;characterEncoding=UTF-8"/>
         <property name="username" value="root"/>
         <property name="password" value="190035"/>
     </bean>
@@ -65,7 +64,7 @@
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>
             <!--<tx:method name="find*" read-only="true"-->
-                       <!--propagation="NOT_SUPPORTED"/>-->
+            <!--propagation="NOT_SUPPORTED"/>-->
             <!-- get开头的方法不需要在事务中运行 。
             有些情况是没有必要使用事务的，比如获取数据。开启事务本身对性能是有一定的影响的-->
 
@@ -75,7 +74,7 @@
             <tx:method name="query*" propagation="REQUIRED" read-only="true"/>
             <tx:method name="check*" propagation="REQUIRED" read-only="true"/>
             <tx:method name="login" propagation="REQUIRED" read-only="true"/>
-            <tx:method name="*" read-only="false" />
+            <tx:method name="*" read-only="false"/>
         </tx:attributes>
     </tx:advice>
 </beans>

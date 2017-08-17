@@ -4,12 +4,16 @@ package com.wfy.web.model;
  * Created by Administrator on 2017/7/18.
  */
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "t_employee")
+@JsonIgnoreProperties(ignoreUnknown = true)
+@DynamicUpdate
 public class Employee {
     private String id;
     private String name;

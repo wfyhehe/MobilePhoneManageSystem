@@ -1,10 +1,12 @@
 package com.wfy.web.dao;
 
 import com.wfy.web.model.User;
+import com.wfy.web.model.UserStatus;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -62,9 +64,9 @@ public class UserDao {
         hibernateTemplate.save(user);
     }
 
-    public int updatePasswordByUsername(String username, String passwordNew) {
-        String hql = "update User u set u.password = ? where u.username = ?";
-        return hibernateTemplate.bulkUpdate(hql, passwordNew, username);
+    public boolean updatePassword(String id, String passwordNew) {
+        String hql = "update User u set u.password = ? where u.id = ?";
+        return hibernateTemplate.bulkUpdate(hql, passwordNew, id) > 0;
     }
 
     public int checkPassword(String password, String id) {
@@ -72,7 +74,7 @@ public class UserDao {
         return hibernateTemplate.find(hql, id, password).size();
     }
 
-    public User getUserById(String id) {
+    public User getUser(String id) {
         String hql = "from User u where u.id = ?";
         List<User> users = (List<User>) hibernateTemplate.find(hql, id);
         if (users.size() > 0) {
@@ -80,5 +82,15 @@ public class UserDao {
         } else {
             return null;
         }
+    }
+
+    public void updateStatus(User user, UserStatus status) {
+        user.setStatus(status);
+        hibernateTemplate.update(user);
+    }
+
+    public void updateLoginTime(User user, Date loginTime) {
+        user.setLastLoginTime(loginTime);
+        hibernateTemplate.update(user);
     }
 }

@@ -1,5 +1,7 @@
 package com.wfy.web.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -11,6 +13,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "t_dept")
+@JsonIgnoreProperties(ignoreUnknown = true)
+@DynamicUpdate
 public class Department {
     private String id;
     private String name;

@@ -12,9 +12,15 @@ public interface IUserService {
 
     ServerResponse<String> register(User user);
 
+    ServerResponse<String> checkUsername(String username);
+
     ServerResponse<String> checkValid(String str, String type);
 
 //    ServerResponse<String> forgetResetPassword(String username, String passwordNew, String forgetToken);
 
-    ServerResponse<String> resetPassword(String passwordOld, String passwordNew, User user);
+    ServerResponse<String> resetPassword(String passwordOld, String passwordNew, String id);
+
+    User getUser(String id);
+
+    void logout(String userId);
 }

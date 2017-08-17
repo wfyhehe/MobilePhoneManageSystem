@@ -2,6 +2,8 @@ package com.wfy.web.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -14,6 +16,8 @@ import java.util.List;
 
 @Entity
 @Table(name = "t_menu")
+@JsonIgnoreProperties(ignoreUnknown = true)
+@DynamicUpdate
 public class Menu implements Serializable {
     private String id;
     private String name;
