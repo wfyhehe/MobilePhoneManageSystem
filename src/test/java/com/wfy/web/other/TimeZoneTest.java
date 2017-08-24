@@ -13,4 +13,9 @@ public class TimeZoneTest {
     public void test() {
         System.out.println(new Date(System.currentTimeMillis()));
     }
+
+    @Test
+    public void testNull() {
+        System.out.println(null == null);
+    }
 }

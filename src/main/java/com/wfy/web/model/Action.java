@@ -1,12 +1,13 @@
 package com.wfy.web.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Administrator on 2017/7/15.
@@ -21,14 +22,44 @@ public class Action implements Serializable {
     private String name;
     private String remark;
     private ActionType type;
-    private List<Role> roles;
+    private String url;
+    private Set<Role> roles;
+    private Menu menu;
 
     public Action() {
     }
 
-    public Action(String name, ActionType type) {
+    public Action(String name, String url, ActionType type) {
         this.name = name;
         this.type = type;
+        this.url = url;
+    }
+
+    public Action(String name, String url, ActionType type, Menu menu) {
+        this.name = name;
+        this.type = type;
+        this.url = url;
+        this.menu = menu;
+    }
+
+    @Column(name = "url")
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "menu_id")
+    @JsonIgnore
+    public Menu getMenu() {
+        return menu;
+    }
+
+    public void setMenu(Menu menu) {
+        this.menu = menu;
     }
 
     @Id
@@ -71,15 +102,15 @@ public class Action implements Serializable {
         this.type = type;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "t_role_action",
             joinColumns = @JoinColumn(name = "action_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 

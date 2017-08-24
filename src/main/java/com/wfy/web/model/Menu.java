@@ -9,6 +9,7 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Administrator on 2017/7/15.
@@ -23,11 +24,12 @@ public class Menu implements Serializable {
     private String name;
     private String remark;
     private MenuType type;
+    private String path;
     private Integer sortOrder;
     private Menu parent;
     private List<Menu> children;
-    private Action action;
-    private List<Role> roles;
+    private Set<Action> actions;
+    private Set<Role> roles;
 
     public Menu() {
     }
@@ -44,13 +46,22 @@ public class Menu implements Serializable {
         this.sortOrder = sortOrder;
     }
 
-    public Menu(String name, Menu parent, Integer sortOrder) {
+    public Menu(String name, Menu parent, String path, Integer sortOrder) {
         this.name = name;
         this.parent = parent;
+        this.path = path;
         type = MenuType.NODE;
         this.sortOrder = sortOrder;
     }
 
+    @Column(name = "path")
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
 
     @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,
             mappedBy = "parent")
@@ -74,14 +85,13 @@ public class Menu implements Serializable {
         this.parent = parent;
     }
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "action_id")
-    public Action getAction() {
-        return action;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "menu")
+    public Set<Action> getActions() {
+        return actions;
     }
 
-    public void setAction(Action action) {
-        this.action = action;
+    public void setActions(Set<Action> actions) {
+        this.actions = actions;
     }
 
     @Id
@@ -134,16 +144,15 @@ public class Menu implements Serializable {
     }
 
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
     @JoinTable(name = "t_role_menu",
             joinColumns = @JoinColumn(name = "menu_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))
-    @JsonIgnore
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 
@@ -158,7 +167,7 @@ public class Menu implements Serializable {
                 ", sortOrder=" + sortOrder +
                 ", parent=" + parent +
                 //", children=" + children + //若既有children又有parent会无限递归爆栈
-                ", action=" + action +
+                ", actions=" + actions +
                 ", roles=" + roles +
                 '}';
     }

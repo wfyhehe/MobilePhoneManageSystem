@@ -15,9 +15,7 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Administrator on 2017/7/16.
@@ -98,29 +96,35 @@ public class SpringModelsTest extends AbstractJUnit4SpringContextTests {
         Session session = sessionFactory.openSession();
         session.beginTransaction();
 
-        Role role = new Role("asshole", RoleStatus.ONLINE);
-        Menu topMenu = new Menu("b", 2);
-        List<Role> topMenuRoles = new ArrayList<>();
+        Role role = new Role("superadmin", RoleStatus.ONLINE);
+        Menu topMenu1 = new Menu("系统管理", 2);
+        Set<Role> topMenuRoles = new HashSet<>();
         topMenuRoles.add(role);
-        Menu subMenu1 = new Menu("b1", topMenu, 1);
-        Menu subMenu2 = new Menu("b2", topMenu, 2);
-        Menu subMenu3 = new Menu("b3", topMenu, 3);
-        List<Role> subMenu1Roles = new ArrayList<>();
+        Menu subMenu1 = new Menu("用户管理", topMenu1, "user_manage", 1);
+        Menu subMenu2 = new Menu("权限管理", topMenu1, "auth_manage", 2);
+        Menu subMenu3 = new Menu("菜单管理", topMenu1, "menu_manage", 3);
+        Action action1 = new Action("添加菜单", "/menu/add_menu.do", ActionType.GRANTED, subMenu1);
+
+        Set<Role> subMenu1Roles = new HashSet<>();
         subMenu1Roles.add(role);
-        List<Role> subMenu2Roles = new ArrayList<>();
+        Set<Role> subMenu2Roles = new HashSet<>();
         subMenu2Roles.add(role);
-        List<Role> subMenu3Roles = new ArrayList<>();
+        Set<Role> subMenu3Roles = new HashSet<>();
         subMenu3Roles.add(role);
-        topMenu.setRoles(topMenuRoles);
+
+        topMenu1.setRoles(topMenuRoles);
         subMenu1.setRoles(subMenu1Roles);
         subMenu2.setRoles(subMenu2Roles);
         subMenu3.setRoles(subMenu3Roles);
+
         List<Menu> children = new ArrayList<>();
         children.add(subMenu1);
         children.add(subMenu2);
         children.add(subMenu3);
-        topMenu.setChildren(children);
-        session.save(topMenu);
+        topMenu1.setChildren(children);
+
+        session.save(topMenu1);
+        session.save(action1);
         session.getTransaction().commit();
         session.close();
     }
@@ -129,7 +133,7 @@ public class SpringModelsTest extends AbstractJUnit4SpringContextTests {
     public void testMenuDao() {
         Menu menu = new Menu();
         menu.setId(String.valueOf(6));
-        List<Role> roles = new ArrayList<>();
+        Set<Role> roles = new HashSet<>();
         Role r1 = new Role();
         r1.setId(String.valueOf(7));
         roles.add(r1);
@@ -162,5 +166,21 @@ public class SpringModelsTest extends AbstractJUnit4SpringContextTests {
         user.setLastLoginTime(new Date());
 
         iUserService.register(user);
+    }
+
+    @Test
+    public void testRole() {
+        Session session = sessionFactory.openSession();
+        session.beginTransaction();
+
+        Role role1 = new Role("店长", RoleStatus.ONLINE);
+        Role role2 = new Role("商务经理", RoleStatus.ONLINE);
+        Role role3 = new Role("财务人员", RoleStatus.ONLINE);
+
+        session.save(role1);
+        session.save(role2);
+        session.save(role3);
+        session.getTransaction().commit();
+        session.close();
     }
 }

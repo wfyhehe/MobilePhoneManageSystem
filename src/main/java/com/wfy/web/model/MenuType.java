@@ -5,6 +5,5 @@ package com.wfy.web.model;
  */
 public enum MenuType {
     PARENT,
-    NODE,
-    LINE
+    NODE
 }

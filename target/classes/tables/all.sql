@@ -36,10 +36,14 @@ CREATE INDEX index_dept_contact
   ON t_dept (address);
 
 CREATE TABLE t_action (
-  id     CHAR(32) PRIMARY KEY,
-  name   VARCHAR(18) UNIQUE NOT NULL,
-  remark TEXT,
-  type   TINYINT            NOT NULL # 0:普通动作,1:授权动作
+  id      CHAR(32) PRIMARY KEY,
+  name    VARCHAR(18) UNIQUE NOT NULL,
+  remark  TEXT,
+  type    TINYINT            NOT NULL, # 0:普通动作,1:授权动作
+  menu_id CHAR(32)           NULL,
+  url     VARCHAR(32)        NOT NULL,
+  CONSTRAINT fk_action_menu_id
+  FOREIGN KEY (menu_id) REFERENCES ssm.t_menu (id)
 );
 
 CREATE INDEX index_action_name
@@ -70,17 +74,12 @@ CREATE TABLE t_menu (
   name       VARCHAR(32) UNIQUE NOT NULL,
   remark     TEXT,
   type       TINYINT            NOT NULL, # 0:父菜单,1:叶子菜单,2:分割线
+  path       VARCHAR(32)        NULL,
   sort_order TINYINT            NOT NULL,
   parent_id  CHAR(32) REFERENCES t_menu (id),
-  action_id  CHAR(32) REFERENCES t_action (id),
-  CONSTRAINT fk_menu_action_id
-  FOREIGN KEY (action_id) REFERENCES ssm.t_action (id),
   CONSTRAINT fk_menu_parent_id
   FOREIGN KEY (parent_id) REFERENCES ssm.t_menu (id)
 );
-
-CREATE INDEX index_menu_action_id
-  ON t_menu (action_id);
 
 CREATE INDEX index_menu_parent_id
   ON t_menu (parent_id);

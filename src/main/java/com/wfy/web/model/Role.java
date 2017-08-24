@@ -1,12 +1,13 @@
 package com.wfy.web.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Administrator on 2017/7/15.
@@ -20,9 +21,9 @@ public class Role implements Serializable {
     private String name;
     private String remark;
     private RoleStatus status;
-    private List<User> users;
-    private List<Action> actions;
-    private List<Menu> menus;
+    private Set<User> users;
+    private Set<Action> actions;
+    private Set<Menu> menus;
 
     public Role() {
     }
@@ -73,29 +74,32 @@ public class Role implements Serializable {
     }
 
     @ManyToMany(mappedBy = "roles")
-    public List<User> getUsers() {
+    @JsonIgnore
+    public Set<User> getUsers() {
         return users;
     }
 
-    public void setUsers(List<User> users) {
+    public void setUsers(Set<User> users) {
         this.users = users;
     }
 
     @ManyToMany(mappedBy = "roles")
-    public List<Action> getActions() {
+    @JsonIgnore
+    public Set<Action> getActions() {
         return actions;
     }
 
-    public void setActions(List<Action> actions) {
+    public void setActions(Set<Action> actions) {
         this.actions = actions;
     }
 
     @ManyToMany(mappedBy = "roles")
-    public List<Menu> getMenus() {
+    @JsonIgnore
+    public Set<Menu> getMenus() {
         return menus;
     }
 
-    public void setMenus(List<Menu> menus) {
+    public void setMenus(Set<Menu> menus) {
         this.menus = menus;
     }
 

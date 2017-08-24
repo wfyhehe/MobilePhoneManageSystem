@@ -1,34 +1,31 @@
 package com.wfy.web.dao;
 
 import com.wfy.web.model.Menu;
+import com.wfy.web.model.MenuType;
 import com.wfy.web.model.Role;
 import org.hibernate.query.Query;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Administrator on 2017/7/16.
  */
 @Repository
 public class MenuDao {
+
+    @Resource
     private HibernateTemplate hibernateTemplate;
 
     public MenuDao() {
     }
 
-    public HibernateTemplate getHibernateTemplate() {
-        return hibernateTemplate;
-    }
-
-    @Resource
-    public void setHibernateTemplate(HibernateTemplate hibernateTemplate) {
-        this.hibernateTemplate = hibernateTemplate;
-    }
-
-    public List<Menu> getMenus(Menu parentMenu, List<Role> roles) {
+    public List<Menu> getMenus(Menu parentMenu, Set<Role> roles) {
         List<Menu> list = hibernateTemplate.execute(
                 session -> {
                     StringBuffer strRoles = null;
@@ -58,8 +55,7 @@ public class MenuDao {
                         }
                         strRoles.deleteCharAt(strRoles.length() - 1); // 删除逗号
                     }
-                    Query query = session.createNativeQuery(sql.toString())
-                            .addEntity(Menu.class);
+                    Query query = session.createNativeQuery(sql.toString()).addEntity(Menu.class);
                     if (parentMenu != null) {
                         query.setParameter(1, parentMenu.getId());
                     }
@@ -70,6 +66,12 @@ public class MenuDao {
                     return (List<Menu>) query.list();
                 }
         );
+        list.sort(Comparator.comparingInt(Menu::getSortOrder));
+        for (Menu m : list) {
+            if (m.getChildren() != null) {
+                m.getChildren().sort(Comparator.comparingInt(Menu::getSortOrder));
+            }
+        }
         return list;
     }
 
@@ -78,7 +80,7 @@ public class MenuDao {
                 session -> {
                     StringBuffer strRoles = null;
                     StringBuffer sql = new StringBuffer();
-                    sql.append("select m.*");
+                    sql.append("select distinct m.*");
                     sql.append(" from t_menu as m");
                     sql.append(" inner join t_role_menu as r_m");
                     sql.append(" inner join t_role as r");
@@ -101,15 +103,96 @@ public class MenuDao {
                         }
                         strRoles.deleteCharAt(strRoles.length() - 1); // 删除逗号
                     }
-                    Query query = session.createNativeQuery(sql.toString())
-                            .addEntity(Menu.class);
+                    Query query = session.createNativeQuery(sql.toString()).addEntity(Menu.class);
                     if (strRoles != null) {
                         query.setParameter(1, strRoles.toString());
                     }
-                    query.list();
                     return (List<Menu>) query.list();
                 }
         );
+        list.sort(Comparator.comparingInt(Menu::getSortOrder));
+        for (Menu m : list) {
+            if (m.getChildren() != null) {
+                m.getChildren().sort(Comparator.comparingInt(Menu::getSortOrder));
+            }
+        }
         return list;
+    }
+
+    public String save(Menu menu) {
+        return (String) hibernateTemplate.save(menu);
+    }
+
+    public Menu getMenuById(String id) {
+        String hql = "from Menu m where m.id = ?";
+        List<Menu> list = (List<Menu>) hibernateTemplate.find(hql, id);
+        if (list.size() > 0) {
+            return list.get(0);
+        } else {
+            return null;
+        }
+    }
+
+    public Menu getMenuByName(String name) {
+        String hql = "from Menu m where m.name = ?";
+        List<Menu> list = (List<Menu>) hibernateTemplate.find(hql, name);
+        if (list.size() > 0) {
+            return list.get(0);
+        } else {
+            return null;
+        }
+    }
+
+    public void update(Menu menu) {
+        hibernateTemplate.update(menu);
+    }
+
+    public Menu getPre(Menu menu) {
+        List<Menu> list = null;
+        if (menu.getType() == MenuType.PARENT) {
+            String hql = "from Menu m where m.sortOrder < ? and m.parent is null";
+            list = (List<Menu>) hibernateTemplate.find(hql, menu.getSortOrder());
+        } else if (menu.getType() == MenuType.NODE) {
+            String hql = "from Menu m where m.sortOrder < ? and m.parent = ?";
+            list = (List<Menu>) hibernateTemplate.find(hql, menu.getSortOrder(), menu.getParent());
+        }
+        if (list != null && list.size() > 0) {
+            Menu ret = list.get(0);
+            for (Menu m : list) {
+                if (m.getSortOrder() > ret.getSortOrder()) {
+                    ret = m;
+                }
+            }
+            return ret;
+        } else {
+            return null;
+        }
+    }
+
+    public Menu getSuc(Menu menu) {
+        List<Menu> list = null;
+        if (menu.getType() == MenuType.PARENT) {
+            String hql = "from Menu m where m.sortOrder > ? and m.parent is null";
+            list = (List<Menu>) hibernateTemplate.find(hql, menu.getSortOrder());
+        } else if (menu.getType() == MenuType.NODE) {
+            String hql = "from Menu m where m.sortOrder > ? and m.parent = ?";
+            list = (List<Menu>) hibernateTemplate.find(hql, menu.getSortOrder(), menu.getParent());
+        }
+        if (list != null && list.size() > 0) {
+            Menu ret = list.get(0);
+            for (Menu m : list) {
+                if (m.getSortOrder() < ret.getSortOrder()) {
+                    ret = m;
+                }
+            }
+            return ret;
+        } else {
+            return null;
+        }
+    }
+
+    public void delete(Menu menu) {
+        hibernateTemplate.clear();
+        hibernateTemplate.delete(menu);
     }
 }
