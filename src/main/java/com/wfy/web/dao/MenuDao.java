@@ -1,5 +1,6 @@
 package com.wfy.web.dao;
 
+import com.wfy.web.model.Action;
 import com.wfy.web.model.Menu;
 import com.wfy.web.model.MenuType;
 import com.wfy.web.model.Role;
@@ -8,7 +9,6 @@ import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Set;
@@ -22,7 +22,29 @@ public class MenuDao {
     @Resource
     private HibernateTemplate hibernateTemplate;
 
-    public MenuDao() {
+    private void normalizeMenus(List<Menu> menus) {
+        menus.sort(Comparator.comparingInt(Menu::getSortOrder));
+        for (Menu m : menus) {
+            normalizeMenu(m);
+        }
+    }
+
+    private void normalizeMenu(Menu menu) {
+//        menu.getRoles().toArray();
+//        menu.getActions().toArray();
+//        for (Action action : menu.getActions()) {
+//            action.setRoles(null);
+//        }
+//        if (menu.getParent() != null) {
+//            menu.getParent().setChildren(null);
+//        }
+        if (menu.getChildren() != null) {
+            menu.getChildren().sort(Comparator.comparingInt(Menu::getSortOrder));
+//            for (Menu child : menu.getChildren()) {
+//                child.getRoles().toArray();
+//                child.setParent(null);
+//            }
+        }
     }
 
     public List<Menu> getMenus(Menu parentMenu, Set<Role> roles) {
@@ -66,12 +88,7 @@ public class MenuDao {
                     return (List<Menu>) query.list();
                 }
         );
-        list.sort(Comparator.comparingInt(Menu::getSortOrder));
-        for (Menu m : list) {
-            if (m.getChildren() != null) {
-                m.getChildren().sort(Comparator.comparingInt(Menu::getSortOrder));
-            }
-        }
+        normalizeMenus(list);
         return list;
     }
 
@@ -110,12 +127,7 @@ public class MenuDao {
                     return (List<Menu>) query.list();
                 }
         );
-        list.sort(Comparator.comparingInt(Menu::getSortOrder));
-        for (Menu m : list) {
-            if (m.getChildren() != null) {
-                m.getChildren().sort(Comparator.comparingInt(Menu::getSortOrder));
-            }
-        }
+        normalizeMenus(list);
         return list;
     }
 
@@ -127,7 +139,9 @@ public class MenuDao {
         String hql = "from Menu m where m.id = ?";
         List<Menu> list = (List<Menu>) hibernateTemplate.find(hql, id);
         if (list.size() > 0) {
-            return list.get(0);
+            Menu menu = list.get(0);
+            normalizeMenu(menu);
+            return menu;
         } else {
             return null;
         }
@@ -137,7 +151,9 @@ public class MenuDao {
         String hql = "from Menu m where m.name = ?";
         List<Menu> list = (List<Menu>) hibernateTemplate.find(hql, name);
         if (list.size() > 0) {
-            return list.get(0);
+            Menu menu = list.get(0);
+            normalizeMenu(menu);
+            return menu;
         } else {
             return null;
         }
@@ -163,6 +179,7 @@ public class MenuDao {
                     ret = m;
                 }
             }
+            normalizeMenu(ret);
             return ret;
         } else {
             return null;
@@ -185,6 +202,7 @@ public class MenuDao {
                     ret = m;
                 }
             }
+            normalizeMenu(ret);
             return ret;
         } else {
             return null;

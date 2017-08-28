@@ -5,5 +5,5 @@ package com.wfy.web.model;
  */
 public enum EmployeeType {
     SALES,
-    OTHERS
+    OTHER
 }

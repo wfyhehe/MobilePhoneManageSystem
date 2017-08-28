@@ -30,7 +30,7 @@ public class MenuController {
     @RequestMapping(value = "get_menus.do", method = RequestMethod.GET)
     public ServerResponse<List<Menu>> getMenus() {
         List<Menu> list = iMenuService.getTopMenus(null);
-        if (list != null && list.size() > 0) {
+        if (list != null) {
             return ServerResponse.createBySuccess(list);
         } else {
             return ServerResponse.createByErrorMessage("获取菜单失败");
@@ -47,11 +47,17 @@ public class MenuController {
         }
     }
 
-    @RequestMapping(value = "add_menu.do", method = RequestMethod.GET)
-    public ServerResponse<Menu> addMenu(String parentId, int sortOrder) {
+    @RequestMapping(value = "add_menu.do", method = RequestMethod.POST)
+    public ServerResponse<Menu> addMenu(@RequestBody Map<String, Object> menuMap) {
+        String parentId = (String) menuMap.get("parentId");
+        String name = (String) menuMap.get("name");
+        int sortOrder = (int) menuMap.get("sortOrder");
         Menu menu;
+        System.out.println(parentId);
+        System.out.println(name);
+        System.out.println(sortOrder);
         try {
-            menu = iMenuService.addMenu(parentId, sortOrder);
+            menu = iMenuService.addMenu(parentId, name, sortOrder);
         } catch (Exception e) {
             e.printStackTrace();
             return ServerResponse.createByErrorMessage(e.getMessage());
@@ -76,7 +82,6 @@ public class MenuController {
         menu.setPath(path);
         menu.setRemark(remark);
         menu.setRoles(roles);
-        System.out.println(menu);
         try {
             iMenuService.update(menu);
         } catch (Exception e) {

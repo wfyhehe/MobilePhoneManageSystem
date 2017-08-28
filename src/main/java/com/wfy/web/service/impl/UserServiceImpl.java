@@ -139,9 +139,12 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public User getUser(String id) {
-        User user = userDao.getUser(id);
-        System.out.println(user);
-        return user;
+        return userDao.getUser(id);
+    }
+
+    @Override
+    public User getUserByName(String name) {
+        return userDao.getUserByName(name);
     }
 
 

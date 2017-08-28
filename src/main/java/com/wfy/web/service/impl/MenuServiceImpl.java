@@ -49,13 +49,13 @@ public class MenuServiceImpl implements IMenuService {
     }
 
     @Override
-    public Menu addMenu(String parentId, int sortOrder) {
+    public Menu addMenu(String parentId, String name, int sortOrder) {
         Menu menu;
         if (parentId != null) {
             Menu parent = menuDao.getMenuById(parentId);
-            menu = new Menu("新建菜单项", parent, null, sortOrder);
+            menu = new Menu(name, parent, null, sortOrder);
         } else {
-            menu = new Menu("新建菜单项", sortOrder);
+            menu = new Menu(name, sortOrder);
         }
         Set<Role> set = new HashSet<>();
         Role role = roleDao.getRoleByName("超级管理员");

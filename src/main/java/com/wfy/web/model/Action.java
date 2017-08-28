@@ -102,7 +102,7 @@ public class Action implements Serializable {
         this.type = type;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
     @JoinTable(name = "t_role_action",
             joinColumns = @JoinColumn(name = "action_id"),
             inverseJoinColumns = @JoinColumn(name = "role_id"))

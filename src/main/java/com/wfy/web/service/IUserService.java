@@ -22,5 +22,7 @@ public interface IUserService {
 
     User getUser(String id);
 
+    User getUserByName(String name);
+
     void logout(String userId);
 }

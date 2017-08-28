@@ -1,11 +1,12 @@
 CREATE TABLE t_employee (
-  id      CHAR(32) PRIMARY KEY,
-  name    VARCHAR(30),
-  tel     VARCHAR(20),
-  remark  TEXT,
-  type    TINYINT NOT NULL, # 0:销售员 1:其他
-  dept_id CHAR(32) NOT NULL,
-  user_id CHAR(32),
+  id         CHAR(32) PRIMARY KEY,
+  name       VARCHAR(30),
+  tel        VARCHAR(20),
+  remark     TEXT,
+  type       TINYINT    NOT NULL, # 0:销售员 1:其他
+  dept_id    CHAR(32),
+  user_id    CHAR(32),
+  deleted TINYINT(1) NOT NULL,
   CONSTRAINT fk_employee_dept_id
   FOREIGN KEY (dept_id) REFERENCES ssm.t_dept (id),
   CONSTRAINT fk_employee_user_id

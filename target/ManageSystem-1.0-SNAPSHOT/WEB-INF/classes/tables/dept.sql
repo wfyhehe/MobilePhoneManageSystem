@@ -1,9 +1,10 @@
 CREATE TABLE t_dept (
   id      CHAR(32) PRIMARY KEY,
   name    VARCHAR(100) NOT NULL,
-  address    VARCHAR(500) NOT NULL,
+  address VARCHAR(500) NOT NULL,
   remark  TEXT,
   tel     VARCHAR(20),
+  status  TINYINT      NOT NULL, # 0: 正常, 1: 已删除
   contact VARCHAR(32)
 );
 

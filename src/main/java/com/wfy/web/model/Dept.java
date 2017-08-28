@@ -1,5 +1,6 @@
 package com.wfy.web.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
@@ -15,21 +16,32 @@ import java.util.List;
 @Table(name = "t_dept")
 @JsonIgnoreProperties(ignoreUnknown = true)
 @DynamicUpdate
-public class Department {
+public class Dept {
     private String id;
     private String name;
     private String address;
     private String remark;
     private String tel;
     private String contact;
+    private boolean deleted;
     private List<Employee> employees;
 
-    public Department() {
+    public Dept() {
     }
 
-    public Department(String name, String address) {
+    public Dept(String name, String address) {
         this.name = name;
         this.address = address;
+        this.deleted = false;
+    }
+
+    @Column(name = "deleted")
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 
     @Column(name = "addr")
@@ -50,7 +62,8 @@ public class Department {
         this.contact = contact;
     }
 
-    @OneToMany(mappedBy = "department")
+    @OneToMany(mappedBy = "dept")
+    @JsonIgnore
     public List<Employee> getEmployees() {
         return employees;
     }
@@ -98,4 +111,32 @@ public class Department {
         this.remark = remark;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Dept dept = (Dept) o;
+
+        return id != null ? id.equals(dept.id) : dept.id == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Dept{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", address='" + address + '\'' +
+                ", remark='" + remark + '\'' +
+                ", tel='" + tel + '\'' +
+                ", contact='" + contact + '\'' +
+                ", deleted=" + deleted +
+//                ", employees=" + employees +
+                '}';
+    }
 }

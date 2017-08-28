@@ -85,7 +85,7 @@ public class Menu implements Serializable {
         this.parent = parent;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "menu")
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,mappedBy = "menu")
     public Set<Action> getActions() {
         return actions;
     }

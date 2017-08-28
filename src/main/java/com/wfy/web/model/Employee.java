@@ -20,7 +20,8 @@ public class Employee {
     private String tel;
     private String remark;
     private EmployeeType type;
-    private Department department;
+    private boolean deleted;
+    private Dept dept;
     private User user;
 
     public Employee() {
@@ -29,6 +30,16 @@ public class Employee {
     public Employee(String name, EmployeeType type) {
         this.name = name;
         this.type = type;
+        this.deleted = false;
+    }
+
+    @Column(name = "deleted")
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 
     @Column(name = "tel")
@@ -42,12 +53,12 @@ public class Employee {
 
     @ManyToOne
     @JoinColumn(name = "dept_id")
-    public Department getDepartment() {
-        return department;
+    public Dept getDept() {
+        return dept;
     }
 
-    public void setDepartment(Department department) {
-        this.department = department;
+    public void setDept(Dept dept) {
+        this.dept = dept;
     }
 
     @OneToOne
@@ -101,4 +112,32 @@ public class Employee {
     }
 
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Employee employee = (Employee) o;
+
+        return id != null ? id.equals(employee.id) : employee.id == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return id != null ? id.hashCode() : 0;
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", tel='" + tel + '\'' +
+                ", remark='" + remark + '\'' +
+                ", type=" + type +
+                ", deleted=" + deleted +
+                ", dept=" + dept +
+                ", user=" + user +
+                '}';
+    }
 }

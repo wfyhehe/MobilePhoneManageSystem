@@ -79,12 +79,12 @@ public class SpringModelsTest extends AbstractJUnit4SpringContextTests {
         List<Employee> employees = new ArrayList<>();
         employees.add(employee);
 
-        Department department = new Department("ha", "peking");
-        department.setEmployees(employees);
+        Dept dept = new Dept("ha", "peking");
+        dept.setEmployees(employees);
 
-        employee.setDepartment(department);
+        employee.setDept(dept);
 
-        session.save(department);
+        session.save(dept);
         session.save(user);
         session.save(employee);
         session.getTransaction().commit();

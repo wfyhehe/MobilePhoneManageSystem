@@ -17,7 +17,7 @@ public interface IMenuService {
 
     Menu getMenu(String id);
 
-    Menu addMenu(String parentId, int sortOrder);
+    Menu addMenu(String parentId, String name, int sortOrder);
 
     void update(Menu menu);
 

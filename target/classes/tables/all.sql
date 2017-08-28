@@ -23,10 +23,11 @@ CREATE INDEX index_user_username
 CREATE TABLE t_dept (
   id      CHAR(32) PRIMARY KEY,
   name    VARCHAR(100) NOT NULL,
-  address    VARCHAR(500) NOT NULL,
+  address VARCHAR(500) NOT NULL,
   remark  TEXT,
   tel     VARCHAR(20),
-  contact VARCHAR(32)
+  contact VARCHAR(32),
+  status  TINYINT      NOT NULL # 0: 正常, 1: 已删除
 );
 
 CREATE INDEX index_dept_name
@@ -54,9 +55,10 @@ CREATE TABLE t_employee (
   name    VARCHAR(30),
   tel     VARCHAR(20),
   remark  TEXT,
-  type    TINYINT NOT NULL, # 0:销售员 1:其他
-  dept_id CHAR(32) NOT NULL,
+  type    TINYINT    NOT NULL, # 0:销售员 1:其他
+  dept_id CHAR(32)   NOT NULL,
   user_id CHAR(32),
+  deleted TINYINT(1) NOT NULL,
   CONSTRAINT fk_employee_dept_id
   FOREIGN KEY (dept_id) REFERENCES ssm.t_dept (id),
   CONSTRAINT fk_employee_user_id
