@@ -19,6 +19,28 @@ public class RoleDao {
     @Resource
     private HibernateTemplate hibernateTemplate;
 
+    private List<Role> normalizeRoles(List<Role> roles) {
+        roles.sort(Comparator.comparingInt(o -> o.getId().hashCode()));
+        for (Role role : roles) {
+            normalizeRole(role);
+        }
+        return roles;
+    }
+
+    private Role normalizeRole(Role role) {
+
+        return role;
+    }
+
+    private Role extractAndNormalizeFirstRole(List<Role> list) {
+        if (list.size() > 0) {
+            Role role = list.get(0);
+            return normalizeRole(role);
+        } else {
+            return null;
+        }
+    }
+
     public List<Role> getAll() {
         String hql = "from Role r where r.status <> 2";
         List<Role> roles = (List<Role>) hibernateTemplate.find(hql);
@@ -29,28 +51,19 @@ public class RoleDao {
     public List<Role> getDeleted() {
         String hql = "from Role r where r.status = 2";
         List<Role> roles = (List<Role>) hibernateTemplate.find(hql);
-        roles.sort(Comparator.comparingInt(o -> o.getId().hashCode()));
-        return roles;
+        return normalizeRoles(roles);
     }
 
     public Role getRoleByName(String name) {
         String hql = "from Role r where r.name = ? and r.status <> 2";
         List<Role> list = (List<Role>) hibernateTemplate.find(hql, name);
-        if (list.size() > 0) {
-            return list.get(0);
-        } else {
-            return null;
-        }
+        return extractAndNormalizeFirstRole(list);
     }
 
     public Role getRoleById(String id) {
         String hql = "from Role r where r.id = ? and r.status <> 2";
         List<Role> list = (List<Role>) hibernateTemplate.find(hql, id);
-        if (list.size() > 0) {
-            return list.get(0);
-        } else {
-            return null;
-        }
+        return extractAndNormalizeFirstRole(list);
     }
 
     public void update(Role role) {
@@ -65,7 +78,7 @@ public class RoleDao {
     public boolean recover(String id) {
         String hql = "from Role r where r.id = ? and r.status = 2";
         List<Role> list = (List<Role>) hibernateTemplate.find(hql, id);
-        if(list.size() <= 0) {
+        if (list.size() <= 0) {
             return false;
         }
         Role role = list.get(0);

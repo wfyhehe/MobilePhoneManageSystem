@@ -1,5 +1,6 @@
 package com.wfy.web.service;
 
+import com.wfy.web.common.ServerResponse;
 import com.wfy.web.model.Employee;
 
 import java.util.List;
@@ -24,4 +25,8 @@ public interface IEmployeeService {
     Employee addEmployee(String name);
 
     boolean recover(String id);
+
+    ServerResponse<String> relateUser(String username, String password, String empId);
+
+    void unrelateUser(String id);
 }

@@ -1,5 +1,6 @@
 package com.wfy.web.service.impl;
 
+import com.mysql.cj.core.util.StringUtils;
 import com.wfy.web.common.Const;
 import com.wfy.web.common.ServerResponse;
 import com.wfy.web.dao.UserDao;
@@ -14,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/7/14.
@@ -60,6 +62,19 @@ public class UserServiceImpl implements IUserService {
     public void logout(String userId) {
         User user = userDao.getUser(userId);
         userDao.updateStatus(user, UserStatus.OFFLINE);
+    }
+
+    @Override
+    public List<User> getUsers(String username, String name) {
+        if (!StringUtils.isEmptyOrWhitespaceOnly(name)) {
+            return userDao.search(username.trim(), name.trim());
+        } else {
+            if (!StringUtils.isEmptyOrWhitespaceOnly(username)) {
+                return userDao.search(username.trim());
+            } else {
+                return userDao.getAll();
+            }
+        }
     }
 
     @Override
@@ -147,5 +162,57 @@ public class UserServiceImpl implements IUserService {
         return userDao.getUserByName(name);
     }
 
+    @Override
+    public List<User> getDeletedUsers() {
+        return userDao.getDeleted();
+    }
 
+    @Override
+    public boolean recover(String id) {
+        return userDao.recover(id);
+    }
+
+    @Override
+    public void updateUser(User user) {
+        User oldUser = userDao.getUser(user.getId());
+        if (user.getUsername() != null) {
+            oldUser.setUsername(user.getUsername());
+        }
+        if (user.getEmployee() != null) {
+            oldUser.setEmployee(user.getEmployee());
+        }
+        if (user.getRoles() != null) {
+            oldUser.setRoles(user.getRoles());
+        }
+        if (user.getCreateTime() != null) {
+            oldUser.setCreateTime(user.getCreateTime());
+        }
+        if (user.getStatus() != null) {
+            oldUser.setStatus(user.getStatus());
+        }
+        if (user.getLastLoginTime() != null) {
+            oldUser.setLastLoginTime(user.getLastLoginTime());
+        }
+        if (user.getRemark() != null) {
+            oldUser.setRemark(user.getRemark());
+        }
+        if (user.getRoles() != null) {
+            oldUser.setRoles(user.getRoles());
+        }
+        if (user.getPassword() != null) {
+            oldUser.setPassword(user.getPassword());
+        }
+        userDao.update(oldUser);
+    }
+
+    @Override
+    public boolean delete(String id) {
+        User user = userDao.getUser(id);
+        if (user == null) {
+            return false;
+        }
+        user.setStatus(UserStatus.DELETED);
+        userDao.update(user);
+        return true;
+    }
 }

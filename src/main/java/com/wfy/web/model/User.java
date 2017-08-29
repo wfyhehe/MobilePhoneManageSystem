@@ -1,6 +1,8 @@
 package com.wfy.web.model;
 
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
@@ -9,7 +11,6 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Administrator on 2017/7/14.
@@ -41,7 +42,7 @@ public class User implements Serializable {
     public User(String id) {
         this.id = id;
     }
-    
+
     @OneToOne(mappedBy = "user")
     public Employee getEmployee() {
         return employee;
@@ -73,6 +74,7 @@ public class User implements Serializable {
     }
 
     @Column(name = "create_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     public Date getCreateTime() {
         return createTime;
     }
@@ -82,6 +84,7 @@ public class User implements Serializable {
     }
 
     @Column(name = "last_login_time")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     public Date getLastLoginTime() {
         return lastLoginTime;
     }

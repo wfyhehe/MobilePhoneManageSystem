@@ -4,6 +4,8 @@ import com.wfy.web.common.ServerResponse;
 import com.wfy.web.model.TokenModel;
 import com.wfy.web.model.User;
 
+import java.util.List;
+
 /**
  * Created by Administrator on 2017/8/8.
  */
@@ -25,4 +27,14 @@ public interface IUserService {
     User getUserByName(String name);
 
     void logout(String userId);
+
+    List<User> getUsers(String username, String name);
+
+    List<User> getDeletedUsers();
+
+    boolean recover(String id);
+
+    void updateUser(User user);
+
+    boolean delete(String id);
 }

@@ -1,13 +1,18 @@
 package com.wfy.web.controller;
 
 import com.wfy.web.common.ServerResponse;
+import com.wfy.web.model.Role;
 import com.wfy.web.model.TokenModel;
 import com.wfy.web.model.User;
+import com.wfy.web.service.IRoleService;
 import com.wfy.web.service.ITokenService;
 import com.wfy.web.service.IUserService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/8/7.
@@ -22,6 +27,9 @@ public class UserController {
 
     @Resource
     private ITokenService iTokenService;
+
+    @Resource
+    private IRoleService iRoleService;
 
 //    @RequestMapping(value = "login.do", method = RequestMethod.POST)
 //    public ServerResponse<TokenModel> login(@RequestBody Map<String, String> userMap) {
@@ -98,6 +106,78 @@ public class UserController {
             return ServerResponse.createBySuccess();
         } else {
             return ServerResponse.createByErrorMessage("token已过期");
+        }
+    }
+
+    @RequestMapping(value = "get_users.do", method = RequestMethod.POST)
+    public ServerResponse<List<User>> getUsers(@RequestBody Map<String, Object> map) {
+        String name = (String) map.get("name");
+        String username = (String) map.get("username");
+        List<User> users = iUserService.getUsers(username, name);
+        if (users != null) {
+            return ServerResponse.createBySuccess(users);
+        } else {
+            return ServerResponse.createByErrorMessage("获取用户失败");
+        }
+    }
+
+    @RequestMapping(value = "get_deleted_users.do", method = RequestMethod.GET)
+    public ServerResponse<List<User>> getDeletedUsers() {
+        List<User> users = iUserService.getDeletedUsers();
+        if (users != null) {
+            return ServerResponse.createBySuccess(users);
+        } else {
+            return ServerResponse.createByErrorMessage("获取用户失败");
+        }
+    }
+
+    @RequestMapping(value = "recover_user.do", method = RequestMethod.GET)
+    public ServerResponse<String> recoverUser(String id) {
+        if (iUserService.recover(id)) {
+            return ServerResponse.createBySuccess();
+        } else {
+            return ServerResponse.createByErrorMessage("恢复失败");
+        }
+    }
+
+    @RequestMapping(value = "get_user.do", method = RequestMethod.GET)
+    public ServerResponse<User> getUser(String id) {
+        User user = iUserService.getUser(id);
+        if (user != null) {
+            return ServerResponse.createBySuccess(user);
+        } else {
+            return ServerResponse.createByErrorMessage("获取用户失败");
+        }
+    }
+
+    @RequestMapping(value = "update_user.do", method = RequestMethod.POST)
+    public ServerResponse<String> updateUser(@RequestBody Map<String, Object> userMap) {
+        User user = new User();
+        String id = (String) userMap.get("id");
+        String remark = (String) userMap.get("remark");
+        List<Role> roles = new ArrayList<>();
+        List<String> roleList = (List<String>) userMap.get("roleNames");
+        for (String roleName : roleList) {
+            roles.add(iRoleService.getRoleByName(roleName));
+        }
+        user.setId(id);
+        user.setRemark(remark);
+        user.setRoles(roles);
+        try {
+            iUserService.updateUser(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.createByErrorMessage("更新失败");
+        }
+        return ServerResponse.createBySuccess();
+    }
+
+    @RequestMapping(value = "delete_user.do", method = RequestMethod.GET)
+    public ServerResponse<String> delete(String id) {
+        if (iUserService.delete(id)) {
+            return ServerResponse.createBySuccess();
+        } else {
+            return ServerResponse.createByErrorMessage("删除失败");
         }
     }
 }

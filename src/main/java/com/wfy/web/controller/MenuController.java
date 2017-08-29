@@ -73,7 +73,7 @@ public class MenuController {
         String path = (String) menuMap.get("path");
         String remark = (String) menuMap.get("remark");
         Set<Role> roles = new HashSet<>();
-        List<String> roleList = (List<String>) menuMap.get("roles");
+        List<String> roleList = (List<String>) menuMap.get("roleNames");
         for (String roleName : roleList) {
             roles.add(iRoleService.getRoleByName(roleName));
         }

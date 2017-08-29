@@ -127,4 +127,23 @@ public class EmployeeController {
             return ServerResponse.createByErrorMessage("删除失败");
         }
     }
+
+    @RequestMapping(value = "relate_user.do", method = RequestMethod.POST)
+    public ServerResponse<String> relateUser(@RequestBody Map<String, Object> map) {
+        String username = (String) map.get("username");
+        String password = (String) map.get("password");
+        String empId = (String) map.get("id");
+        return iEmployeeService.relateUser(username, password, empId);
+    }
+
+    @RequestMapping(value = "unrelate_user.do", method = RequestMethod.GET)
+    public ServerResponse<String> unrelateUser(String id) {
+        try {
+            iEmployeeService.unrelateUser(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.createByErrorMessage("解除失败");
+        }
+        return ServerResponse.createBySuccess();
+    }
 }
