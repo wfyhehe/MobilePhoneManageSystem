@@ -29,7 +29,7 @@ public class MenuController {
 
     @RequestMapping(value = "get_menus.do", method = RequestMethod.GET)
     public ServerResponse<List<Menu>> getMenus() {
-        List<Menu> list = iMenuService.getTopMenus(null);
+        List<Menu> list = iMenuService.getTopMenus();
         if (list != null) {
             return ServerResponse.createBySuccess(list);
         } else {

@@ -20,7 +20,6 @@ public class RoleDao {
     private HibernateTemplate hibernateTemplate;
 
     private List<Role> normalizeRoles(List<Role> roles) {
-        roles.sort(Comparator.comparingInt(o -> o.getId().hashCode()));
         for (Role role : roles) {
             normalizeRole(role);
         }
@@ -28,7 +27,6 @@ public class RoleDao {
     }
 
     private Role normalizeRole(Role role) {
-
         return role;
     }
 
@@ -42,14 +40,13 @@ public class RoleDao {
     }
 
     public List<Role> getAll() {
-        String hql = "from Role r where r.status <> 2";
+        String hql = "from Role r where r.status <> 2 order by r.id";
         List<Role> roles = (List<Role>) hibernateTemplate.find(hql);
-        roles.sort(Comparator.comparingInt(o -> o.getId().hashCode()));
-        return roles;
+        return normalizeRoles(roles);
     }
 
     public List<Role> getDeleted() {
-        String hql = "from Role r where r.status = 2";
+        String hql = "from Role r where r.status = 2 order by r.id";
         List<Role> roles = (List<Role>) hibernateTemplate.find(hql);
         return normalizeRoles(roles);
     }

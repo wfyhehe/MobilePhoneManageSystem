@@ -2,12 +2,11 @@ package com.wfy.web.dao;
 
 import com.wfy.web.model.User;
 import com.wfy.web.model.UserStatus;
+import com.wfy.web.utils.PaginationUtil;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
-import java.util.Comparator;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -31,7 +30,6 @@ public class UserDao {
     }
 
     private List<User> normalizeUsers(List<User> users) {
-        users.sort(Comparator.comparingInt(o -> o.getId().hashCode()));
         for (User user : users) {
             normalizeUser(user);
         }
@@ -61,8 +59,8 @@ public class UserDao {
     }
 
     public boolean exists(String username) {
-        String hql = "from User u where u.username = ?";
-        return hibernateTemplate.find(hql, username).size() > 0;
+        String hql = "select count(*) from User u where u.username = ?";
+        return ((List<Long>) hibernateTemplate.find(hql, username)).get(0) > 0;
     }
 
     public User selectLogin(String username, String password) {
@@ -75,14 +73,10 @@ public class UserDao {
         hibernateTemplate.save(user);
     }
 
-    public boolean updatePassword(String id, String passwordNew) {
-        String hql = "update User u set u.password = ? where u.id = ? and u.status <> 2";
-        return hibernateTemplate.bulkUpdate(hql, passwordNew, id) > 0;
-    }
-
-    public int checkPassword(String password, String id) {
-        String hql = "from User u where u.id = ? and password = ? and u.status <> 2";
-        return hibernateTemplate.find(hql, id, password).size();
+    public boolean checkPassword(String password, String id) {
+        String hql = "select count(*) from User u where u.id = ? and password = ? and u.status <>" +
+                " 2";
+        return ((List<Long>) hibernateTemplate.find(hql, id, password)).get(0) > 0;
     }
 
     public User getUser(String id) {
@@ -97,39 +91,31 @@ public class UserDao {
         return extractAndNormalizeFirstUser(users);
     }
 
-    public void updateStatus(User user, UserStatus status) {
-        user.setStatus(status);
-        hibernateTemplate.update(user);
-    }
-
-    public void updateLoginTime(User user, Date loginTime) {
-        user.setLastLoginTime(loginTime);
-        hibernateTemplate.update(user);
-    }
-
-    public List<User> search(String username, String name) {
+    public List<User> search(String username, String name, int offset, int length) {
         username = "%" + username + "%";
         name = "%" + name + "%";
-        String hql = "from User u where u.username like ? and u.status <> 2 or u.employee is not null and u.employee.name like ?";
-        List<User> users = (List<User>) hibernateTemplate.find(hql, username, name);
+        String hql = "from User u where u.username like ? and u.status <> 2 or u.employee is not " +
+                "null and u.employee.name like ? order by u.id";
+        List<User> users = PaginationUtil.pagination(hibernateTemplate, offset, length, hql, name);
         return normalizeUsers(users);
     }
 
-    public List<User> search(String username) {
+    public List<User> search(String username, int offset, int length) {
         username = "%" + username + "%";
-        String hql = "from User u where u.username like ? and u.status <> 2 ";
-        List<User> users = (List<User>) hibernateTemplate.find(hql, username);
+        String hql = "from User u where u.username like ? and u.status <> 2 order by u.id";
+        List<User> users = PaginationUtil.pagination(hibernateTemplate, offset, length, hql,
+                username);
         return normalizeUsers(users);
     }
 
-    public List<User> getAll() {
-        String hql = "from User u where u.status <> 2 ";
-        List<User> users = (List<User>) hibernateTemplate.find(hql);
+    public List<User> getAll(int offset, int length) {
+        String hql = "from User u where u.status <> 2 order by u.id";
+        List<User> users = PaginationUtil.pagination(hibernateTemplate, offset, length, hql);
         return normalizeUsers(users);
     }
 
     public List<User> getDeleted() {
-        String hql = "from User u where u.status = 2 ";
+        String hql = "from User u where u.status = 2 order by u.id";
         List<User> users = (List<User>) hibernateTemplate.find(hql);
         return normalizeUsers(users);
     }
@@ -147,5 +133,11 @@ public class UserDao {
 
     public void update(User user) {
         hibernateTemplate.update(user);
+    }
+
+    public long count() {
+        String hql = "select count(*) from User u where u.status <> 2";
+        List<Long> list = (List<Long>) hibernateTemplate.find(hql);
+        return list.get(0);
     }
 }

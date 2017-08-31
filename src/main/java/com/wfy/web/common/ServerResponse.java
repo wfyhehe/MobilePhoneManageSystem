@@ -13,12 +13,12 @@ public class ServerResponse<T> implements Serializable {
 
     private int status;
     private String msg;
+    private long count;
     private T data;
 
     private ServerResponse(int status) {
         this.status = status;
     }
-
     private ServerResponse(int status, T data) {
         this.status = status;
         this.data = data;
@@ -51,7 +51,6 @@ public class ServerResponse<T> implements Serializable {
         return new ServerResponse<T>(ResponseCode.SUCCESS.getCode(), msg, data);
     }
 
-
     public static <T> ServerResponse<T> createByError() {
         return new ServerResponse<T>(ResponseCode.ERROR.getCode(),
                 ResponseCode.ERROR.getDesc());
@@ -64,6 +63,14 @@ public class ServerResponse<T> implements Serializable {
     public static <T> ServerResponse<T> createByErrorCodeMessage(int errorCode,
                                                                  String errorMessage) {
         return new ServerResponse<T>(errorCode, errorMessage);
+    }
+
+    public long getCount() {
+        return count;
+    }
+
+    public void setCount(long count) {
+        this.count = count;
     }
 
     @JsonIgnore

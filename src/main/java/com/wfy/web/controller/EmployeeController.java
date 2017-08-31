@@ -6,6 +6,7 @@ import com.wfy.web.model.EmployeeType;
 import com.wfy.web.service.IDeptService;
 import com.wfy.web.service.IEmployeeService;
 import com.wfy.web.service.IUserService;
+import com.wfy.web.utils.RefCount;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -33,9 +34,15 @@ public class EmployeeController {
     public ServerResponse<List<Employee>> getEmployees(@RequestBody Map<String, Object> map) {
         String name = (String) map.get("name");
         String dept = (String) map.get("dept");
-        List<Employee> employees = iEmployeeService.getEmployees(name, dept);
+        int pageIndex = (int) map.get("pageIndex");
+        int pageSize = (int) map.get("pageSize");
+        RefCount refCount = new RefCount(0);
+        List<Employee> employees = iEmployeeService.getEmployees(refCount, name, dept, pageIndex,
+                pageSize);
         if (employees != null) {
-            return ServerResponse.createBySuccess(employees);
+            ServerResponse response = ServerResponse.createBySuccess(employees);
+            response.setCount(refCount.getCount());
+            return response;
         } else {
             return ServerResponse.createByErrorMessage("获取员工失败");
         }
@@ -146,4 +153,5 @@ public class EmployeeController {
         }
         return ServerResponse.createBySuccess();
     }
+
 }

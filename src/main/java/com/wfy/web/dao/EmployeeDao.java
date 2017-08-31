@@ -2,11 +2,12 @@ package com.wfy.web.dao;
 
 import com.wfy.web.model.Employee;
 import com.wfy.web.model.User;
+import com.wfy.web.utils.PaginationUtil;
+import com.wfy.web.utils.RefCount;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -20,7 +21,6 @@ public class EmployeeDao {
     private HibernateTemplate hibernateTemplate;
 
     private List<Employee> normalizeEmployees(List<Employee> employees) {
-        employees.sort(Comparator.comparingInt(o -> o.getId().hashCode()));
         for (Employee employee : employees) {
             normalizeEmployee(employee);
         }
@@ -45,32 +45,42 @@ public class EmployeeDao {
         }
     }
 
-    public List<Employee> getAll() {
-        String hql = "from Employee e where e.deleted <> 1";
-        List<Employee> employees = (List<Employee>) hibernateTemplate.find(hql);
+    public List<Employee> getAll(RefCount refCount, int offset, int length) {
+        String hql = "from Employee e where e.deleted <> 1 order by e.id";
+        refCount.setCount(((List<Long>) hibernateTemplate.find("select count(*) " + hql)).get(0));
+        List<Employee> employees = PaginationUtil.pagination(hibernateTemplate,
+                offset, length, hql);
         return normalizeEmployees(employees);
     }
 
-    public List<Employee> search(String name, String dept) {
+    public List<Employee> search(RefCount refCount, String name, String dept, int offset, int length) {
         name = "%" + name + "%";
         dept = "%" + dept + "%";
+
         String hql = "from Employee e where e.name like ? and e.dept.id in (" +
                 "select d.id from Dept d where d.name like ? and d.deleted <> 1" +
-                ") and e.deleted <> 1";
-        List<Employee> employees = (List<Employee>) hibernateTemplate.find(hql, name, dept);
+                ") and e.deleted <> 1 order by e.id";
+        List<Long> countList = (List<Long>) hibernateTemplate.find("select count(*) " + hql,
+                name, dept);
+        System.out.println(countList);
+        refCount.setCount(countList.get(0));
+        List<Employee> employees = PaginationUtil.pagination(
+                hibernateTemplate, offset, length, hql, name, dept);
         return normalizeEmployees(employees);
     }
 
-    public List<Employee> search(String key) {
+    public List<Employee> search(RefCount refCount, String key, int offset, int length) {
         key = "%" + key + "%";
-        System.out.println(key);
-        String hql = "from Employee e where e.name like ? and e.deleted <> 1";
-        List<Employee> employees = (List<Employee>) hibernateTemplate.find(hql, key);
+        String hql = "from Employee e where e.name like ? and e.deleted <> 1 order by e.id";
+        refCount.setCount(((List<Long>) hibernateTemplate.find("select count(*) " + hql, key))
+                .get(0));
+        List<Employee> employees = PaginationUtil.pagination(hibernateTemplate,
+                offset, length, hql, key);
         return normalizeEmployees(employees);
     }
 
     public List<Employee> getDeleted() {
-        String hql = "from Employee e where e.deleted = 1";
+        String hql = "from Employee e where e.deleted = 1 order by e.id";
         List<Employee> employees = (List<Employee>) hibernateTemplate.find(hql);
         return normalizeEmployees(employees);
     }
@@ -125,5 +135,10 @@ public class EmployeeDao {
         return true;
     }
 
+    public long count() {
+        String hql = "select count(*) from Employee e where e.deleted = 0";
+        List<Long> list = (List<Long>) hibernateTemplate.find(hql);
+        return list.get(0);
+    }
 
 }

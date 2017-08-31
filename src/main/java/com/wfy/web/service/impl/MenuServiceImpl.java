@@ -27,8 +27,8 @@ public class MenuServiceImpl implements IMenuService {
     private RoleDao roleDao;
 
     @Override
-    public List<Menu> getMenus(Menu parentMenu, Set<Role> roles) {
-        List<Menu> menus = menuDao.getMenus(parentMenu, roles);
+    public List<Menu> getMenus(Menu parentMenu) {
+        List<Menu> menus = menuDao.getMenus(parentMenu);
 //        由于设置了fetch为eager，自动取出所有孩子，不需要手动递归
 //        if (menus.size() > 0) {
 //            for (Menu menu : menus) {
@@ -43,8 +43,8 @@ public class MenuServiceImpl implements IMenuService {
     }
 
     @Override
-    public List<Menu> getTopMenus(List<Role> roles) {
-        List<Menu> menus = menuDao.getTopMenus(roles);
+    public List<Menu> getTopMenus() {
+        List<Menu> menus = menuDao.getTopMenus();
         return menus;
     }
 

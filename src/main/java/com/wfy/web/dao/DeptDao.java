@@ -5,7 +5,6 @@ import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -19,22 +18,20 @@ public class DeptDao {
     private HibernateTemplate hibernateTemplate;
 
     public List<Dept> getAll() {
-        String hql = "from Dept d where d.deleted <> 1";
+        String hql = "from Dept d where d.deleted <> 1 order by d.id";
         List<Dept> depts = (List<Dept>) hibernateTemplate.find(hql);
-        depts.sort(Comparator.comparingInt(o -> o.getId().hashCode()));
         return depts;
     }
 
     public List<Dept> likeSearch(String key) {
         key = "%" + key + "%";
-        String hql = "from Dept d where d.name like ?";
+        String hql = "from Dept d where d.name like ? order by d.id";
         return (List<Dept>) hibernateTemplate.find(hql, key);
     }
 
     public List<Dept> getDeleted() {
-        String hql = "from Dept d where d.deleted = 1";
+        String hql = "from Dept d where d.deleted = 1 order by d.id";
         List<Dept> depts = (List<Dept>) hibernateTemplate.find(hql);
-        depts.sort(Comparator.comparingInt(o -> o.getId().hashCode()));
         return depts;
     }
 

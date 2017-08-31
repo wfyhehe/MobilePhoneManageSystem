@@ -1,0 +1,3 @@
+CREATE TABLE t_color (
+  name VARCHAR(64) PRIMARY KEY
+);

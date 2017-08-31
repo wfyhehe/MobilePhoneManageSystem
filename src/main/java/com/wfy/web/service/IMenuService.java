@@ -11,9 +11,9 @@ import java.util.Set;
  */
 public interface IMenuService {
 
-    List<Menu> getMenus(Menu parentMenu, Set<Role> roles);
+    List<Menu> getMenus(Menu parentMenu);
 
-    List<Menu> getTopMenus(List<Role> roles);
+    List<Menu> getTopMenus();
 
     Menu getMenu(String id);
 

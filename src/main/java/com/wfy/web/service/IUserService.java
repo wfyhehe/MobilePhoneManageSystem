@@ -12,6 +12,8 @@ import java.util.List;
 public interface IUserService {
     ServerResponse<TokenModel> login(String username, String password);
 
+    List<User> getUsers(String username, String name, int pageIndex, int pageSize);
+
     ServerResponse<String> register(User user);
 
     ServerResponse<String> checkUsername(String username);
@@ -28,8 +30,6 @@ public interface IUserService {
 
     void logout(String userId);
 
-    List<User> getUsers(String username, String name);
-
     List<User> getDeletedUsers();
 
     boolean recover(String id);
@@ -37,4 +37,6 @@ public interface IUserService {
     void updateUser(User user);
 
     boolean delete(String id);
+
+    long countUser();
 }

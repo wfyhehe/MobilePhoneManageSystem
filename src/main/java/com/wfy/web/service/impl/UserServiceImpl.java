@@ -51,8 +51,9 @@ public class UserServiceImpl implements IUserService {
         if (user == null) {
             return ServerResponse.createByErrorMessage("密码错误");
         } else {
-            userDao.updateLoginTime(user, new Date(System.currentTimeMillis()));
-            userDao.updateStatus(user, UserStatus.ONLINE);
+            user.setLastLoginTime(new Date(System.currentTimeMillis()));
+            user.setStatus(UserStatus.ONLINE);
+            userDao.update(user);
             return ServerResponse.createBySuccess("登陆成功",
                     iTokenService.createToken(user.getId()));
         }
@@ -61,18 +62,21 @@ public class UserServiceImpl implements IUserService {
     @Override
     public void logout(String userId) {
         User user = userDao.getUser(userId);
-        userDao.updateStatus(user, UserStatus.OFFLINE);
+        user.setStatus(UserStatus.OFFLINE);
+        userDao.update(user);
     }
 
+    @SuppressWarnings("Duplicates")
     @Override
-    public List<User> getUsers(String username, String name) {
+    public List<User> getUsers(String username, String name, int pageIndex, int pageSize) {
+        int offset = (pageIndex - 1) * pageSize;
         if (!StringUtils.isEmptyOrWhitespaceOnly(name)) {
-            return userDao.search(username.trim(), name.trim());
+            return userDao.search(username.trim(), name.trim(), offset, pageSize);
         } else {
             if (!StringUtils.isEmptyOrWhitespaceOnly(username)) {
-                return userDao.search(username.trim());
+                return userDao.search(username.trim(), offset, pageSize);
             } else {
-                return userDao.getAll();
+                return userDao.getAll(offset, pageSize);
             }
         }
     }
@@ -142,14 +146,19 @@ public class UserServiceImpl implements IUserService {
     @Override
     public ServerResponse<String> resetPassword(String passwordOld, String passwordNew, String
             id) {
-        int resultCount = userDao.checkPassword(MD5Util.getMD5(passwordOld), id);
-        if (resultCount == 0) {
+        if (!userDao.checkPassword(MD5Util.getMD5(passwordOld), id)) {
             return ServerResponse.createByErrorMessage("旧密码错误");
         }
-        if (userDao.updatePassword(id, MD5Util.getMD5(passwordNew))) {
-            return ServerResponse.createBySuccessMessage("密码更新成功");
+        User user;
+        try {
+            user = userDao.getUser(id);
+            user.setPassword(MD5Util.getMD5(passwordNew));
+            userDao.update(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.createByErrorMessage("密码更新失败");
         }
-        return ServerResponse.createByErrorMessage("密码更新失败");
+        return ServerResponse.createBySuccess();
     }
 
     @Override
@@ -214,5 +223,10 @@ public class UserServiceImpl implements IUserService {
         user.setStatus(UserStatus.DELETED);
         userDao.update(user);
         return true;
+    }
+
+    @Override
+    public long countUser() {
+        return userDao.count();
     }
 }

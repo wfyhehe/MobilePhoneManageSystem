@@ -3,13 +3,20 @@
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/src/main/resources/tables/action.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/tables/all.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/tables/customer_price.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/tables/customer_type.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/tables/dept.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/tables/employee.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/tables/menu.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/tables/mobile_model.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/tables/rebate_price.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/tables/rebate_type.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/tables/role.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/tables/role_action.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/tables/role_menu.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/tables/role_user.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/tables/supplier.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/tables/supplier_type.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/tables/user.sql" dialect="MySQL" />
   </component>
 </project>

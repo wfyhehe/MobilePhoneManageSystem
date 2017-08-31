@@ -10,11 +10,11 @@ import com.wfy.web.model.EmployeeType;
 import com.wfy.web.model.User;
 import com.wfy.web.service.IEmployeeService;
 import com.wfy.web.utils.MD5Util;
+import com.wfy.web.utils.RefCount;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,17 +33,18 @@ public class EmployeeServiceImpl implements IEmployeeService {
     @Resource
     private UserDao userDao;
 
+    @SuppressWarnings("Duplicates")
     @Override
-    public List<Employee> getEmployees(String name, String dept) {
-
+    public List<Employee> getEmployees(RefCount refCount, String name, String dept, int pageIndex, int
+            pageSize) {
+        int offset = (pageIndex - 1) * pageSize;
         if (!StringUtils.isEmptyOrWhitespaceOnly(dept)) {
-            List<String> deptIds = new ArrayList<>();
-            return employeeDao.search(name.trim(), dept.trim());
+            return employeeDao.search(refCount,name.trim(), dept.trim(), offset, pageSize);
         } else {
             if (!StringUtils.isEmptyOrWhitespaceOnly(name)) {
-                return employeeDao.search(name.trim());
+                return employeeDao.search(refCount,name.trim(), offset, pageSize);
             } else {
-                return employeeDao.getAll();
+                return employeeDao.getAll(refCount,offset, pageSize);
             }
         }
     }
@@ -98,6 +99,11 @@ public class EmployeeServiceImpl implements IEmployeeService {
         Employee employee = employeeDao.getEmployeeById(id);
         employee.setUser(null);
         employeeDao.update(employee);
+    }
+
+    @Override
+    public long countEmployee() {
+        return employeeDao.count();
     }
 
     @Override

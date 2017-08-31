@@ -5,7 +5,7 @@ CREATE TABLE t_menu (
   type       TINYINT            NOT NULL, # 0:父菜单, 1:叶子菜单
   sort_order TINYINT            NOT NULL,
   path       VARCHAR(32)        NULL,
-  parent_id  CHAR(32) REFERENCES t_menu (id),
+  parent_id  CHAR(32),
   CONSTRAINT fk_menu_parent_id
   FOREIGN KEY (parent_id) REFERENCES ssm.t_menu (id)
 );

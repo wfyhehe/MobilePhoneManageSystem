@@ -113,7 +113,9 @@ public class UserController {
     public ServerResponse<List<User>> getUsers(@RequestBody Map<String, Object> map) {
         String name = (String) map.get("name");
         String username = (String) map.get("username");
-        List<User> users = iUserService.getUsers(username, name);
+        int pageIndex = (int) map.get("pageIndex");
+        int pageSize = (int) map.get("pageSize");
+        List<User> users = iUserService.getUsers(username, name, pageIndex, pageSize);
         if (users != null) {
             return ServerResponse.createBySuccess(users);
         } else {
@@ -179,5 +181,17 @@ public class UserController {
         } else {
             return ServerResponse.createByErrorMessage("删除失败");
         }
+    }
+
+    @RequestMapping(value = "count_user.do", method = RequestMethod.GET)
+    public ServerResponse<Long> getCount() {
+        long count;
+        try {
+            count = iUserService.countUser();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.createByErrorMessage("获取数量失败");
+        }
+        return ServerResponse.createBySuccess(count);
     }
 }

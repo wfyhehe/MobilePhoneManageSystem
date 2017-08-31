@@ -141,7 +141,7 @@ public class SpringModelsTest extends AbstractJUnit4SpringContextTests {
         r2.setId(String.valueOf(12));
         roles.add(r2);
         menu.setRoles(roles);
-        List list = menuDao.getMenus(menu, roles);
+        List list = menuDao.getMenus(menu);
         System.out.println(list);
     }
 

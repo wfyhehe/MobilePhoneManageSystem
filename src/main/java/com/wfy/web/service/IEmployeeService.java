@@ -2,6 +2,7 @@ package com.wfy.web.service;
 
 import com.wfy.web.common.ServerResponse;
 import com.wfy.web.model.Employee;
+import com.wfy.web.utils.RefCount;
 
 import java.util.List;
 
@@ -10,7 +11,7 @@ import java.util.List;
  */
 public interface IEmployeeService {
 
-    List<Employee> getEmployees(String key,String dept);
+    List<Employee> getEmployees(RefCount refCount, String key, String dept, int pageIndex, int pageSize);
 
     Employee getEmployeeByName(String name);
 
@@ -29,4 +30,6 @@ public interface IEmployeeService {
     ServerResponse<String> relateUser(String username, String password, String empId);
 
     void unrelateUser(String id);
+
+    long countEmployee();
 }
