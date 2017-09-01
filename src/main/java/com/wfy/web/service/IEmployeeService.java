@@ -23,7 +23,7 @@ public interface IEmployeeService {
 
     List<Employee> getDeletedEmployees();
 
-    Employee addEmployee(String name);
+    Employee addEmployee(Employee employee);
 
     boolean recover(String id);
 

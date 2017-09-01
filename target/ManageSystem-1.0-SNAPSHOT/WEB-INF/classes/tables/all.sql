@@ -149,3 +149,34 @@ CREATE INDEX index_ru_user_id
 
 CREATE INDEX index_ru_role_id
   ON t_role_user (role_id);
+
+CREATE TABLE t_supplier_type (
+  id      VARCHAR(15) PRIMARY KEY,
+  name    VARCHAR(32) NOT NULL,
+  remark  TEXT,
+  deleted BOOLEAN
+);
+
+CREATE TABLE t_supplier (
+  id      VARCHAR(15) PRIMARY KEY,
+  type    CHAR(32),
+  name    VARCHAR(32) NOT NULL,
+  contact VARCHAR(32),
+  tel     VARCHAR(30),
+  email   VARCHAR(64),
+  address VARCHAR(200),
+  remark  TEXT,
+  deleted BOOLEAN,
+  CONSTRAINT fk_supplier_type
+  FOREIGN KEY (type) REFERENCES ssm.t_supplier_type (id)
+);
+
+CREATE INDEX index_supplier_type
+  ON t_supplier (type);
+
+CREATE TABLE t_rebate_type (
+  id      CHAR(32) PRIMARY KEY,
+  name    VARCHAR(64),
+  remark  TEXT,
+  deleted BOOLEAN
+);

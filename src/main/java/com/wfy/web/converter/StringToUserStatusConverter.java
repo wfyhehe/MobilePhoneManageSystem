@@ -10,7 +10,6 @@ import org.springframework.core.convert.converter.Converter;
 public class StringToUserStatusConverter implements Converter<String, UserStatus> {
     @Override
     public UserStatus convert(String s) {
-        System.out.println(s);
         if (StringUtils.isBlank(s)) {
             return null;
         }

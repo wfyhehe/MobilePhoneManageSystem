@@ -32,10 +32,7 @@ public class RoleServiceImpl implements IRoleService {
     }
 
     @Override
-    public Role addRole(String name) {
-        Role role = new Role();
-        role.setStatus(RoleStatus.ONLINE);
-        role.setName(name);
+    public Role addRole(Role role) {
         String id = roleDao.save(role);
         role.setId(id);
         return role;
@@ -71,8 +68,5 @@ public class RoleServiceImpl implements IRoleService {
         roleDao.update(role);
         return true;
     }
-
-
-
 
 }

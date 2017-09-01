@@ -53,9 +53,6 @@ public class MenuController {
         String name = (String) menuMap.get("name");
         int sortOrder = (int) menuMap.get("sortOrder");
         Menu menu;
-        System.out.println(parentId);
-        System.out.println(name);
-        System.out.println(sortOrder);
         try {
             menu = iMenuService.addMenu(parentId, name, sortOrder);
         } catch (Exception e) {

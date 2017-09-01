@@ -3,6 +3,7 @@ package com.wfy.web.service;
 import com.wfy.web.common.ServerResponse;
 import com.wfy.web.model.TokenModel;
 import com.wfy.web.model.User;
+import com.wfy.web.utils.RefCount;
 
 import java.util.List;
 
@@ -12,7 +13,8 @@ import java.util.List;
 public interface IUserService {
     ServerResponse<TokenModel> login(String username, String password);
 
-    List<User> getUsers(String username, String name, int pageIndex, int pageSize);
+    List<User> getUsers(RefCount refCount, String username, String name, int pageIndex, int
+            pageSize);
 
     ServerResponse<String> register(User user);
 

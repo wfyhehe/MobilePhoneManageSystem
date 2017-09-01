@@ -1,5 +1,5 @@
 CREATE TABLE t_supplier (
-  id      VARCHAR(15) PRIMARY KEY ,
+  id      VARCHAR(15) PRIMARY KEY,
   type    CHAR(32),
   name    VARCHAR(32) NOT NULL,
   contact VARCHAR(32),
@@ -7,6 +7,7 @@ CREATE TABLE t_supplier (
   email   VARCHAR(64),
   address VARCHAR(200),
   remark  TEXT,
+  deleted BOOLEAN,
   CONSTRAINT fk_supplier_type
   FOREIGN KEY (type) REFERENCES ssm.t_supplier_type (id)
 );

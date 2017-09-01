@@ -1,8 +1,8 @@
 package com.wfy.web.controller;
 
 import com.wfy.web.common.ServerResponse;
-import com.wfy.web.model.Menu;
 import com.wfy.web.model.Role;
+import com.wfy.web.model.RoleStatus;
 import com.wfy.web.service.IRoleService;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,18 +30,38 @@ public class RoleController {
             return ServerResponse.createByErrorMessage("获取角色失败");
         }
     }
+
     @RequestMapping(value = "add_role.do", method = RequestMethod.POST)
-    public ServerResponse<Role> addMenu(@RequestBody Map<String,Object> nameMap) {
-        String name = (String) nameMap.get("name");
-        Role role;
+    public ServerResponse<Role> addRole(@RequestBody Map<String, Object> roleMap) {
+        String name = (String) roleMap.get("name");
+        String statusStr = (String) roleMap.get("status");
+        String remark = (String) roleMap.get("remark");
+        Role role = new Role();
+        role.setName(name);
+        role.setRemark(remark);
+        switch (statusStr) {
+            case "ONLINE": {
+                role.setStatus(RoleStatus.ONLINE);
+                break;
+            }
+            case "OFFLINE": {
+                role.setStatus(RoleStatus.OFFLINE);
+                break;
+            }
+            case "DELETED": {
+                role.setStatus(RoleStatus.DELETED);
+                break;
+            }
+        }
         try {
-            role = iRoleService.addRole(name);
+            role = iRoleService.addRole(role);
         } catch (Exception e) {
             e.printStackTrace();
             return ServerResponse.createByErrorMessage(e.getMessage());
         }
         return ServerResponse.createBySuccess(role);
     }
+
     @RequestMapping(value = "get_deleted_roles.do", method = RequestMethod.GET)
     public ServerResponse<List<Role>> getDeletedRoles() {
         List roles = iRoleService.getDeletedRoles();
@@ -52,9 +72,9 @@ public class RoleController {
         }
     }
 
-    @RequestMapping(value="recover_role.do",method = RequestMethod.GET)
+    @RequestMapping(value = "recover_role.do", method = RequestMethod.GET)
     public ServerResponse<String> recoverRole(String id) {
-        if(iRoleService.recover(id)) {
+        if (iRoleService.recover(id)) {
             return ServerResponse.createBySuccess();
         } else {
             return ServerResponse.createByErrorMessage("恢复失败");

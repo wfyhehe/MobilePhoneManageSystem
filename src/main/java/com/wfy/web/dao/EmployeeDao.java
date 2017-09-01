@@ -62,7 +62,6 @@ public class EmployeeDao {
                 ") and e.deleted <> 1 order by e.id";
         List<Long> countList = (List<Long>) hibernateTemplate.find("select count(*) " + hql,
                 name, dept);
-        System.out.println(countList);
         refCount.setCount(countList.get(0));
         List<Employee> employees = PaginationUtil.pagination(
                 hibernateTemplate, offset, length, hql, name, dept);
@@ -136,7 +135,7 @@ public class EmployeeDao {
     }
 
     public long count() {
-        String hql = "select count(*) from Employee e where e.deleted = 0";
+        String hql = "select count(*) from Employee e where e.deleted <> 1";
         List<Long> list = (List<Long>) hibernateTemplate.find(hql);
         return list.get(0);
     }

@@ -49,11 +49,30 @@ public class EmployeeController {
     }
 
     @RequestMapping(value = "add_employee.do", method = RequestMethod.POST)
-    public ServerResponse<Employee> addMenu(@RequestBody Map<String, Object> nameMap) {
-        String name = (String) nameMap.get("name");
-        Employee employee;
+    public ServerResponse<Employee> addMenu(@RequestBody Map<String, Object> employeeMap) {
+        Employee employee = new Employee();
+        String name = (String) employeeMap.get("name");
+        String tel = (String) employeeMap.get("tel");
+        String typeStr = (String) employeeMap.get("type");
+        String deptStr = (String) employeeMap.get("dept");
+        String remark = (String) employeeMap.get("remark");
+        employee.setName(name);
+        employee.setTel(tel);
+        //noinspection Duplicates
+        switch (typeStr) {
+            case "SALES": {
+                employee.setType(EmployeeType.SALES);
+                break;
+            }
+            case "OTHER": {
+                employee.setType(EmployeeType.OTHER);
+                break;
+            }
+        }
+        employee.setDept(iDeptService.getDeptByName(deptStr));
+        employee.setRemark(remark);
         try {
-            employee = iEmployeeService.addEmployee(name);
+            employee = iEmployeeService.addEmployee(employee);
         } catch (Exception e) {
             e.printStackTrace();
             return ServerResponse.createByErrorMessage(e.getMessage());

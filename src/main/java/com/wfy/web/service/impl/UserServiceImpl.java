@@ -10,6 +10,7 @@ import com.wfy.web.model.UserStatus;
 import com.wfy.web.service.ITokenService;
 import com.wfy.web.service.IUserService;
 import com.wfy.web.utils.MD5Util;
+import com.wfy.web.utils.RefCount;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -68,15 +69,16 @@ public class UserServiceImpl implements IUserService {
 
     @SuppressWarnings("Duplicates")
     @Override
-    public List<User> getUsers(String username, String name, int pageIndex, int pageSize) {
+    public List<User> getUsers(RefCount refCount, String username, String name, int pageIndex, int
+            pageSize) {
         int offset = (pageIndex - 1) * pageSize;
         if (!StringUtils.isEmptyOrWhitespaceOnly(name)) {
-            return userDao.search(username.trim(), name.trim(), offset, pageSize);
+            return userDao.search(refCount,username.trim(), name.trim(), offset, pageSize);
         } else {
             if (!StringUtils.isEmptyOrWhitespaceOnly(username)) {
-                return userDao.search(username.trim(), offset, pageSize);
+                return userDao.search(refCount,username.trim(), offset, pageSize);
             } else {
-                return userDao.getAll(offset, pageSize);
+                return userDao.getAll(refCount,offset, pageSize);
             }
         }
     }

@@ -3,6 +3,7 @@ package com.wfy.web.dao;
 import com.wfy.web.model.User;
 import com.wfy.web.model.UserStatus;
 import com.wfy.web.utils.PaginationUtil;
+import com.wfy.web.utils.RefCount;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -91,25 +92,32 @@ public class UserDao {
         return extractAndNormalizeFirstUser(users);
     }
 
-    public List<User> search(String username, String name, int offset, int length) {
+    public List<User> search(RefCount refCount, String username, String name, int offset, int
+            length) {
         username = "%" + username + "%";
         name = "%" + name + "%";
-        String hql = "from User u where u.username like ? and u.status <> 2 or u.employee is not " +
-                "null and u.employee.name like ? order by u.id";
-        List<User> users = PaginationUtil.pagination(hibernateTemplate, offset, length, hql, name);
+        String hql = "from User u where u.username like ? and u.status <> 2 and u.employee is not" +
+                " null and u.employee.name like ? order by u.id";
+        refCount.setCount(((List<Long>) hibernateTemplate.find("select count(*) " + hql,
+                username, name)).get(0));
+        List<User> users = PaginationUtil.pagination(hibernateTemplate, offset, length, hql,
+                username, name);
         return normalizeUsers(users);
     }
 
-    public List<User> search(String username, int offset, int length) {
+    public List<User> search(RefCount refCount, String username, int offset, int length) {
         username = "%" + username + "%";
         String hql = "from User u where u.username like ? and u.status <> 2 order by u.id";
+        refCount.setCount(((List<Long>) hibernateTemplate.find("select count(*) " + hql, username))
+                .get(0));
         List<User> users = PaginationUtil.pagination(hibernateTemplate, offset, length, hql,
                 username);
         return normalizeUsers(users);
     }
 
-    public List<User> getAll(int offset, int length) {
+    public List<User> getAll(RefCount refCount, int offset, int length) {
         String hql = "from User u where u.status <> 2 order by u.id";
+        refCount.setCount(((List<Long>) hibernateTemplate.find("select count(*) " + hql)).get(0));
         List<User> users = PaginationUtil.pagination(hibernateTemplate, offset, length, hql);
         return normalizeUsers(users);
     }

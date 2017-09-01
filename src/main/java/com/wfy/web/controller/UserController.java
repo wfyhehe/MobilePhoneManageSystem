@@ -7,6 +7,7 @@ import com.wfy.web.model.User;
 import com.wfy.web.service.IRoleService;
 import com.wfy.web.service.ITokenService;
 import com.wfy.web.service.IUserService;
+import com.wfy.web.utils.RefCount;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -115,9 +116,12 @@ public class UserController {
         String username = (String) map.get("username");
         int pageIndex = (int) map.get("pageIndex");
         int pageSize = (int) map.get("pageSize");
-        List<User> users = iUserService.getUsers(username, name, pageIndex, pageSize);
+        RefCount refCount = new RefCount(0);
+        List<User> users = iUserService.getUsers(refCount, username, name, pageIndex, pageSize);
         if (users != null) {
-            return ServerResponse.createBySuccess(users);
+            ServerResponse response = ServerResponse.createBySuccess(users);
+            response.setCount(refCount.getCount());
+            return response;
         } else {
             return ServerResponse.createByErrorMessage("获取用户失败");
         }

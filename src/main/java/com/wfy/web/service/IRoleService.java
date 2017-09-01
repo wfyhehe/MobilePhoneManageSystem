@@ -23,7 +23,7 @@ public interface IRoleService {
 
     List<Role> getDeletedRoles();
 
-    Role addRole(String name);
+    Role addRole(Role role);
 
     boolean recover(String id);
 }

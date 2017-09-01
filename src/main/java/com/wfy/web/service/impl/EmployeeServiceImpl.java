@@ -55,8 +55,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
     }
 
     @Override
-    public Employee addEmployee(String name) {
-        Employee employee = new Employee(name, EmployeeType.OTHER);
+    public Employee addEmployee(Employee employee) {
         String id = employeeDao.save(employee);
         employee.setId(id);
         return employee;
