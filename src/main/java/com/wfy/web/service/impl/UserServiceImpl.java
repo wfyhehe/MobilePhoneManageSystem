@@ -6,7 +6,7 @@ import com.wfy.web.common.ServerResponse;
 import com.wfy.web.dao.UserDao;
 import com.wfy.web.model.TokenModel;
 import com.wfy.web.model.User;
-import com.wfy.web.model.UserStatus;
+import com.wfy.web.model.enums.UserStatus;
 import com.wfy.web.service.ITokenService;
 import com.wfy.web.service.IUserService;
 import com.wfy.web.utils.MD5Util;

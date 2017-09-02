@@ -6,7 +6,6 @@ import com.wfy.web.dao.DeptDao;
 import com.wfy.web.dao.EmployeeDao;
 import com.wfy.web.dao.UserDao;
 import com.wfy.web.model.Employee;
-import com.wfy.web.model.EmployeeType;
 import com.wfy.web.model.User;
 import com.wfy.web.service.IEmployeeService;
 import com.wfy.web.utils.MD5Util;

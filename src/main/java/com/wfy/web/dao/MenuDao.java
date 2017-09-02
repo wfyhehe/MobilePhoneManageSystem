@@ -1,7 +1,7 @@
 package com.wfy.web.dao;
 
 import com.wfy.web.model.Menu;
-import com.wfy.web.model.MenuType;
+import com.wfy.web.model.enums.MenuType;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 

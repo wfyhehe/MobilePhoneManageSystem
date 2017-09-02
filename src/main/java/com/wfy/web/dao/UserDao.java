@@ -1,7 +1,7 @@
 package com.wfy.web.dao;
 
 import com.wfy.web.model.User;
-import com.wfy.web.model.UserStatus;
+import com.wfy.web.model.enums.UserStatus;
 import com.wfy.web.utils.PaginationUtil;
 import com.wfy.web.utils.RefCount;
 import org.springframework.orm.hibernate5.HibernateTemplate;

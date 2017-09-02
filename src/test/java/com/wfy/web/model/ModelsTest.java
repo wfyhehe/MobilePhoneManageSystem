@@ -1,5 +1,6 @@
 package com.wfy.web.model;
 
+import com.wfy.web.model.enums.UserStatus;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.MetadataSources;

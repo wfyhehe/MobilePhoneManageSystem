@@ -2,7 +2,7 @@ package com.wfy.web.controller;
 
 import com.wfy.web.common.ServerResponse;
 import com.wfy.web.model.Role;
-import com.wfy.web.model.RoleStatus;
+import com.wfy.web.model.enums.RoleStatus;
 import com.wfy.web.service.IRoleService;
 import org.springframework.web.bind.annotation.*;
 

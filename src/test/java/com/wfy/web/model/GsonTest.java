@@ -1,5 +1,7 @@
 package com.wfy.web.model;
 
+import com.wfy.web.model.enums.RoleStatus;
+import com.wfy.web.model.enums.UserStatus;
 import org.junit.Test;
 
 import java.util.ArrayList;

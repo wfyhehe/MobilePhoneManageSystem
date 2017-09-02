@@ -2,7 +2,6 @@ package com.wfy.web.controller;
 
 import com.wfy.web.common.ServerResponse;
 import com.wfy.web.model.Supplier;
-import com.wfy.web.model.SupplierType;
 import com.wfy.web.service.ISupplierService;
 import com.wfy.web.service.ISupplierTypeService;
 import com.wfy.web.utils.RefCount;
@@ -36,6 +35,7 @@ public class SupplierController {
         RefCount refCount = new RefCount(0);
         List<Supplier> suppliers = iSupplierService.getSuppliers(refCount, name, type, pageIndex,
                 pageSize);
+        //noinspection Duplicates
         if (suppliers != null) {
             ServerResponse response = ServerResponse.createBySuccess(suppliers);
             response.setCount(refCount.getCount());
@@ -46,7 +46,7 @@ public class SupplierController {
     }
 
     @RequestMapping(value = "add_supplier.do", method = RequestMethod.POST)
-    public ServerResponse<Supplier> addMenu(@RequestBody Map<String, Object> supplierMap) {
+    public ServerResponse<Supplier> addSupplier(@RequestBody Map<String, Object> supplierMap) {
         Supplier supplier = new Supplier();
         String id = (String) supplierMap.get("id");
         String name = (String) supplierMap.get("name");

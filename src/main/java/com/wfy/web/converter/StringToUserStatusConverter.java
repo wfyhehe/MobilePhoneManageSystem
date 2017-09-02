@@ -1,6 +1,6 @@
 package com.wfy.web.converter;
 
-import com.wfy.web.model.UserStatus;
+import com.wfy.web.model.enums.UserStatus;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.core.convert.converter.Converter;
 

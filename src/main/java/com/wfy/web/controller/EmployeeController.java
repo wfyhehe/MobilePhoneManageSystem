@@ -2,7 +2,7 @@ package com.wfy.web.controller;
 
 import com.wfy.web.common.ServerResponse;
 import com.wfy.web.model.Employee;
-import com.wfy.web.model.EmployeeType;
+import com.wfy.web.model.enums.EmployeeType;
 import com.wfy.web.service.IDeptService;
 import com.wfy.web.service.IEmployeeService;
 import com.wfy.web.service.IUserService;

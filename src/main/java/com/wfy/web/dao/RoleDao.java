@@ -1,12 +1,11 @@
 package com.wfy.web.dao;
 
 import com.wfy.web.model.Role;
-import com.wfy.web.model.RoleStatus;
+import com.wfy.web.model.enums.RoleStatus;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
-import java.util.Comparator;
 import java.util.List;
 
 /**

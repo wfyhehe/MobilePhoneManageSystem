@@ -2,14 +2,13 @@ package com.wfy.web.service.impl;
 
 import com.wfy.web.dao.RoleDao;
 import com.wfy.web.model.Role;
-import com.wfy.web.model.RoleStatus;
+import com.wfy.web.model.enums.RoleStatus;
 import com.wfy.web.service.IRoleService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Administrator on 2017/8/22.

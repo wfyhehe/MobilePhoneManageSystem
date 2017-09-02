@@ -1,6 +1,10 @@
 package com.wfy.web.model;
 
 import com.wfy.web.dao.MenuDao;
+import com.wfy.web.model.enums.ActionType;
+import com.wfy.web.model.enums.EmployeeType;
+import com.wfy.web.model.enums.RoleStatus;
+import com.wfy.web.model.enums.UserStatus;
 import com.wfy.web.service.IUserService;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
