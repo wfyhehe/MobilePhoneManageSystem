@@ -187,4 +187,10 @@ public class SpringModelsTest extends AbstractJUnit4SpringContextTests {
         session.getTransaction().commit();
         session.close();
     }
+
+    @Test
+    public void testHql() {
+        String hql = "select count(*) from MobileModel mm";
+        System.out.println(hibernateTemplate.find(hql));
+    }
 }

@@ -17,23 +17,11 @@ import java.util.List;
 public class Color {
     private String name;
 
-    private List<MobileModel> mobileModels;
-
     public Color(String name) {
         this.name = name;
     }
 
     public Color() {
-    }
-
-    @OneToMany(mappedBy = "color")
-    @JsonIgnore
-    public List<MobileModel> getMobileModels() {
-        return mobileModels;
-    }
-
-    public void setMobileModels(List<MobileModel> mobileModels) {
-        this.mobileModels = mobileModels;
     }
 
     @Id
@@ -44,5 +32,12 @@ public class Color {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        return "Color{" +
+                "name='" + name + '\'' +
+                '}';
     }
 }

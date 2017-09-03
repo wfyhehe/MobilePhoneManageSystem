@@ -38,4 +38,5 @@ public class TokenModel {
                 ", token='" + token + '\'' +
                 '}';
     }
+
 }

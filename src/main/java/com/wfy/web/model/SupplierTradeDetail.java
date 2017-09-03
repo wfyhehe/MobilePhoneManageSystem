@@ -171,4 +171,23 @@ public class SupplierTradeDetail {
     public void setCheckStatus(CheckStatus checkStatus) {
         this.checkStatus = checkStatus;
     }
+
+    @Override
+    public String toString() {
+        return "SupplierTradeDetail{" +
+                "id='" + id + '\'' +
+                ", businessType=" + businessType +
+                ", mobileModel=" + mobileModel +
+                ", price=" + price +
+                ", quantity=" + quantity +
+                ", amount=" + amount +
+                ", inputTime=" + inputTime +
+                ", inputUser=" + inputUser +
+                ", checkTime=" + checkTime +
+                ", checkUser=" + checkUser +
+                ", remark='" + remark + '\'' +
+                ", dept=" + dept +
+                ", checkStatus=" + checkStatus +
+                '}';
+    }
 }

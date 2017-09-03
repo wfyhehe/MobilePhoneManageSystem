@@ -46,8 +46,9 @@ public class ColorController {
         return ServerResponse.createBySuccess(color);
     }
 
-    @RequestMapping(value = "delete_color.do", method = RequestMethod.GET)
-    public ServerResponse<String> delete(String id) {
-        return iColorService.delete(id);
+    @RequestMapping(value = "delete_color.do", method = RequestMethod.POST)
+    public ServerResponse<String> delete(@RequestBody Map<String, Object> nameMap) {
+        String name = (String) nameMap.get("name");
+        return iColorService.delete(name);
     }
 }

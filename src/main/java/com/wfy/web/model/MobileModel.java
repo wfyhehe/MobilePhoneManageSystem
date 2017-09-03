@@ -5,12 +5,13 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Administrator on 2017/9/1.
  */
 @Entity
-@Table(name = "t_supplier")
+@Table(name = "t_mobile_model")
 @JsonIgnoreProperties(ignoreUnknown = true)
 @DynamicUpdate
 public class MobileModel {
@@ -18,16 +19,16 @@ public class MobileModel {
     private String name;
     private Brand brand;
     private double buyingPrice;
-    private List<RebatePrice> rebatePrices;
+    private Set<RebatePrice> rebatePrices;
     private String remark;
     private boolean deleted;
 
-    @OneToMany(mappedBy = "mobileModel")
-    public List<RebatePrice> getRebatePrices() {
+    @OneToMany(mappedBy = "mobileModel", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    public Set<RebatePrice> getRebatePrices() {
         return rebatePrices;
     }
 
-    public void setRebatePrices(List<RebatePrice> rebatePrices) {
+    public void setRebatePrices(Set<RebatePrice> rebatePrices) {
         this.rebatePrices = rebatePrices;
     }
 
@@ -88,4 +89,16 @@ public class MobileModel {
     }
 
 
+    @Override
+    public String toString() {
+        return "MobileModel{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", brand=" + brand +
+                ", buyingPrice=" + buyingPrice +
+                ", rebatePrices=" + rebatePrices +
+                ", remark='" + remark + '\'' +
+                ", deleted=" + deleted +
+                '}';
+    }
 }

@@ -58,4 +58,14 @@ public class RebateType {
     public void setRemark(String remark) {
         this.remark = remark;
     }
+
+    @Override
+    public String toString() {
+        return "RebateType{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", remark='" + remark + '\'' +
+                ", deleted=" + deleted +
+                '}';
+    }
 }

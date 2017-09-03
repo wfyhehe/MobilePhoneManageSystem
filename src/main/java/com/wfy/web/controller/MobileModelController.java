@@ -5,12 +5,12 @@ import com.wfy.web.model.MobileModel;
 import com.wfy.web.model.RebatePrice;
 import com.wfy.web.service.IBrandService;
 import com.wfy.web.service.IMobileModelService;
+import com.wfy.web.service.IRebatePriceService;
 import com.wfy.web.utils.RefCount;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Administrator on 2017/8/26.
@@ -25,6 +25,9 @@ public class MobileModelController {
 
     @Resource
     private IBrandService iBrandService;
+
+    @Resource
+    private IRebatePriceService iRebatePriceService;
 
     @RequestMapping(value = "get_mobile_models.do", method = RequestMethod.POST)
     public ServerResponse<List<MobileModel>> getMobileModels(@RequestBody Map<String, Object> map) {
@@ -47,22 +50,44 @@ public class MobileModelController {
 
     @RequestMapping(value = "add_mobile_model.do", method = RequestMethod.POST)
     public ServerResponse<MobileModel>
-    addMobileModel(@RequestBody Map<String, Object> mobileModelMap) {
-        MobileModel mobileModel = new MobileModel();
-        String id = (String) mobileModelMap.get("id");
-        String name = (String) mobileModelMap.get("name");
-        String brand = (String) mobileModelMap.get("brand");
-        double buyingPrice = (double) mobileModelMap.get("buyingPrice");
-        List<RebatePrice> rebatePrices = (List<RebatePrice>) mobileModelMap.get("rebatePrices");
-        String remark = (String) mobileModelMap.get("remark");
-        mobileModel.setId(id);
-        mobileModel.setName(name);
-        mobileModel.setBrand(iBrandService.getBrand(brand));
-        mobileModel.setBuyingPrice(buyingPrice);
-        System.out.println(rebatePrices);
-        mobileModel.setRebatePrices(rebatePrices);
-        mobileModel.setRemark(remark);
-        mobileModel.setDeleted(false);
+    addMobileModel(@RequestBody MobileModel mobileModel) {
+        List<RebatePrice> rebatePrices = new ArrayList<>(mobileModel.getRebatePrices());
+        for (int i = 0; i < rebatePrices.size(); i++) {
+            RebatePrice rebatePrice = rebatePrices.get(i);
+            System.out.println(rebatePrice);
+            rebatePrice = iRebatePriceService.addRebatePrice(rebatePrice);
+            System.out.println(rebatePrice);
+            rebatePrices.set(i, rebatePrice);
+        }
+        System.out.println(mobileModel);
+
+//        String rebatePrices1 = mobileModelMap.get("rebatePrices");
+//        System.out.println(rebatePrices1);
+//        ObjectMapper objectMapper = new ObjectMapper();
+//        MobileModel mobileModel = new MobileModel();
+//        String id = (String) mobileModelMap.get("id");
+//        String name = (String) mobileModelMap.get("name");
+//        String brandName = (String) mobileModelMap.get("brand");
+//        double buyingPrice = Double.parseDouble((String) mobileModelMap.get("buyingPrice"));
+//        List<RebatePrice> list = (List<RebatePrice>) mobileModelMap.get("rebatePrices");
+//        System.out.println(list);
+//        System.out.println(list.getClass().getName());
+//        for (int i = 0; i < list.size(); i++) {
+//            System.out.println(list.get(i));
+//            System.out.println(list.get(i).getClass().getName());
+//            RebatePrice rebatePrice = list.get(i);
+//            list.set(i, iRebatePriceService.addRebatePrice(rebatePrice));
+//        }
+//        Set<RebatePrice> rebatePrices = new HashSet<>(list);
+//        String remark = (String) mobileModelMap.get("remark");
+//        mobileModel.setId(id);
+//        mobileModel.setName(name);
+//        mobileModel.setBrand(new Brand(brandName));
+//        mobileModel.setBuyingPrice(buyingPrice);
+//        System.out.println(rebatePrices);
+//        mobileModel.setRebatePrices(rebatePrices);
+//        mobileModel.setRemark(remark);
+//        mobileModel.setDeleted(false);
         try {
             mobileModel = iMobileModelService.addMobileModel(mobileModel);
         } catch (Exception e) {
@@ -108,7 +133,8 @@ public class MobileModelController {
         String name = (String) mobileModelMap.get("name");
         String brand = (String) mobileModelMap.get("brand");
         double buyingPrice = (double) mobileModelMap.get("buyingPrice");
-        List<RebatePrice> rebatePrices = (List<RebatePrice>) mobileModelMap.get("rebatePrices");
+        List<RebatePrice> list = (List<RebatePrice>) mobileModelMap.get("rebatePrices");
+        Set<RebatePrice> rebatePrices = new HashSet<>(list);
         String remark = (String) mobileModelMap.get("remark");
         mobileModel.setId(id);
         mobileModel.setName(name);

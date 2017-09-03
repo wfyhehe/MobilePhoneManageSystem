@@ -169,4 +169,23 @@ public class MobileStock {
     public void setCheckStatus(CheckStatus checkStatus) {
         this.checkStatus = checkStatus;
     }
+
+    @Override
+    public String toString() {
+        return "MobileStock{" +
+                "id='" + id + '\'' +
+                ", mobileModel=" + mobileModel +
+                ", color=" + color +
+                ", config=" + config +
+                ", firstSupplier=" + firstSupplier +
+                ", firstInTime=" + firstInTime +
+                ", lastSupplier=" + lastSupplier +
+                ", lastInTime=" + lastInTime +
+                ", buyPrice=" + buyPrice +
+                ", cost=" + cost +
+                ", lossAmount=" + lossAmount +
+                ", dept=" + dept +
+                ", checkStatus=" + checkStatus +
+                '}';
+    }
 }

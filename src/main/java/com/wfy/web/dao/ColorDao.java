@@ -47,8 +47,12 @@ public class ColorDao {
         hibernateTemplate.delete(color);
     }
 
-    public boolean hasMobiles(Color color) {
-        color = getColor(color.getName());
-        return color.getMobileModels().size() > 0;
+    public boolean isInUse(Color color) {
+        // MobileStock, MobileInbound中会使用到Color
+        String hql1 = "select count(ms.color) from MobileStock ms where ms.color = ?";
+        String hql2 = "select count(mi.color) from MobileInbound mi where mi.color = ?";
+        long count1 = ((List<Long>) hibernateTemplate.find(hql1, color)).get(0);
+        long count2 = ((List<Long>) hibernateTemplate.find(hql2, color)).get(0);
+        return (count1 + count2) > 0;
     }
 }

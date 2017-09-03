@@ -31,7 +31,7 @@ public class RebateTypeController {
     }
 
     @RequestMapping(value = "add_rebate_type.do", method = RequestMethod.POST)
-    public ServerResponse<RebateType> addMenu(@RequestBody Map<String, Object> rebateTypeMap) {
+    public ServerResponse<RebateType> addRebateType(@RequestBody Map<String, Object> rebateTypeMap) {
         RebateType rebateType = new RebateType();
         String id = (String) rebateTypeMap.get("id");
         String name = (String) rebateTypeMap.get("name");

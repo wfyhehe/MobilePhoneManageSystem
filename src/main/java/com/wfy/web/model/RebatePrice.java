@@ -62,4 +62,13 @@ public class RebatePrice {
     }
 
 
+    @Override
+    public String toString() {
+        return "RebatePrice{" +
+                "id='" + id + '\'' +
+                ", rebateType=" + rebateType +
+                ", mobileModel=" + mobileModel +
+                ", price=" + price +
+                '}';
+    }
 }

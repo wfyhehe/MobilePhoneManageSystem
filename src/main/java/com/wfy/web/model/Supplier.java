@@ -105,4 +105,19 @@ public class Supplier {
     public void setRemark(String remark) {
         this.remark = remark;
     }
+
+    @Override
+    public String toString() {
+        return "Supplier{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", type=" + type +
+                ", contact='" + contact + '\'' +
+                ", tel='" + tel + '\'' +
+                ", email='" + email + '\'' +
+                ", address='" + address + '\'' +
+                ", remark='" + remark + '\'' +
+                ", deleted=" + deleted +
+                '}';
+    }
 }

@@ -1,6 +1,7 @@
 package com.wfy.web.dao;
 
 import com.wfy.web.model.MobileModel;
+import com.wfy.web.model.RebatePrice;
 import com.wfy.web.utils.PaginationUtil;
 import com.wfy.web.utils.RefCount;
 import org.springframework.orm.hibernate5.HibernateTemplate;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Administrator on 2017/8/26.
@@ -27,6 +29,14 @@ public class MobileModelDao {
     }
 
     private MobileModel normalizeMobileModel(MobileModel mobileModel) {
+        Set<RebatePrice> rebatePrices = mobileModel.getRebatePrices();
+        hibernateTemplate.evict(mobileModel);
+        for (RebatePrice rebatePrice : rebatePrices) {
+            if (rebatePrice.getMobileModel().equals(mobileModel)) {
+                rebatePrice.setMobileModel(null);
+            }
+        }
+        hibernateTemplate.clear();
         return mobileModel;
     }
 

@@ -58,4 +58,14 @@ public class SupplierType {
     public void setRemark(String remark) {
         this.remark = remark;
     }
+
+    @Override
+    public String toString() {
+        return "SupplierType{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", remark='" + remark + '\'' +
+                ", deleted=" + deleted +
+                '}';
+    }
 }

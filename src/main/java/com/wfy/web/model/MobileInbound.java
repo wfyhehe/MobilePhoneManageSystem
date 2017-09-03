@@ -190,4 +190,25 @@ public class MobileInbound {
     public void setRemark(String remark) {
         this.remark = remark;
     }
+
+    @Override
+    public String toString() {
+        return "MobileInbound{" +
+                "id='" + id + '\'' +
+                ", supplier=" + supplier +
+                ", mobileModel=" + mobileModel +
+                ", color=" + color +
+                ", config=" + config +
+                ", buyPrice=" + buyPrice +
+                ", quantity=" + quantity +
+                ", amount=" + amount +
+                ", inputTime=" + inputTime +
+                ", inputUser=" + inputUser +
+                ", checkTime=" + checkTime +
+                ", checkUser=" + checkUser +
+                ", checkStatus=" + checkStatus +
+                ", dept=" + dept +
+                ", remark='" + remark + '\'' +
+                '}';
+    }
 }

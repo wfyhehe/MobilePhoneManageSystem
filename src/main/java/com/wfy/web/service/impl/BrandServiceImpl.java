@@ -45,8 +45,8 @@ public class BrandServiceImpl implements IBrandService {
         if (!brandDao.exists(name)) {
             return ServerResponse.createByErrorMessage("删除失败");
         }
-        if(brandDao.hasMobiles(brand)) {
-            return ServerResponse.createByErrorMessage("若要删除该颜色，请先修改所有使用该颜色的手机的颜色");
+        if(brandDao.isInUse(brand)) {
+            return ServerResponse.createByErrorMessage("若要删除该品牌，请先修改所有使用该品牌的手机的品牌");
         }
         brandDao.delete(brand);
         return ServerResponse.createBySuccess();

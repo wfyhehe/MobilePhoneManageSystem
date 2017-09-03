@@ -47,8 +47,10 @@ public class BrandDao {
         hibernateTemplate.delete(brand);
     }
 
-    public boolean hasMobiles(Brand brand) {
-        brand = getBrand(brand.getName());
-        return brand.getMobileModels().size() > 0;
+    public boolean isInUse(Brand brand) {
+        // MobileModel 在使用 Brand
+        String hql1 = "select count(mm.brand) from MobileModel mm where mm.brand = ?";
+        long count1 = ((List<Long>) hibernateTemplate.find(hql1, brand)).get(0);
+        return count1 > 0;
     }
 }
