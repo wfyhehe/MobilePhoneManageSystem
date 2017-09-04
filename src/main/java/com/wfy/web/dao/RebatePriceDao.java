@@ -1,5 +1,6 @@
 package com.wfy.web.dao;
 
+import com.wfy.web.model.MobileModel;
 import com.wfy.web.model.RebatePrice;
 import com.wfy.web.utils.PaginationUtil;
 import com.wfy.web.utils.RefCount;
@@ -40,7 +41,7 @@ public class RebatePriceDao {
     }
 
     public List<RebatePrice> getAll(RefCount refCount, int offset, int length) {
-        String hql = "from RebatePrice s where s.deleted <> 1 order by s.id";
+        String hql = "from RebatePrice rp where rp.deleted <> 1 order by rp.id";
         refCount.setCount(((List<Long>) hibernateTemplate.find("select count(*) " + hql)).get(0));
         List<RebatePrice> rebatePrices = PaginationUtil.pagination(hibernateTemplate,
                 offset, length, hql);
@@ -50,9 +51,9 @@ public class RebatePriceDao {
     public List<RebatePrice> search(RefCount refCount, String name, String type, int offset, int length) {
         name = "%" + name + "%";
         type = "%" + type + "%";
-        String hql = "from RebatePrice s where s.name like ? and s.type.id in (" +
-                "select t.id from RebatePriceType t where t.name like ? and t.deleted <> 1" +
-                ") and s.deleted <> 1 order by s.id";
+        String hql = "from RebatePrice rp where rp.name like ? and rp.type.id in (" +
+                "select rpt.id from RebatePriceType rpt where rpt.name like ? and rpt.deleted <> 1" +
+                ") and rp.deleted <> 1 order by rp.id";
         List<Long> countList = (List<Long>) hibernateTemplate.find("select count(*) " + hql,
                 name, type);
         refCount.setCount(countList.get(0));
@@ -89,5 +90,11 @@ public class RebatePriceDao {
 
     public void delete(RebatePrice rebatePrice) {
         hibernateTemplate.delete(rebatePrice);
+    }
+
+    public void deleteByMobileModel(MobileModel mobileModel) {
+        System.out.println(mobileModel);
+        String hql = "delete from RebatePrice rp where rp.mobileModel = ?";
+        hibernateTemplate.bulkUpdate(hql, mobileModel);
     }
 }

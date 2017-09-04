@@ -209,12 +209,12 @@ CREATE INDEX index_mobile_model_brand
 
 CREATE TABLE t_rebate_price (
   id              CHAR(32) PRIMARY KEY,
-  rebate_type_id  VARCHAR(15)  NOT NULL,
+  rebate_type_id  CHAR(32)     NOT NULL,
   mobile_model_id VARCHAR(128) NOT NULL,
   price           DECIMAL(20, 2),
-  CONSTRAINT fk_rebate_price_model
+  CONSTRAINT fk_rebate_price_model_id
   FOREIGN KEY (mobile_model_id) REFERENCES ssm.t_mobile_model (id),
-  CONSTRAINT fk_rebate_price_rebate_type
+  CONSTRAINT fk_rebate_price_rebate_type_id
   FOREIGN KEY (rebate_type_id) REFERENCES ssm.t_rebate_type (id)
 );
 
@@ -336,3 +336,17 @@ CREATE INDEX index_supplier_trade_detail_check_user_id
   ON t_supplier_trade_detail (check_user_id);
 CREATE INDEX index_supplier_trade_detail_dept_id
   ON t_supplier_trade_detail (dept_id);
+
+CREATE TABLE t_account (
+  id      CHAR(32) PRIMARY KEY,
+  name    VARCHAR(32)    NOT NULL,
+  balance DECIMAL(20, 2) NOT NULL,
+  remark  TEXT,
+  dept_id CHAR(32)       NOT NULL,
+  deleted TINYINT(1),
+  CONSTRAINT fk_account_dept_id
+  FOREIGN KEY (dept_id) REFERENCES ssm.t_dept (id)
+);
+
+CREATE INDEX index_account_dept_id
+  ON t_account (dept_id);

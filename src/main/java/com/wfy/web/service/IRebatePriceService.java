@@ -1,5 +1,6 @@
 package com.wfy.web.service;
 
+import com.wfy.web.model.MobileModel;
 import com.wfy.web.model.RebatePrice;
 
 /**
@@ -11,4 +12,6 @@ public interface IRebatePriceService {
     RebatePrice getRebatePriceById(String id);
 
     boolean delete(String id);
+
+    void deleteByMobileModel(MobileModel mobileModel);
 }

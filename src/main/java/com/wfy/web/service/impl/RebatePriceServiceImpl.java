@@ -2,6 +2,7 @@ package com.wfy.web.service.impl;
 
 import com.mysql.cj.core.util.StringUtils;
 import com.wfy.web.dao.RebatePriceDao;
+import com.wfy.web.model.MobileModel;
 import com.wfy.web.model.RebatePrice;
 import com.wfy.web.service.IRebatePriceService;
 import com.wfy.web.utils.RefCount;
@@ -41,5 +42,10 @@ public class RebatePriceServiceImpl implements IRebatePriceService {
         }
         rebatePriceDao.delete(rebatePrice);
         return true;
+    }
+
+    @Override
+    public void deleteByMobileModel(MobileModel mobileModel) {
+        rebatePriceDao.deleteByMobileModel(mobileModel);
     }
 }

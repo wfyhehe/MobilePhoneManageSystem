@@ -1,11 +1,11 @@
 CREATE TABLE t_rebate_price (
   id              CHAR(32) PRIMARY KEY,
-  rebate_type_id  VARCHAR(15)  NOT NULL,
+  rebate_type_id  CHAR(32)  NOT NULL,
   mobile_model_id VARCHAR(128) NOT NULL,
   price           DECIMAL(20, 2),
-  CONSTRAINT fk_rebate_price_model
+  CONSTRAINT fk_rebate_price_model_id
   FOREIGN KEY (mobile_model_id) REFERENCES ssm.t_mobile_model (id),
-  CONSTRAINT fk_rebate_price_rebate_type
+  CONSTRAINT fk_rebate_price_rebate_type_id
   FOREIGN KEY (rebate_type_id) REFERENCES ssm.t_rebate_type (id)
 );
 

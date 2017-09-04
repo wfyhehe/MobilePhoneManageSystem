@@ -10,7 +10,9 @@ import com.wfy.web.utils.RefCount;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by Administrator on 2017/8/26.
@@ -32,15 +34,15 @@ public class MobileModelController {
     @RequestMapping(value = "get_mobile_models.do", method = RequestMethod.POST)
     public ServerResponse<List<MobileModel>> getMobileModels(@RequestBody Map<String, Object> map) {
         String name = (String) map.get("name");
-        String type = (String) map.get("type");
+        String brand = (String) map.get("brand");
         int pageIndex = (int) map.get("pageIndex");
         int pageSize = (int) map.get("pageSize");
         RefCount refCount = new RefCount(0);
-        List<MobileModel> mobileModels = iMobileModelService.getMobileModels(refCount, name, type, pageIndex,
+        List<MobileModel> mobileModels = iMobileModelService.getMobileModels(refCount, name, brand, pageIndex,
                 pageSize);
         //noinspection Duplicates
         if (mobileModels != null) {
-            ServerResponse response = ServerResponse.createBySuccess(mobileModels);
+            ServerResponse<List<MobileModel>> response = ServerResponse.createBySuccess(mobileModels);
             response.setCount(refCount.getCount());
             return response;
         } else {
@@ -51,48 +53,23 @@ public class MobileModelController {
     @RequestMapping(value = "add_mobile_model.do", method = RequestMethod.POST)
     public ServerResponse<MobileModel>
     addMobileModel(@RequestBody MobileModel mobileModel) {
-        List<RebatePrice> rebatePrices = new ArrayList<>(mobileModel.getRebatePrices());
-        for (int i = 0; i < rebatePrices.size(); i++) {
-            RebatePrice rebatePrice = rebatePrices.get(i);
-            System.out.println(rebatePrice);
-            rebatePrice = iRebatePriceService.addRebatePrice(rebatePrice);
-            System.out.println(rebatePrice);
-            rebatePrices.set(i, rebatePrice);
-        }
-        System.out.println(mobileModel);
-
-//        String rebatePrices1 = mobileModelMap.get("rebatePrices");
-//        System.out.println(rebatePrices1);
-//        ObjectMapper objectMapper = new ObjectMapper();
-//        MobileModel mobileModel = new MobileModel();
-//        String id = (String) mobileModelMap.get("id");
-//        String name = (String) mobileModelMap.get("name");
-//        String brandName = (String) mobileModelMap.get("brand");
-//        double buyingPrice = Double.parseDouble((String) mobileModelMap.get("buyingPrice"));
-//        List<RebatePrice> list = (List<RebatePrice>) mobileModelMap.get("rebatePrices");
-//        System.out.println(list);
-//        System.out.println(list.getClass().getName());
-//        for (int i = 0; i < list.size(); i++) {
-//            System.out.println(list.get(i));
-//            System.out.println(list.get(i).getClass().getName());
-//            RebatePrice rebatePrice = list.get(i);
-//            list.set(i, iRebatePriceService.addRebatePrice(rebatePrice));
-//        }
-//        Set<RebatePrice> rebatePrices = new HashSet<>(list);
-//        String remark = (String) mobileModelMap.get("remark");
-//        mobileModel.setId(id);
-//        mobileModel.setName(name);
-//        mobileModel.setBrand(new Brand(brandName));
-//        mobileModel.setBuyingPrice(buyingPrice);
-//        System.out.println(rebatePrices);
-//        mobileModel.setRebatePrices(rebatePrices);
-//        mobileModel.setRemark(remark);
-//        mobileModel.setDeleted(false);
+        // 先持久化MobileModel，再持久化中间实体RebatePrice
         try {
-            mobileModel = iMobileModelService.addMobileModel(mobileModel);
+            List<RebatePrice> rebatePrices = new ArrayList<>(mobileModel.getRebatePrices());
+            for (int i = 0; i < rebatePrices.size(); i++) {
+                RebatePrice rebatePrice = rebatePrices.get(i);
+                System.out.println(rebatePrice);
+                rebatePrices.set(i, rebatePrice);
+            }
+            mobileModel.setRebatePrices(null); // 中间实体先设空，通过mappedBy从RebatePrice方向关联
+            iMobileModelService.addMobileModel(mobileModel);
+            System.out.println(mobileModel);
+            for (RebatePrice rebatePrice : rebatePrices) {
+                iRebatePriceService.addRebatePrice(rebatePrice);
+            }
         } catch (Exception e) {
             e.printStackTrace();
-            return ServerResponse.createByErrorMessage(e.getMessage());
+            return ServerResponse.createByErrorMessage("添加失败");
         }
         return ServerResponse.createBySuccess(mobileModel);
     }
@@ -127,25 +104,21 @@ public class MobileModelController {
     }
 
     @RequestMapping(value = "update_mobile_model.do", method = RequestMethod.POST)
-    public ServerResponse<String> updateMobileModel(@RequestBody Map<String, Object> mobileModelMap) {
-        MobileModel mobileModel = new MobileModel();
-        String id = (String) mobileModelMap.get("id");
-        String name = (String) mobileModelMap.get("name");
-        String brand = (String) mobileModelMap.get("brand");
-        double buyingPrice = (double) mobileModelMap.get("buyingPrice");
-        List<RebatePrice> list = (List<RebatePrice>) mobileModelMap.get("rebatePrices");
-        Set<RebatePrice> rebatePrices = new HashSet<>(list);
-        String remark = (String) mobileModelMap.get("remark");
-        mobileModel.setId(id);
-        mobileModel.setName(name);
-        mobileModel.setBrand(iBrandService.getBrand(brand));
-        mobileModel.setBuyingPrice(buyingPrice);
-        System.out.println(rebatePrices);
-        mobileModel.setRebatePrices(rebatePrices);
-        mobileModel.setRemark(remark);
-        mobileModel.setDeleted(false);
+    public ServerResponse<String> updateMobileModel(@RequestBody MobileModel mobileModel) {
         try {
+            List<RebatePrice> rebatePrices = new ArrayList<>(mobileModel.getRebatePrices());
+            for (int i = 0; i < rebatePrices.size(); i++) {
+                RebatePrice rebatePrice = rebatePrices.get(i);
+                System.out.println(rebatePrice);
+                rebatePrices.set(i, rebatePrice);
+            }
+            mobileModel.setRebatePrices(null); // 中间实体先设空，通过mappedBy从RebatePrice方向关联
+            iRebatePriceService.deleteByMobileModel(mobileModel); // 先删除中间表的所有该MobileModel的关联
             iMobileModelService.updateMobileModel(mobileModel);
+            System.out.println(mobileModel);
+            for (RebatePrice rebatePrice : rebatePrices) {
+                iRebatePriceService.addRebatePrice(rebatePrice);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return ServerResponse.createByErrorMessage("更新失败");

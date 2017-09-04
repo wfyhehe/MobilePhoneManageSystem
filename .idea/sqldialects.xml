@@ -2,6 +2,7 @@
 <project version="4">
   <component name="SqlDialectMappings">
     <file url="file://$PROJECT_DIR$/src/main/resources/tables/all/all.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/tables/business/account.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/tables/business/mobile_inbound.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/tables/business/mobile_model.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/tables/business/mobile_stock.sql" dialect="MySQL" />
