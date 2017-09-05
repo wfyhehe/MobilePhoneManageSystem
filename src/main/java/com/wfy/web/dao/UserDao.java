@@ -2,8 +2,14 @@ package com.wfy.web.dao;
 
 import com.wfy.web.model.User;
 import com.wfy.web.model.enums.UserStatus;
-import com.wfy.web.utils.PaginationUtil;
+import com.wfy.web.utils.CloneUtil;
 import com.wfy.web.utils.RefCount;
+import org.apache.commons.lang3.StringUtils;
+import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -38,7 +44,10 @@ public class UserDao {
     }
 
     private User normalizeUser(User user) {
-        if (user.getEmployee() != null && user.getEmployee().getUser().equals(user)) {
+        if (user != null
+                && user.getEmployee() != null
+                && user.getEmployee().getUser() != null
+                && user.getEmployee().getUser().equals(user)) {
             hibernateTemplate.evict(user);
             user.getEmployee().setUser(null); // 从属的employee的user属性设为空,防止无限递归
             hibernateTemplate.clear();
@@ -92,33 +101,29 @@ public class UserDao {
         return extractAndNormalizeFirstUser(users);
     }
 
-    public List<User> search(RefCount refCount, String username, String name, int offset, int
-            length) {
-        username = "%" + username + "%";
-        name = "%" + name + "%";
-        String hql = "from User u where u.username like ? and u.status <> 2 and u.employee is not" +
-                " null and u.employee.name like ? order by u.id";
-        refCount.setCount(((List<Long>) hibernateTemplate.find("select count(*) " + hql,
-                username, name)).get(0));
-        List<User> users = PaginationUtil.pagination(hibernateTemplate, offset, length, hql,
-                username, name);
-        return normalizeUsers(users);
-    }
-
-    public List<User> search(RefCount refCount, String username, int offset, int length) {
-        username = "%" + username + "%";
-        String hql = "from User u where u.username like ? and u.status <> 2 order by u.id";
-        refCount.setCount(((List<Long>) hibernateTemplate.find("select count(*) " + hql, username))
-                .get(0));
-        List<User> users = PaginationUtil.pagination(hibernateTemplate, offset, length, hql,
-                username);
-        return normalizeUsers(users);
-    }
-
-    public List<User> getAll(RefCount refCount, int offset, int length) {
-        String hql = "from User u where u.status <> 2 order by u.id";
-        refCount.setCount(((List<Long>) hibernateTemplate.find("select count(*) " + hql)).get(0));
-        List<User> users = PaginationUtil.pagination(hibernateTemplate, offset, length, hql);
+    public List<User> search(RefCount refCount, String username, String empName, Integer pageIndex, Integer pageSize) {
+        List<User> users;
+        DetachedCriteria criteria = DetachedCriteria.forClass(User.class, "u")
+                .setFetchMode("employee", FetchMode.SELECT)
+                .add(Restrictions.ne("u.status", UserStatus.DELETED))
+                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        if (StringUtils.isNotBlank(username)) {
+            criteria.add(Restrictions.like("u.username", "%" + username + "%"));
+        }
+        if (StringUtils.isNotBlank(empName)) {
+            criteria.createAlias("employee", "e")
+                    .add(Restrictions.like("e.name", "%" + empName + "%"));
+        }
+        DetachedCriteria countCriteria = CloneUtil.clone(criteria);
+        countCriteria.setProjection(Projections.rowCount());
+        long count = ((List<Long>) hibernateTemplate.findByCriteria(countCriteria)).get(0);
+        refCount.setCount(count);
+        if (pageIndex != null && pageSize != null) {
+            int offset = (pageIndex - 1) * pageSize;
+            users = (List<User>) hibernateTemplate.findByCriteria(criteria, offset, pageSize);
+        } else {
+            users = (List<User>) hibernateTemplate.findByCriteria(criteria);
+        }
         return normalizeUsers(users);
     }
 

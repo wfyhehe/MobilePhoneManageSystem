@@ -23,12 +23,6 @@ public class DeptDao {
         return depts;
     }
 
-    public List<Dept> likeSearch(String key) {
-        key = "%" + key + "%";
-        String hql = "from Dept d where d.name like ? order by d.id";
-        return (List<Dept>) hibernateTemplate.find(hql, key);
-    }
-
     public List<Dept> getDeleted() {
         String hql = "from Dept d where d.deleted = 1 order by d.id";
         List<Dept> depts = (List<Dept>) hibernateTemplate.find(hql);

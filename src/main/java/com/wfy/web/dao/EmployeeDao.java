@@ -2,8 +2,14 @@ package com.wfy.web.dao;
 
 import com.wfy.web.model.Employee;
 import com.wfy.web.model.User;
-import com.wfy.web.utils.PaginationUtil;
+import com.wfy.web.utils.CloneUtil;
 import com.wfy.web.utils.RefCount;
+import org.apache.commons.lang3.StringUtils;
+import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -28,7 +34,10 @@ public class EmployeeDao {
     }
 
     private Employee normalizeEmployee(Employee employee) {
-        if (employee.getUser() != null && employee.getUser().getEmployee().equals(employee)) {
+        if (employee != null
+                && employee.getUser() != null
+                && employee.getUser().getEmployee() != null
+                && employee.getUser().getEmployee().equals(employee)) {
             hibernateTemplate.evict(employee);
             employee.getUser().setEmployee(null); // 从属的user的employee属性设为空,防止无限递归
             hibernateTemplate.clear();
@@ -45,36 +54,31 @@ public class EmployeeDao {
         }
     }
 
-    public List<Employee> getAll(RefCount refCount, int offset, int length) {
-        String hql = "from Employee e where e.deleted <> 1 order by e.id";
-        refCount.setCount(((List<Long>) hibernateTemplate.find("select count(*) " + hql)).get(0));
-        List<Employee> employees = PaginationUtil.pagination(hibernateTemplate,
-                offset, length, hql);
-        return normalizeEmployees(employees);
-    }
 
-    public List<Employee> search(RefCount refCount, String name, String dept, int offset, int length) {
-        name = "%" + name + "%";
-        dept = "%" + dept + "%";
-
-        String hql = "from Employee e where e.name like ? and e.dept.id in (" +
-                "select d.id from Dept d where d.name like ? and d.deleted <> 1" +
-                ") and e.deleted <> 1 order by e.id";
-        List<Long> countList = (List<Long>) hibernateTemplate.find("select count(*) " + hql,
-                name, dept);
-        refCount.setCount(countList.get(0));
-        List<Employee> employees = PaginationUtil.pagination(
-                hibernateTemplate, offset, length, hql, name, dept);
-        return normalizeEmployees(employees);
-    }
-
-    public List<Employee> search(RefCount refCount, String key, int offset, int length) {
-        key = "%" + key + "%";
-        String hql = "from Employee e where e.name like ? and e.deleted <> 1 order by e.id";
-        refCount.setCount(((List<Long>) hibernateTemplate.find("select count(*) " + hql, key))
-                .get(0));
-        List<Employee> employees = PaginationUtil.pagination(hibernateTemplate,
-                offset, length, hql, key);
+    public List<Employee> search(RefCount refCount, String name, String dept, Integer pageIndex,
+                                 Integer pageSize) {
+        List<Employee> employees;
+        DetachedCriteria criteria = DetachedCriteria.forClass(Employee.class, "e")
+                .setFetchMode("user", FetchMode.SELECT)
+                .add(Restrictions.ne("e.deleted", true))
+                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        if (StringUtils.isNotBlank(name)) {
+            criteria.add(Restrictions.like("e.name", "%" + name + "%"));
+        }
+        if (StringUtils.isNotBlank(dept)) {
+            criteria.createAlias("dept", "d")
+                    .add(Restrictions.eq("d.name", dept));
+        }
+        DetachedCriteria countCriteria = CloneUtil.clone(criteria);
+        countCriteria.setProjection(Projections.rowCount());
+        long count = ((List<Long>) hibernateTemplate.findByCriteria(countCriteria)).get(0);
+        refCount.setCount(count);
+        if (pageIndex != null && pageSize != null) {
+            int offset = (pageIndex - 1) * pageSize;
+            employees = (List<Employee>) hibernateTemplate.findByCriteria(criteria, offset, pageSize);
+        } else {
+            employees = (List<Employee>) hibernateTemplate.findByCriteria(criteria);
+        }
         return normalizeEmployees(employees);
     }
 

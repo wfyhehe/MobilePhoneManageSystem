@@ -30,11 +30,11 @@ public class AccountController {
     public ServerResponse<List<Account>> getAccounts(@RequestBody Map<String, Object> map) {
         String name = (String) map.get("name");
         String dept = (String) map.get("dept");
-        int pageIndex = (int) map.get("pageIndex");
-        int pageSize = (int) map.get("pageSize");
+        Integer pageIndex = (Integer) map.get("pageIndex");
+        Integer pageSize = (Integer) map.get("pageSize");
         RefCount refCount = new RefCount(0);
-        List<Account> accounts = iAccountService.getAccounts(refCount, name, dept, pageIndex,
-                pageSize);
+        List<Account> accounts = iAccountService.getAccounts(refCount, name, dept,
+                pageIndex, pageSize);
         //noinspection Duplicates
         if (accounts != null) {
             ServerResponse<List<Account>> response = ServerResponse.createBySuccess(accounts);

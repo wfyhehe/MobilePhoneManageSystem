@@ -10,8 +10,8 @@ import java.util.List;
  */
 public interface ISupplierService {
     @SuppressWarnings("Duplicates")
-    List<Supplier> getSuppliers(RefCount refCount, String name, String type, int pageIndex, int
-            pageSize);
+    List<Supplier> getSuppliers(RefCount refCount, String name, String type
+            , Integer pageIndex, Integer pageSize);
 
     List<Supplier> getDeletedSuppliers();
 
@@ -30,4 +30,5 @@ public interface ISupplierService {
     boolean delete(String id);
 
     boolean idExists(String id);
+
 }

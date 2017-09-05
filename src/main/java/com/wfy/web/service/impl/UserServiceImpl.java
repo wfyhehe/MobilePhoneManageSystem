@@ -1,6 +1,5 @@
 package com.wfy.web.service.impl;
 
-import com.mysql.cj.core.util.StringUtils;
 import com.wfy.web.common.Const;
 import com.wfy.web.common.ServerResponse;
 import com.wfy.web.dao.UserDao;
@@ -69,18 +68,9 @@ public class UserServiceImpl implements IUserService {
 
     @SuppressWarnings("Duplicates")
     @Override
-    public List<User> getUsers(RefCount refCount, String username, String name, int pageIndex, int
-            pageSize) {
-        int offset = (pageIndex - 1) * pageSize;
-        if (!StringUtils.isEmptyOrWhitespaceOnly(name)) {
-            return userDao.search(refCount,username.trim(), name.trim(), offset, pageSize);
-        } else {
-            if (!StringUtils.isEmptyOrWhitespaceOnly(username)) {
-                return userDao.search(refCount,username.trim(), offset, pageSize);
-            } else {
-                return userDao.getAll(refCount,offset, pageSize);
-            }
-        }
+    public List<User> getUsers(RefCount refCount, String username, String empName
+            , Integer pageIndex, Integer pageSize) {
+        return userDao.search(refCount, username, empName, pageIndex, pageSize);
     }
 
     @Override

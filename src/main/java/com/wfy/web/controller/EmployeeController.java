@@ -34,8 +34,8 @@ public class EmployeeController {
     public ServerResponse<List<Employee>> getEmployees(@RequestBody Map<String, Object> map) {
         String name = (String) map.get("name");
         String dept = (String) map.get("dept");
-        int pageIndex = (int) map.get("pageIndex");
-        int pageSize = (int) map.get("pageSize");
+        Integer pageIndex = (Integer) map.get("pageIndex");
+        Integer pageSize = (Integer) map.get("pageSize");
         RefCount refCount = new RefCount(0);
         List<Employee> employees = iEmployeeService.getEmployees(refCount, name, dept, pageIndex,
                 pageSize);

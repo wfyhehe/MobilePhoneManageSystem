@@ -1,6 +1,5 @@
 package com.wfy.web.service.impl;
 
-import com.mysql.cj.core.util.StringUtils;
 import com.wfy.web.dao.SupplierDao;
 import com.wfy.web.dao.SupplierTypeDao;
 import com.wfy.web.model.Supplier;
@@ -27,18 +26,9 @@ public class SupplierServiceImpl implements ISupplierService {
 
     @SuppressWarnings("Duplicates")
     @Override
-    public List<Supplier> getSuppliers(RefCount refCount, String name, String type, int pageIndex, int
-            pageSize) {
-        int offset = (pageIndex - 1) * pageSize;
-        if (!StringUtils.isEmptyOrWhitespaceOnly(type)) {
-            return supplierDao.search(refCount, name.trim(), type.trim(), offset, pageSize);
-        } else {
-            if (!StringUtils.isEmptyOrWhitespaceOnly(name)) {
-                return supplierDao.search(refCount, name.trim(), offset, pageSize);
-            } else {
-                return supplierDao.getAll(refCount, offset, pageSize);
-            }
-        }
+    public List<Supplier> getSuppliers(RefCount refCount, String name, String type
+            , Integer pageIndex, Integer pageSize) {
+        return supplierDao.search(refCount, name, type, pageIndex, pageSize);
     }
 
     @Override

@@ -35,11 +35,12 @@ public class MobileModelController {
     public ServerResponse<List<MobileModel>> getMobileModels(@RequestBody Map<String, Object> map) {
         String name = (String) map.get("name");
         String brand = (String) map.get("brand");
-        int pageIndex = (int) map.get("pageIndex");
-        int pageSize = (int) map.get("pageSize");
+        Integer pageIndex = (Integer) map.get("pageIndex");
+        Integer pageSize = (Integer) map.get("pageSize");
         RefCount refCount = new RefCount(0);
-        List<MobileModel> mobileModels = iMobileModelService.getMobileModels(refCount, name, brand, pageIndex,
-                pageSize);
+        List<MobileModel> mobileModels;
+        mobileModels = iMobileModelService.getMobileModels(refCount, name, brand, pageIndex, pageSize);
+
         //noinspection Duplicates
         if (mobileModels != null) {
             ServerResponse<List<MobileModel>> response = ServerResponse.createBySuccess(mobileModels);

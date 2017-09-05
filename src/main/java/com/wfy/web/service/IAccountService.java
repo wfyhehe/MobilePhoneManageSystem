@@ -10,8 +10,8 @@ import java.util.List;
  */
 public interface IAccountService {
     @SuppressWarnings("Duplicates")
-    List<Account> getAccounts(RefCount refCount, String name, String dept, int pageIndex, int
-            pageSize);
+    List<Account> getAccounts(RefCount refCount, String name, String dept, Integer pageIndex
+            , Integer pageSize);
 
     List<Account> getDeletedAccounts();
 

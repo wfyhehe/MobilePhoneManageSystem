@@ -2,7 +2,6 @@ package com.wfy.web.dao;
 
 import com.wfy.web.model.MobileModel;
 import com.wfy.web.model.RebatePrice;
-import com.wfy.web.utils.PaginationUtil;
 import com.wfy.web.utils.RefCount;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
@@ -40,36 +39,10 @@ public class RebatePriceDao {
         }
     }
 
-    public List<RebatePrice> getAll(RefCount refCount, int offset, int length) {
-        String hql = "from RebatePrice rp where rp.deleted <> 1 order by rp.id";
-        refCount.setCount(((List<Long>) hibernateTemplate.find("select count(*) " + hql)).get(0));
-        List<RebatePrice> rebatePrices = PaginationUtil.pagination(hibernateTemplate,
-                offset, length, hql);
-        return normalizeRebatePrices(rebatePrices);
-    }
+    public List<RebatePrice> search(RefCount refCount, String name, String type,
+                                    Integer pageIndex, Integer pageSize) {
 
-    public List<RebatePrice> search(RefCount refCount, String name, String type, int offset, int length) {
-        name = "%" + name + "%";
-        type = "%" + type + "%";
-        String hql = "from RebatePrice rp where rp.name like ? and rp.type.id in (" +
-                "select rpt.id from RebatePriceType rpt where rpt.name like ? and rpt.deleted <> 1" +
-                ") and rp.deleted <> 1 order by rp.id";
-        List<Long> countList = (List<Long>) hibernateTemplate.find("select count(*) " + hql,
-                name, type);
-        refCount.setCount(countList.get(0));
-        List<RebatePrice> rebatePrices = PaginationUtil.pagination(
-                hibernateTemplate, offset, length, hql, name, type);
-        return normalizeRebatePrices(rebatePrices);
-    }
-
-    public List<RebatePrice> search(RefCount refCount, String name, int offset, int length) {
-        name = "%" + name + "%";
-        String hql = "from RebatePrice s where s.name like ? and s.deleted <> 1 order by s.id";
-        refCount.setCount(((List<Long>) hibernateTemplate.find("select count(*) " + hql, name))
-                .get(0));
-        List<RebatePrice> rebatePrices = PaginationUtil.pagination(hibernateTemplate,
-                offset, length, hql, name);
-        return normalizeRebatePrices(rebatePrices);
+        throw new RuntimeException("useless method");
     }
 
     public RebatePrice getRebatePriceById(String id) {

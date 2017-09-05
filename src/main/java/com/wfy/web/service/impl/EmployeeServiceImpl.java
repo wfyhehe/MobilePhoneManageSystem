@@ -1,6 +1,5 @@
 package com.wfy.web.service.impl;
 
-import com.mysql.cj.core.util.StringUtils;
 import com.wfy.web.common.ServerResponse;
 import com.wfy.web.dao.DeptDao;
 import com.wfy.web.dao.EmployeeDao;
@@ -34,18 +33,9 @@ public class EmployeeServiceImpl implements IEmployeeService {
 
     @SuppressWarnings("Duplicates")
     @Override
-    public List<Employee> getEmployees(RefCount refCount, String name, String dept, int pageIndex, int
-            pageSize) {
-        int offset = (pageIndex - 1) * pageSize;
-        if (!StringUtils.isEmptyOrWhitespaceOnly(dept)) {
-            return employeeDao.search(refCount,name.trim(), dept.trim(), offset, pageSize);
-        } else {
-            if (!StringUtils.isEmptyOrWhitespaceOnly(name)) {
-                return employeeDao.search(refCount,name.trim(), offset, pageSize);
-            } else {
-                return employeeDao.getAll(refCount,offset, pageSize);
-            }
-        }
+    public List<Employee> getEmployees(RefCount refCount, String name, String dept
+            , Integer pageIndex, Integer pageSize) {
+        return employeeDao.search(refCount, name, dept, pageIndex, pageSize);
     }
 
     @Override

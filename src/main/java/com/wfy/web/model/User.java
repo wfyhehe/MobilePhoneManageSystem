@@ -133,33 +133,31 @@ public class User implements Serializable {
         this.password = password;
     }
 
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", remark='" + remark + '\'' +
-                ", createTime=" + createTime +
-                ", lastLoginTime=" + lastLoginTime +
-                ", status=" + status +
-                ", roles=" + roles +
-                '}';
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-
         User user = (User) o;
-
         return id.equals(user.id);
     }
 
     @Override
     public int hashCode() {
         return id.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", remark='" + remark + '\'' +
+                ", employee=" + employee +
+                ", createTime=" + createTime +
+                ", lastLoginTime=" + lastLoginTime +
+                ", status=" + status +
+                ", roles=" + roles +
+                '}';
     }
 }

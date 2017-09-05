@@ -8,6 +8,8 @@ import com.wfy.web.model.enums.UserStatus;
 import com.wfy.web.service.IUserService;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Restrictions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -192,5 +194,30 @@ public class SpringModelsTest extends AbstractJUnit4SpringContextTests {
     public void testHql() {
         String hql = "select count(*) from MobileModel mm";
         System.out.println(hibernateTemplate.find(hql));
+    }
+
+    @Test
+    public void testHql2() {
+        String hql = "select count(*) from MobileInbound mi where mi.id = ?";
+        List<Long> list = (List<Long>) hibernateTemplate.find(hql, "11111111");
+        System.out.println(list);
+    }
+
+    @Test
+    public void testCriteria() {
+        DetachedCriteria criteria = DetachedCriteria.forClass(Employee.class, "e")
+                .add(Restrictions.ne("e.deleted", true));
+//                .createAlias("dept", "d")
+//                .add(Restrictions.ne("d.deleted", true))
+//                .add(Restrictions.eq("d.name", "Pineapple"))
+//                .add(Restrictions.like("e.name", "%%"))
+//                .addOrder(Order.asc("e.id"));
+        List<Employee> employees =
+                (List<Employee>) hibernateTemplate.findByCriteria(criteria);
+        for (Employee employee : employees) {
+            System.out.println(employee.getName() + ",dept: " + employee.getDept());
+        }
+//        criteria.setProjection(Projections.rowCount());
+//        System.out.println(hibernateTemplate.findByCriteria(criteria).get(0));
     }
 }

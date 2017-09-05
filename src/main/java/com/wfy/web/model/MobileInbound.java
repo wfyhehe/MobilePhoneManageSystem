@@ -43,7 +43,7 @@ public class MobileInbound {
     private User inputUser;
     private Date checkTime;
     private User checkUser;
-    private CheckStatus checkStatus;
+    private CheckStatus status;
     private Dept dept;
     private String remark;
 
@@ -162,14 +162,14 @@ public class MobileInbound {
         this.checkUser = checkUser;
     }
 
-    @Column(name = "check_status")
+    @Column(name = "status")
     @Enumerated(EnumType.ORDINAL)
-    public CheckStatus getCheckStatus() {
-        return checkStatus;
+    public CheckStatus getStatus() {
+        return status;
     }
 
-    public void setCheckStatus(CheckStatus checkStatus) {
-        this.checkStatus = checkStatus;
+    public void setStatus(CheckStatus status) {
+        this.status = status;
     }
 
     @ManyToOne
@@ -206,7 +206,7 @@ public class MobileInbound {
                 ", inputUser=" + inputUser +
                 ", checkTime=" + checkTime +
                 ", checkUser=" + checkUser +
-                ", checkStatus=" + checkStatus +
+                ", status=" + status +
                 ", dept=" + dept +
                 ", remark='" + remark + '\'' +
                 '}';

@@ -1,8 +1,15 @@
 package com.wfy.web.dao;
 
 import com.wfy.web.model.Account;
-import com.wfy.web.utils.PaginationUtil;
+import com.wfy.web.model.Employee;
+import com.wfy.web.utils.CloneUtil;
 import com.wfy.web.utils.RefCount;
+import org.apache.commons.lang3.StringUtils;
+import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -39,36 +46,29 @@ public class AccountDao {
         }
     }
 
-    public List<Account> getAll(RefCount refCount, int offset, int length) {
-        String hql = "from Account a where a.deleted <> 1 order by a.id";
-        refCount.setCount(((List<Long>) hibernateTemplate.find("select count(*) " + hql)).get(0));
-        List<Account> accounts = PaginationUtil.pagination(hibernateTemplate,
-                offset, length, hql);
-        return normalizeAccounts(accounts);
-    }
-
-    public List<Account> search(RefCount refCount, String name, String dept, int offset, int
-            length) {
-        name = "%" + name + "%";
-        dept = "%" + dept + "%";
-        String hql = "from Account a where a.name like ? and a.dept.id in (" +
-                "select d.id from Dept d where d.name like ? and d.deleted <> 1" +
-                ") and a.deleted <> 1 order by a.id";
-        List<Long> countList = (List<Long>) hibernateTemplate.find("select count(*) " + hql,
-                name, dept);
-        refCount.setCount(countList.get(0));
-        List<Account> accounts = PaginationUtil.pagination(
-                hibernateTemplate, offset, length, hql, name, dept);
-        return normalizeAccounts(accounts);
-    }
-
-    public List<Account> search(RefCount refCount, String name, int offset, int length) {
-        name = "%" + name + "%";
-        String hql = "from Account a where a.name like ? and a.deleted <> 1 order by a.id";
-        refCount.setCount(((List<Long>) hibernateTemplate.find("select count(*) " + hql, name))
-                .get(0));
-        List<Account> accounts = PaginationUtil.pagination(hibernateTemplate,
-                offset, length, hql, name);
+    public List<Account> search(RefCount refCount, String name, String dept, Integer pageIndex, Integer pageSize) {
+        List<Account> accounts;
+        DetachedCriteria criteria = DetachedCriteria.forClass(Account.class, "a")
+                .setFetchMode("dept", FetchMode.SELECT)
+                .add(Restrictions.ne("a.deleted", true))
+                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        if (StringUtils.isNotBlank(name)) {
+            criteria.add(Restrictions.like("a.name", "%" + name + "%"));
+        }
+        if (StringUtils.isNotBlank(dept)) {
+            criteria.createAlias("dept", "d")
+                    .add(Restrictions.eq("d.name", dept));
+        }
+        DetachedCriteria countCriteria = CloneUtil.clone(criteria);
+        countCriteria.setProjection(Projections.rowCount());
+        long count = ((List<Long>) hibernateTemplate.findByCriteria(countCriteria)).get(0);
+        refCount.setCount(count);
+        if (pageIndex != null && pageSize != null) {
+            int offset = (pageIndex - 1) * pageSize;
+            accounts = (List<Account>) hibernateTemplate.findByCriteria(criteria, offset, pageSize);
+        } else {
+            accounts = (List<Account>) hibernateTemplate.findByCriteria(criteria);
+        }
         return normalizeAccounts(accounts);
     }
 

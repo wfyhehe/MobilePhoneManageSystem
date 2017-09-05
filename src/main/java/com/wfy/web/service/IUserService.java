@@ -13,8 +13,8 @@ import java.util.List;
 public interface IUserService {
     ServerResponse<TokenModel> login(String username, String password);
 
-    List<User> getUsers(RefCount refCount, String username, String name, int pageIndex, int
-            pageSize);
+    List<User> getUsers(RefCount refCount, String username, String name
+            , Integer pageIndex, Integer pageSize);
 
     ServerResponse<String> register(User user);
 

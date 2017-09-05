@@ -1,6 +1,5 @@
 package com.wfy.web.service.impl;
 
-import com.mysql.cj.core.util.StringUtils;
 import com.wfy.web.dao.AccountDao;
 import com.wfy.web.model.Account;
 import com.wfy.web.service.IAccountService;
@@ -23,18 +22,9 @@ public class AccountServiceImpl implements IAccountService {
 
     @SuppressWarnings("Duplicates")
     @Override
-    public List<Account> getAccounts(RefCount refCount, String name, String dept, int pageIndex, int
-            pageSize) {
-        int offset = (pageIndex - 1) * pageSize;
-        if (!StringUtils.isEmptyOrWhitespaceOnly(dept)) {
-            return accountDao.search(refCount, name.trim(), dept.trim(), offset, pageSize);
-        } else {
-            if (!StringUtils.isEmptyOrWhitespaceOnly(name)) {
-                return accountDao.search(refCount, name.trim(), offset, pageSize);
-            } else {
-                return accountDao.getAll(refCount, offset, pageSize);
-            }
-        }
+    public List<Account> getAccounts(RefCount refCount, String name, String dept, Integer pageIndex,
+                                     Integer pageSize) {
+        return accountDao.search(refCount, name, dept, pageIndex, pageSize);
     }
 
     @Override

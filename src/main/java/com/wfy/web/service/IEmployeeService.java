@@ -11,7 +11,7 @@ import java.util.List;
  */
 public interface IEmployeeService {
 
-    List<Employee> getEmployees(RefCount refCount, String key, String dept, int pageIndex, int pageSize);
+    List<Employee> getEmployees(RefCount refCount, String key, String dept, Integer pageIndex, Integer pageSize);
 
     Employee getEmployeeByName(String name);
 

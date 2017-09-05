@@ -1,8 +1,16 @@
 package com.wfy.web.dao;
 
+import com.wfy.web.model.Employee;
+import com.wfy.web.model.MobileInbound;
 import com.wfy.web.model.Supplier;
-import com.wfy.web.utils.PaginationUtil;
+import com.wfy.web.utils.CloneUtil;
 import com.wfy.web.utils.RefCount;
+import org.apache.commons.lang3.StringUtils;
+import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -39,35 +47,29 @@ public class SupplierDao {
         }
     }
 
-    public List<Supplier> getAll(RefCount refCount, int offset, int length) {
-        String hql = "from Supplier s where s.deleted <> 1 order by s.id";
-        refCount.setCount(((List<Long>) hibernateTemplate.find("select count(*) " + hql)).get(0));
-        List<Supplier> suppliers = PaginationUtil.pagination(hibernateTemplate,
-                offset, length, hql);
-        return normalizeSuppliers(suppliers);
-    }
-
-    public List<Supplier> search(RefCount refCount, String name, String type, int offset, int length) {
-        name = "%" + name + "%";
-        type = "%" + type + "%";
-        String hql = "from Supplier s where s.name like ? and s.type.id in (" +
-                "select t.id from SupplierType t where t.name like ? and t.deleted <> 1" +
-                ") and s.deleted <> 1 order by s.id";
-        List<Long> countList = (List<Long>) hibernateTemplate.find("select count(*) " + hql,
-                name, type);
-        refCount.setCount(countList.get(0));
-        List<Supplier> suppliers = PaginationUtil.pagination(
-                hibernateTemplate, offset, length, hql, name, type);
-        return normalizeSuppliers(suppliers);
-    }
-
-    public List<Supplier> search(RefCount refCount, String name, int offset, int length) {
-        name = "%" + name + "%";
-        String hql = "from Supplier s where s.name like ? and s.deleted <> 1 order by s.id";
-        refCount.setCount(((List<Long>) hibernateTemplate.find("select count(*) " + hql, name))
-                .get(0));
-        List<Supplier> suppliers = PaginationUtil.pagination(hibernateTemplate,
-                offset, length, hql, name);
+    public List<Supplier> search(RefCount refCount, String name, String type, Integer pageIndex, Integer pageSize) {
+        List<Supplier> suppliers;
+        DetachedCriteria criteria = DetachedCriteria.forClass(Supplier.class, "s")
+                .setFetchMode("type", FetchMode.SELECT)
+                .add(Restrictions.ne("s.deleted", true))
+                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        if (StringUtils.isNotBlank(name)) {
+            criteria.add(Restrictions.like("s.name", "%" + name + "%"));
+        }
+        if (StringUtils.isNotBlank(type)) {
+            criteria.createAlias("type", "t")
+                    .add(Restrictions.eq("t.name", type));
+        }
+        DetachedCriteria countCriteria = CloneUtil.clone(criteria);
+        countCriteria.setProjection(Projections.rowCount());
+        long count = ((List<Long>) hibernateTemplate.findByCriteria(countCriteria)).get(0);
+        refCount.setCount(count);
+        if (pageIndex != null && pageSize != null) {
+            int offset = (pageIndex - 1) * pageSize;
+            suppliers = (List<Supplier>) hibernateTemplate.findByCriteria(criteria, offset, pageSize);
+        } else {
+            suppliers = (List<Supplier>) hibernateTemplate.findByCriteria(criteria);
+        }
         return normalizeSuppliers(suppliers);
     }
 
@@ -120,4 +122,6 @@ public class SupplierDao {
         List<Long> list = (List<Long>) hibernateTemplate.find(hql, id);
         return list.get(0) > 0;
     }
+
+
 }

@@ -63,7 +63,7 @@
     </aop:config>
     <tx:advice id="txAdvice" transaction-manager="transactionManager">
         <tx:attributes>
-            <!--<tx:method name="find*" read-only="true"-->
+            <!--<tx:metsuppliername="find*" read-only="true"-->
             <!--propagation="NOT_SUPPORTED"/>-->
             <!-- get开头的方法不需要在事务中运行 。
             有些情况是没有必要使用事务的，比如获取数据。开启事务本身对性能是有一定的影响的-->

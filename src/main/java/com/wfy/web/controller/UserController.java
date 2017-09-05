@@ -112,12 +112,12 @@ public class UserController {
 
     @RequestMapping(value = "get_users.do", method = RequestMethod.POST)
     public ServerResponse<List<User>> getUsers(@RequestBody Map<String, Object> map) {
-        String name = (String) map.get("name");
+        String empName = (String) map.get("name");
         String username = (String) map.get("username");
-        int pageIndex = (int) map.get("pageIndex");
-        int pageSize = (int) map.get("pageSize");
+        Integer pageIndex = (Integer) map.get("pageIndex");
+        Integer pageSize = (Integer) map.get("pageSize");
         RefCount refCount = new RefCount(0);
-        List<User> users = iUserService.getUsers(refCount, username, name, pageIndex, pageSize);
+        List<User> users = iUserService.getUsers(refCount, username, empName, pageIndex, pageSize);
         if (users != null) {
             ServerResponse response = ServerResponse.createBySuccess(users);
             response.setCount(refCount.getCount());

@@ -30,11 +30,12 @@ public class SupplierController {
     public ServerResponse<List<Supplier>> getSuppliers(@RequestBody Map<String, Object> map) {
         String name = (String) map.get("name");
         String type = (String) map.get("type");
-        int pageIndex = (int) map.get("pageIndex");
-        int pageSize = (int) map.get("pageSize");
+        Integer pageIndex = (Integer) map.get("pageIndex");
+        Integer pageSize = (Integer) map.get("pageSize");
         RefCount refCount = new RefCount(0);
-        List<Supplier> suppliers = iSupplierService.getSuppliers(refCount, name, type, pageIndex,
-                pageSize);
+        List<Supplier> suppliers;
+        suppliers = iSupplierService.getSuppliers(refCount, name, type, pageIndex, pageSize);
+
         //noinspection Duplicates
         if (suppliers != null) {
             ServerResponse response = ServerResponse.createBySuccess(suppliers);

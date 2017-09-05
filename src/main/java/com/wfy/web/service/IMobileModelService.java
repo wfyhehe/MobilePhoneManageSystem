@@ -10,8 +10,8 @@ import java.util.List;
  */
 public interface IMobileModelService {
     @SuppressWarnings("Duplicates")
-    List<MobileModel> getMobileModels(RefCount refCount, String name, String brand, int pageIndex, int
-            pageSize);
+    List<MobileModel> getMobileModels(RefCount refCount, String name, String brand, Integer pageIndex,
+                                      Integer pageSize);
 
     List<MobileModel> getDeletedMobileModels();
 
@@ -30,4 +30,5 @@ public interface IMobileModelService {
     boolean delete(String id);
 
     boolean idExists(String id);
+
 }

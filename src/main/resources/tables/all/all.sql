@@ -236,7 +236,7 @@ CREATE TABLE t_mobile_inbound (
   input_user_id CHAR(32),
   check_time    DATETIME,
   check_user_id CHAR(32),
-  check_status  TINYINT, # 0: 未审核 1: 已审核 2: 删除
+  status  TINYINT, # 0: 未审核 1: 已审核 2: 删除
   remark        TEXT,
   dept_id       CHAR(32),
   CONSTRAINT fk_mobile_inbound_model_id

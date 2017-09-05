@@ -1,9 +1,17 @@
 package com.wfy.web.dao;
 
+import com.wfy.web.model.Employee;
+import com.wfy.web.model.MobileInbound;
 import com.wfy.web.model.MobileModel;
 import com.wfy.web.model.RebatePrice;
-import com.wfy.web.utils.PaginationUtil;
+import com.wfy.web.utils.CloneUtil;
 import com.wfy.web.utils.RefCount;
+import org.apache.commons.lang3.StringUtils;
+import org.hibernate.Criteria;
+import org.hibernate.FetchMode;
+import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Projections;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -49,35 +57,31 @@ public class MobileModelDao {
         }
     }
 
-    public List<MobileModel> getAll(RefCount refCount, int offset, int length) {
-        String hql = "from MobileModel mm where mm.deleted <> 1 order by mm.id";
-        refCount.setCount(((List<Long>) hibernateTemplate.find("select count(*) " + hql)).get(0));
-        List<MobileModel> mobileModels = PaginationUtil.pagination(hibernateTemplate,
-                offset, length, hql);
-        return normalizeMobileModels(mobileModels);
-    }
-
-    public List<MobileModel> search(RefCount refCount, String name, String brand, int offset, int length) {
-        name = "%" + name + "%";
-        brand = "%" + brand + "%";
-        String hql = "from MobileModel mm where mm.name like ? and mm.brand.name in (" +
-                "select b.name from Brand b where b.name like ?" +
-                ") and mm.deleted <> 1 order by mm.id";
-        List<Long> countList = (List<Long>) hibernateTemplate.find("select count(*) " + hql,
-                name, brand);
-        refCount.setCount(countList.get(0));
-        List<MobileModel> mobileModels = PaginationUtil.pagination(
-                hibernateTemplate, offset, length, hql, name, brand);
-        return normalizeMobileModels(mobileModels);
-    }
-
-    public List<MobileModel> search(RefCount refCount, String name, int offset, int length) {
-        name = "%" + name + "%";
-        String hql = "from MobileModel mm where mm.name like ? and mm.deleted <> 1 order by mm.id";
-        refCount.setCount(((List<Long>) hibernateTemplate.find("select count(*) " + hql, name))
-                .get(0));
-        List<MobileModel> mobileModels = PaginationUtil.pagination(hibernateTemplate,
-                offset, length, hql, name);
+    public List<MobileModel> search(RefCount refCount, String name, String brand,
+                                    Integer pageIndex, Integer pageSize) {
+        List<MobileModel> mobileModels;
+        DetachedCriteria criteria = DetachedCriteria.forClass(MobileModel.class, "mm")
+                .setFetchMode("brand", FetchMode.SELECT)
+                .setFetchMode("rebatePrices", FetchMode.SELECT)
+                .add(Restrictions.ne("mm.deleted", true))
+                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+        if (StringUtils.isNotBlank(name)) {
+            criteria.add(Restrictions.like("mm.name", "%" + name + "%"));
+        }
+        if (StringUtils.isNotBlank(brand)) {
+            criteria.createAlias("brand", "b")
+                    .add(Restrictions.eq("b.name", brand));
+        }
+        DetachedCriteria countCriteria = CloneUtil.clone(criteria);
+        countCriteria.setProjection(Projections.rowCount());
+        long count = ((List<Long>) hibernateTemplate.findByCriteria(countCriteria)).get(0);
+        refCount.setCount(count);
+        if (pageIndex != null && pageSize != null) {
+            int offset = (pageIndex - 1) * pageSize;
+            mobileModels = (List<MobileModel>) hibernateTemplate.findByCriteria(criteria, offset, pageSize);
+        } else {
+            mobileModels = (List<MobileModel>) hibernateTemplate.findByCriteria(criteria);
+        }
         return normalizeMobileModels(mobileModels);
     }
 
@@ -130,4 +134,6 @@ public class MobileModelDao {
         List<Long> list = (List<Long>) hibernateTemplate.find(hql, id);
         return list.get(0) > 0;
     }
+
+
 }

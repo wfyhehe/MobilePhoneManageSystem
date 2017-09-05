@@ -1,7 +1,5 @@
 package com.wfy.web.service.impl;
 
-import com.mysql.cj.core.util.StringUtils;
-import com.wfy.web.dao.BrandDao;
 import com.wfy.web.dao.MobileModelDao;
 import com.wfy.web.model.MobileModel;
 import com.wfy.web.service.IMobileModelService;
@@ -24,18 +22,9 @@ public class MobileModelServiceImpl implements IMobileModelService {
 
     @SuppressWarnings("Duplicates")
     @Override
-    public List<MobileModel> getMobileModels(RefCount refCount, String name, String brand, int pageIndex, int
-            pageSize) {
-        int offset = (pageIndex - 1) * pageSize;
-        if (!StringUtils.isEmptyOrWhitespaceOnly(brand)) {
-            return mobileModelDao.search(refCount, name.trim(), brand.trim(), offset, pageSize);
-        } else {
-            if (!StringUtils.isEmptyOrWhitespaceOnly(name)) {
-                return mobileModelDao.search(refCount, name.trim(), offset, pageSize);
-            } else {
-                return mobileModelDao.getAll(refCount, offset, pageSize);
-            }
-        }
+    public List<MobileModel> getMobileModels(RefCount refCount, String name, String brand,
+                                             Integer pageIndex, Integer pageSize) {
+        return mobileModelDao.search(refCount, name, brand, pageIndex, pageSize);
     }
 
     @Override
