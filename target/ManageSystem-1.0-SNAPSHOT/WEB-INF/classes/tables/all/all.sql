@@ -224,7 +224,7 @@ CREATE INDEX index_rebate_price_rebate_type_id
   ON t_rebate_price (rebate_type_id);
 
 CREATE TABLE t_mobile_inbound (
-  id            VARCHAR(32) PRIMARY KEY,
+  id            CHAR(32) PRIMARY KEY,
   supplier_id   VARCHAR(15) NOT NULL,
   model_id      VARCHAR(15) NOT NULL,
   color         VARCHAR(64),

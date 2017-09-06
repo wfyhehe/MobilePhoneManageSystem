@@ -1,5 +1,5 @@
 CREATE TABLE t_mobile_inbound (
-  id            VARCHAR(32) PRIMARY KEY,
+  id            CHAR(32) PRIMARY KEY,
   supplier_id   VARCHAR(15) NOT NULL,
   model_id      VARCHAR(15) NOT NULL,
   color         VARCHAR(64),
