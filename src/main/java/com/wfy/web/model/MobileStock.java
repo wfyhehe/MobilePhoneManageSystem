@@ -1,7 +1,9 @@
 package com.wfy.web.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.wfy.web.model.enums.CheckStatus;
 import org.hibernate.annotations.DynamicUpdate;
 
@@ -14,6 +16,7 @@ import java.util.Date;
 @Entity
 @Table(name = "t_mobile_stock")
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @DynamicUpdate
 public class MobileStock {
     /* id                VARCHAR(32) PRIMARY KEY,
@@ -37,11 +40,42 @@ public class MobileStock {
     private Date firstInTime;
     private Supplier lastSupplier;
     private Date lastInTime;
+    private MobileInbound mobileInbound;
     private double buyPrice;
     private double cost;
     private double lossAmount;
     private Dept dept;
-    private CheckStatus checkStatus;
+    private CheckStatus status;
+
+    @Override
+    public String toString() {
+        return "MobileStock{" +
+                "id='" + id + '\'' +
+                ", mobileModel=" + mobileModel +
+                ", color=" + color +
+                ", config=" + config +
+                ", firstSupplier=" + firstSupplier +
+                ", firstInTime=" + firstInTime +
+                ", lastSupplier=" + lastSupplier +
+                ", lastInTime=" + lastInTime +
+                ", mobileInbound(id)=" + ((mobileInbound != null) ? mobileInbound.getId() : "") +
+                ", buyPrice=" + buyPrice +
+                ", cost=" + cost +
+                ", lossAmount=" + lossAmount +
+                ", dept=" + dept +
+                ", status=" + status +
+                '}';
+    }
+
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "inbound_id")
+    public MobileInbound getMobileInbound() {
+        return mobileInbound;
+    }
+
+    public void setMobileInbound(MobileInbound mobileInbound) {
+        this.mobileInbound = mobileInbound;
+    }
 
     @Id
     @Column(name = "id")
@@ -162,30 +196,12 @@ public class MobileStock {
 
     @Column(name = "status")
     @Enumerated(EnumType.ORDINAL)
-    public CheckStatus getCheckStatus() {
-        return checkStatus;
+    public CheckStatus getStatus() {
+        return status;
     }
 
-    public void setCheckStatus(CheckStatus checkStatus) {
-        this.checkStatus = checkStatus;
+    public void setStatus(CheckStatus status) {
+        this.status = status;
     }
 
-    @Override
-    public String toString() {
-        return "MobileStock{" +
-                "id='" + id + '\'' +
-                ", mobileModel=" + mobileModel +
-                ", color=" + color +
-                ", config=" + config +
-                ", firstSupplier=" + firstSupplier +
-                ", firstInTime=" + firstInTime +
-                ", lastSupplier=" + lastSupplier +
-                ", lastInTime=" + lastInTime +
-                ", buyPrice=" + buyPrice +
-                ", cost=" + cost +
-                ", lossAmount=" + lossAmount +
-                ", dept=" + dept +
-                ", checkStatus=" + checkStatus +
-                '}';
-    }
 }

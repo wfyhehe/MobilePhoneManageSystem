@@ -279,6 +279,7 @@ CREATE TABLE t_mobile_stock (
   first_in_time     DATETIME,
   last_supplier_id  VARCHAR(15),
   last_in_time      DATETIME,
+  inbound_id        CHAR(32),
   buy_price         DECIMAL(20, 2),
   cost              DECIMAL(20, 2), # 由于返利和保价存在，成本可能比入库价低
   loss_amount       DECIMAL(20, 2), # 次品的损失金额
@@ -290,6 +291,8 @@ CREATE TABLE t_mobile_stock (
   FOREIGN KEY (first_supplier_id) REFERENCES ssm.t_supplier (id),
   CONSTRAINT fk_mobile_stock_last_supplier_id
   FOREIGN KEY (last_supplier_id) REFERENCES ssm.t_supplier (id),
+  CONSTRAINT fk_mobile_stock_inbound_id
+  FOREIGN KEY (inbound_id) REFERENCES ssm.t_mobile_inbound (id),
   CONSTRAINT fk_mobile_stock_dept_id
   FOREIGN KEY (dept_id) REFERENCES ssm.t_dept (id)
 );
@@ -302,6 +305,8 @@ CREATE INDEX index_model_stock_last_supplier_id
   ON t_mobile_stock (last_supplier_id);
 CREATE INDEX index_model_stock_dept_id
   ON t_mobile_stock (dept_id);
+CREATE INDEX index_model_stock_inbound_id
+  ON t_mobile_stock (inbound_id);
 
 CREATE TABLE t_supplier_trade_detail (
   id            VARCHAR(32) PRIMARY KEY,

@@ -2,9 +2,10 @@ package com.wfy.web.controller;
 
 import com.wfy.web.common.ServerResponse;
 import com.wfy.web.model.MobileInbound;
-import com.wfy.web.service.IBrandService;
+import com.wfy.web.model.MobileStock;
+import com.wfy.web.model.enums.CheckStatus;
 import com.wfy.web.service.IMobileInboundService;
-import com.wfy.web.service.IRebatePriceService;
+import com.wfy.web.service.impl.IMobileStockService;
 import com.wfy.web.utils.RefCount;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,13 +26,11 @@ public class MobileInboundController {
     private IMobileInboundService iMobileInboundService;
 
     @Resource
-    private IBrandService iBrandService;
-
-    @Resource
-    private IRebatePriceService iRebatePriceService;
+    private IMobileStockService iMobileStockService;
 
     @RequestMapping(value = "get_mobile_inbounds.do", method = RequestMethod.POST)
     public ServerResponse<List<MobileInbound>> getMobileInbounds(@RequestBody Map<String, Object> map) {
+        //TODO 可以增加按supplierType、brand以及status(使用checkbox)的查询的方式，提升用户体验
         String supplier = (String) map.get("supplier");
         String mobileModel = (String) map.get("mobileModel");
         Integer pageIndex = (Integer) map.get("pageIndex");
@@ -58,7 +57,29 @@ public class MobileInboundController {
     public ServerResponse<MobileInbound>
     addMobileInbound(@RequestBody MobileInbound mobileInbound) {
         try {
-            iMobileInboundService.addMobileInbound(mobileInbound);
+            mobileInbound.setStatus(CheckStatus.UNAUDITED);
+            System.out.println(mobileInbound);
+            for (int i = 0; i < mobileInbound.getMobiles().size(); i++) {
+                MobileStock mobile = mobileInbound.getMobiles().get(i);
+                mobile.setBuyPrice(mobileInbound.getBuyPrice());
+                mobile.setColor(mobileInbound.getColor());
+                mobile.setConfig(mobileInbound.getConfig());
+                mobile.setCost(mobileInbound.getBuyPrice());
+                mobile.setDept(mobileInbound.getDept());
+                mobile.setFirstInTime(mobileInbound.getInputTime());
+                mobile.setFirstSupplier(mobileInbound.getSupplier());
+                mobile.setLossAmount(0);
+                mobile.setMobileModel(mobileInbound.getMobileModel());
+                mobile = iMobileStockService.addMobileStock(mobile);
+                mobileInbound.getMobiles().set(i, mobile);
+            }
+            mobileInbound = iMobileInboundService.addMobileInbound(mobileInbound);
+            System.out.println(mobileInbound);
+            for (MobileStock mobile : mobileInbound.getMobiles()) {
+                mobile.setMobileInbound(mobileInbound); //把有Id的mobileInbound外键设回去
+                iMobileInboundService.updateMobileInbound(mobileInbound);
+                System.out.println(mobile);
+            }
         } catch (Exception e) {
             e.printStackTrace();
             return ServerResponse.createByErrorMessage("添加失败");

@@ -1,13 +1,16 @@
 package com.wfy.web.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.wfy.web.model.enums.CheckStatus;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/9/2.
@@ -15,6 +18,7 @@ import java.util.Date;
 @Entity
 @Table(name = "t_mobile_inbound")
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @DynamicUpdate
 public class MobileInbound {
     /*    id            VARCHAR(32) PRIMARY KEY,
@@ -47,6 +51,16 @@ public class MobileInbound {
     private CheckStatus status;
     private Dept dept;
     private String remark;
+    private List<MobileStock> mobiles;
+
+    @OneToMany(mappedBy = "mobileInbound", cascade = CascadeType.ALL)
+    public List<MobileStock> getMobiles() {
+        return mobiles;
+    }
+
+    public void setMobiles(List<MobileStock> mobiles) {
+        this.mobiles = mobiles;
+    }
 
     @Id
     @GeneratedValue(generator = "uuid")
@@ -212,6 +226,7 @@ public class MobileInbound {
                 ", status=" + status +
                 ", dept=" + dept +
                 ", remark='" + remark + '\'' +
+                ", mobiles=" + mobiles +
                 '}';
     }
 }
