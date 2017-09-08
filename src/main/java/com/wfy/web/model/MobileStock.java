@@ -15,7 +15,7 @@ import java.util.Date;
  */
 @Entity
 @Table(name = "t_mobile_stock")
-@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIgnoreProperties(ignoreUnknown = true, value = {"hibernateLazyInitializer", "handler", "fieldHandler"})
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @DynamicUpdate
 public class MobileStock {

@@ -97,43 +97,43 @@ public class SpringModelsTest extends AbstractJUnit4SpringContextTests {
         session.close();
     }
 
-    @Test
-    public void testMenu() {
-        Session session = sessionFactory.openSession();
-        session.beginTransaction();
-
-        Role role = new Role("superadmin", RoleStatus.ONLINE);
-        Menu topMenu1 = new Menu("系统管理", 2);
-        Set<Role> topMenuRoles = new HashSet<>();
-        topMenuRoles.add(role);
-        Menu subMenu1 = new Menu("用户管理", topMenu1, "user_manage", 1);
-        Menu subMenu2 = new Menu("权限管理", topMenu1, "auth_manage", 2);
-        Menu subMenu3 = new Menu("菜单管理", topMenu1, "menu_manage", 3);
-        Action action1 = new Action("添加菜单", "/menu/add_menu.do", ActionType.GRANTED, subMenu1);
-
-        Set<Role> subMenu1Roles = new HashSet<>();
-        subMenu1Roles.add(role);
-        Set<Role> subMenu2Roles = new HashSet<>();
-        subMenu2Roles.add(role);
-        Set<Role> subMenu3Roles = new HashSet<>();
-        subMenu3Roles.add(role);
-
-        topMenu1.setRoles(topMenuRoles);
-        subMenu1.setRoles(subMenu1Roles);
-        subMenu2.setRoles(subMenu2Roles);
-        subMenu3.setRoles(subMenu3Roles);
-
-        List<Menu> children = new ArrayList<>();
-        children.add(subMenu1);
-        children.add(subMenu2);
-        children.add(subMenu3);
-        topMenu1.setChildren(children);
-
-        session.save(topMenu1);
-        session.save(action1);
-        session.getTransaction().commit();
-        session.close();
-    }
+//    @Test
+//    public void testMenu() {
+//        Session session = sessionFactory.openSession();
+//        session.beginTransaction();
+//
+//        Role role = new Role("superadmin", RoleStatus.ONLINE);
+//        Menu topMenu1 = new Menu("系统管理", 2);
+//        Set<Role> topMenuRoles = new HashSet<>();
+//        topMenuRoles.add(role);
+//        Menu subMenu1 = new Menu("用户管理", topMenu1, "user_manage", 1);
+//        Menu subMenu2 = new Menu("权限管理", topMenu1, "auth_manage", 2);
+//        Menu subMenu3 = new Menu("菜单管理", topMenu1, "menu_manage", 3);
+//        Action action1 = new Action("添加菜单", "/menu/add_menu.do", ActionType.GRANTED, subMenu1);
+//
+//        Set<Role> subMenu1Roles = new HashSet<>();
+//        subMenu1Roles.add(role);
+//        Set<Role> subMenu2Roles = new HashSet<>();
+//        subMenu2Roles.add(role);
+//        Set<Role> subMenu3Roles = new HashSet<>();
+//        subMenu3Roles.add(role);
+//
+//        topMenu1.setRoles(topMenuRoles);
+//        subMenu1.setRoles(subMenu1Roles);
+//        subMenu2.setRoles(subMenu2Roles);
+//        subMenu3.setRoles(subMenu3Roles);
+//
+//        List<Menu> children = new ArrayList<>();
+//        children.add(subMenu1);
+//        children.add(subMenu2);
+//        children.add(subMenu3);
+//        topMenu1.setChildren(children);
+//
+//        session.saveOrUpdate(topMenu1);
+//        session.saveOrUpdate(action1);
+//        session.getTransaction().commit();
+//        session.close();
+//    }
 
     @Test
     public void testMenuDao() {

@@ -4,8 +4,8 @@ import com.wfy.web.common.ServerResponse;
 import com.wfy.web.model.MobileInbound;
 import com.wfy.web.model.MobileStock;
 import com.wfy.web.model.enums.CheckStatus;
+import com.wfy.web.service.IBrandService;
 import com.wfy.web.service.IMobileInboundService;
-import com.wfy.web.service.impl.IMobileStockService;
 import com.wfy.web.utils.RefCount;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,7 +26,7 @@ public class MobileInboundController {
     private IMobileInboundService iMobileInboundService;
 
     @Resource
-    private IMobileStockService iMobileStockService;
+    private IBrandService.IMobileStockService iMobileStockService;
 
     @RequestMapping(value = "get_mobile_inbounds.do", method = RequestMethod.POST)
     public ServerResponse<List<MobileInbound>> getMobileInbounds(@RequestBody Map<String, Object> map) {

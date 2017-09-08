@@ -60,6 +60,9 @@ public class MenuServiceImpl implements IMenuService {
         Set<Role> set = new HashSet<>();
         Role role = roleDao.getRoleByName("超级管理员");
         set.add(role);
+//        List<Role> list = new ArrayList<>();
+//        Role role = roleDao.getRoleByName("超级管理员");
+//        list.add(role);
         menu.setRoles(set);
         String id = menuDao.save(menu);
         menu.setId(id);
@@ -67,36 +70,37 @@ public class MenuServiceImpl implements IMenuService {
     }
 
     @Override
-    public void update(Menu menu) {
+    public void update(Menu menu) throws Exception {
         Menu oldMenu = menuDao.getMenuById(menu.getId());
-        if (menu.getName() != null) {
-            oldMenu.setName(menu.getName());
+        if (menu.getName() == null) {
+            menu.setName(oldMenu.getName());
         }
-        if (menu.getChildren() != null) {
-            oldMenu.setChildren(menu.getChildren());
+        if (menu.getChildren() == null) {
+            menu.setChildren(oldMenu.getChildren());
         }
-        if (menu.getRoles() != null) {
-            oldMenu.setRoles(menu.getRoles());
+        if (menu.getRoles() == null) {
+            menu.setRoles(oldMenu.getRoles());
         }
-        if (menu.getSortOrder() != null) {
-            oldMenu.setSortOrder(menu.getSortOrder());
+        if (menu.getSortOrder() == null) {
+            menu.setSortOrder(oldMenu.getSortOrder());
         }
-        if (menu.getType() != null) {
-            oldMenu.setType(menu.getType());
+        if (menu.getType() == null) {
+            menu.setType(oldMenu.getType());
         }
-        if (menu.getActions() != null) {
-            oldMenu.setActions(menu.getActions());
+        if (menu.getActions() == null) {
+            menu.setActions(oldMenu.getActions());
         }
-        if (menu.getParent() != null) {
-            oldMenu.setParent(menu.getParent());
+        if (menu.getParent() == null) {
+            menu.setParent(oldMenu.getParent());
         }
-        if (menu.getPath() != null) {
-            oldMenu.setPath(menu.getPath());
+        if (menu.getPath() == null) {
+            menu.setPath(oldMenu.getPath());
         }
-        if (menu.getRemark() != null) {
-            oldMenu.setRemark(menu.getRemark());
+        if (menu.getRemark() == null) {
+            menu.setRemark(oldMenu.getRemark());
         }
-        menuDao.update(oldMenu);
+        System.out.println(menu);
+        menuDao.update(menu);
     }
 
     @Override

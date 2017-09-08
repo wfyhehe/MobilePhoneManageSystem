@@ -1,13 +1,12 @@
 package com.wfy.web.dao;
 
-import com.wfy.web.model.Employee;
 import com.wfy.web.model.MobileInbound;
-import com.wfy.web.model.enums.CheckStatus;
 import com.wfy.web.utils.CloneUtil;
 import com.wfy.web.utils.RefCount;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
+import org.hibernate.Hibernate;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -58,12 +57,13 @@ public class MobileInboundDao {
                 .setFetchMode("dept", FetchMode.SELECT)
                 .setFetchMode("color", FetchMode.SELECT)
                 .setFetchMode("config", FetchMode.SELECT)
+                .setFetchMode("mobiles", FetchMode.SELECT)
                 .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
-        if(startTime!=null && endTime != null) {
-            criteria.add(Restrictions.between("mi.inputTime",startTime,endTime));
+        if (startTime != null && endTime != null) {
+            criteria.add(Restrictions.between("mi.inputTime", startTime, endTime));
         }
         if (StringUtils.isNotBlank(supplier)) {
-            criteria.createAlias("supplier","s")
+            criteria.createAlias("supplier", "s")
                     .add(Restrictions.eq("s.name", supplier));
         }
         if (StringUtils.isNotBlank(model)) {
@@ -80,6 +80,9 @@ public class MobileInboundDao {
         } else {
             mobileInbounds = (List<MobileInbound>) hibernateTemplate.findByCriteria(criteria);
         }
+//        for (MobileInbound mobileInbound : mobileInbounds) {
+//            Hibernate.initialize(mobileInbound.getMobiles());
+//        }
         return normalizeMobileInbounds(mobileInbounds);
     }
 

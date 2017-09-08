@@ -1,14 +1,12 @@
 package com.wfy.web.model;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.wfy.web.model.enums.ActionType;
 import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/7/15.
@@ -17,15 +15,14 @@ import java.util.Set;
 @Entity
 @Table(name = "t_action")
 @JsonIgnoreProperties(ignoreUnknown = true)
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "url")
 @DynamicUpdate
 public class Action implements Serializable {
-    private String id;
     private String name;
     private String remark;
     private ActionType type;
     private String url;
-    private Set<Role> roles;
-    private Menu menu;
+    private List<Role> roles;
 
     public Action() {
     }
@@ -36,13 +33,7 @@ public class Action implements Serializable {
         this.url = url;
     }
 
-    public Action(String name, String url, ActionType type, Menu menu) {
-        this.name = name;
-        this.type = type;
-        this.url = url;
-        this.menu = menu;
-    }
-
+    @Id
     @Column(name = "url")
     public String getUrl() {
         return url;
@@ -52,28 +43,6 @@ public class Action implements Serializable {
         this.url = url;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "menu_id")
-    @JsonIgnore
-    public Menu getMenu() {
-        return menu;
-    }
-
-    public void setMenu(Menu menu) {
-        this.menu = menu;
-    }
-
-    @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid")
-    @Column(name = "id")
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
 
     @Column(name = "name")
     public String getName() {
@@ -103,15 +72,15 @@ public class Action implements Serializable {
         this.type = type;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "t_role_action",
-            joinColumns = @JoinColumn(name = "action_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
-    public Set<Role> getRoles() {
+            joinColumns = @JoinColumn(name = "action_url", referencedColumnName = "url"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
+    public List<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(Set<Role> roles) {
+    public void setRoles(List<Role> roles) {
         this.roles = roles;
     }
 
@@ -119,12 +88,11 @@ public class Action implements Serializable {
     @Override
     public String toString() {
         return "Action{" +
-                "id=" + id +
+                ", url='" + url + '\'' +
                 ", name='" + name + '\'' +
                 ", remark='" + remark + '\'' +
                 ", type=" + type +
-                ", roles=" + roles +
+//                ", roles=" + roles +
                 '}';
     }
-
 }

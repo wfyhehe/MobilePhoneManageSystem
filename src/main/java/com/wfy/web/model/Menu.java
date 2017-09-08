@@ -19,6 +19,7 @@ import java.util.Set;
 @Entity
 @Table(name = "t_menu")
 @JsonIgnoreProperties(ignoreUnknown = true)
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @DynamicUpdate
 public class Menu implements Serializable {
     private String id;
@@ -31,6 +32,10 @@ public class Menu implements Serializable {
     private List<Menu> children;
     private Set<Action> actions;
     private Set<Role> roles;
+
+    public Menu(String id) {
+        this.id = id;
+    }
 
     public Menu() {
     }
@@ -86,7 +91,10 @@ public class Menu implements Serializable {
         this.parent = parent;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,mappedBy = "menu")
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "t_action_menu",
+            joinColumns = @JoinColumn(name = "menu_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "action_url", referencedColumnName = "url"))
     public Set<Action> getActions() {
         return actions;
     }
@@ -145,10 +153,10 @@ public class Menu implements Serializable {
     }
 
 
-    @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "t_role_menu",
-            joinColumns = @JoinColumn(name = "menu_id"),
-            inverseJoinColumns = @JoinColumn(name = "role_id"))
+            joinColumns = @JoinColumn(name = "menu_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
     public Set<Role> getRoles() {
         return roles;
     }

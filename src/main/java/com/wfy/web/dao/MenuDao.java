@@ -2,11 +2,11 @@ package com.wfy.web.dao;
 
 import com.wfy.web.model.Menu;
 import com.wfy.web.model.enums.MenuType;
+import org.hibernate.Hibernate;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -26,9 +26,6 @@ public class MenuDao {
     }
 
     private Menu normalizeMenu(Menu menu) {
-        if (menu.getChildren() != null) {
-            menu.getChildren().sort(Comparator.comparingInt(Menu::getSortOrder));
-        }
         return menu;
     }
 
@@ -156,6 +153,7 @@ public class MenuDao {
     }
 
     public void update(Menu menu) {
+        hibernateTemplate.clear();
         hibernateTemplate.update(menu);
     }
 

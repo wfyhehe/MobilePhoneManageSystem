@@ -176,34 +176,34 @@ public class UserServiceImpl implements IUserService {
     @Override
     public void updateUser(User user) {
         User oldUser = userDao.getUser(user.getId());
-        if (user.getUsername() != null) {
-            oldUser.setUsername(user.getUsername());
+        if (user.getUsername() == null) {
+            user.setUsername(oldUser.getUsername());
         }
-        if (user.getEmployee() != null) {
-            oldUser.setEmployee(user.getEmployee());
+        if (user.getEmployee() == null) {
+            user.setEmployee(oldUser.getEmployee());
         }
-        if (user.getRoles() != null) {
-            oldUser.setRoles(user.getRoles());
+        if (user.getRoles() == null) {
+            user.setRoles(oldUser.getRoles());
         }
-        if (user.getCreateTime() != null) {
-            oldUser.setCreateTime(user.getCreateTime());
+        if (user.getCreateTime() == null) {
+            user.setCreateTime(oldUser.getCreateTime());
         }
-        if (user.getStatus() != null) {
-            oldUser.setStatus(user.getStatus());
+        if (user.getStatus() == null) {
+            user.setStatus(oldUser.getStatus());
         }
-        if (user.getLastLoginTime() != null) {
-            oldUser.setLastLoginTime(user.getLastLoginTime());
+        if (user.getLastLoginTime() == null) {
+            user.setLastLoginTime(oldUser.getLastLoginTime());
         }
-        if (user.getRemark() != null) {
-            oldUser.setRemark(user.getRemark());
+        if (user.getRemark() == null) {
+            user.setRemark(oldUser.getRemark());
         }
-        if (user.getRoles() != null) {
-            oldUser.setRoles(user.getRoles());
+        if (user.getRoles() == null) {
+            user.setRoles(oldUser.getRoles());
         }
-        if (user.getPassword() != null) {
-            oldUser.setPassword(user.getPassword());
+        if (user.getPassword() == null) {
+            user.setPassword(oldUser.getPassword());
         }
-        userDao.update(oldUser);
+        userDao.update(user);
     }
 
     @Override

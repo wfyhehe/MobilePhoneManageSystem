@@ -17,7 +17,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "t_mobile_inbound")
-@JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIgnoreProperties(ignoreUnknown = true, value = {"hibernateLazyInitializer", "handler", "fieldHandler"})
 @JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @DynamicUpdate
 public class MobileInbound {
@@ -53,7 +53,7 @@ public class MobileInbound {
     private String remark;
     private List<MobileStock> mobiles;
 
-    @OneToMany(mappedBy = "mobileInbound", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "mobileInbound", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     public List<MobileStock> getMobiles() {
         return mobiles;
     }

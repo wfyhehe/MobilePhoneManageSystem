@@ -2,6 +2,7 @@ package com.wfy.web.service.impl;
 
 import com.wfy.web.dao.MobileStockDao;
 import com.wfy.web.model.MobileStock;
+import com.wfy.web.service.IBrandService;
 import com.wfy.web.utils.RefCount;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,7 +16,7 @@ import java.util.List;
  */
 @Service("iMobileStockService")
 @Transactional
-public class MobileStockServiceImpl implements IMobileStockService {
+public class MobileStockServiceImpl implements IBrandService.IMobileStockService {
 
     @Resource
     private MobileStockDao mobileStockDao;

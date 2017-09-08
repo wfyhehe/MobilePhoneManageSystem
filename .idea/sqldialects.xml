@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="SqlDialectMappings">
-    <file url="file://$PROJECT_DIR$/src/main/resources/tables/all/all.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/tables/business/account.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/tables/business/mobile_inbound.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/tables/business/mobile_model.sql" dialect="MySQL" />
@@ -14,6 +13,7 @@
     <file url="file://$PROJECT_DIR$/src/main/resources/tables/deprecated/customer_price.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/tables/deprecated/customer_type.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/tables/system/action.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/tables/system/action_menu.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/tables/system/dept.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/tables/system/employee.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/tables/system/menu.sql" dialect="MySQL" />

@@ -13,3 +13,4 @@ CREATE INDEX index_ru_user_id
 
 CREATE INDEX index_ru_role_id
   ON t_role_user (role_id);
+

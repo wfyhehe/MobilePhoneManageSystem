@@ -19,7 +19,7 @@ public interface IMenuService {
 
     Menu addMenu(String parentId, String name, int sortOrder);
 
-    void update(Menu menu);
+    void update(Menu menu) throws Exception;
 
     boolean up(String id);
 

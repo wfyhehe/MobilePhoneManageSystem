@@ -1,7 +1,9 @@
 package com.wfy.web.model;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.wfy.web.model.enums.BusinessType;
 import com.wfy.web.model.enums.CheckStatus;
 import org.hibernate.annotations.DynamicUpdate;
@@ -16,6 +18,7 @@ import java.util.Date;
 @Entity
 @Table(name = "t_supplier_trade_detail")
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @DynamicUpdate
 public class SupplierTradeDetail {
     /* id            VARCHAR(32) PRIMARY KEY,

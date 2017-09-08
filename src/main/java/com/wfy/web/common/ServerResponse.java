@@ -73,7 +73,6 @@ public class ServerResponse<T> implements Serializable {
         this.count = count;
     }
 
-    @JsonIgnore
     public boolean isSuccess() {
         return this.status == ResponseCode.SUCCESS.getCode();
     }

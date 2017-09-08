@@ -4,7 +4,9 @@ package com.wfy.web.model;
  * Created by Administrator on 2017/7/18.
  */
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.wfy.web.model.enums.EmployeeType;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
@@ -14,6 +16,7 @@ import javax.persistence.*;
 @Entity
 @Table(name = "t_employee")
 @JsonIgnoreProperties(ignoreUnknown = true)
+@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @DynamicUpdate
 public class Employee {
     private String id;
@@ -52,7 +55,7 @@ public class Employee {
         this.tel = tel;
     }
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "dept_id")
     public Dept getDept() {
         return dept;
