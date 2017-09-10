@@ -2,7 +2,6 @@ package com.wfy.web.dao;
 
 import com.wfy.web.model.Menu;
 import com.wfy.web.model.enums.MenuType;
-import org.hibernate.Hibernate;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -125,7 +124,13 @@ public class MenuDao {
 //    }
 
     public List<Menu> getMenus(Menu parent) {
-        String hql = "from Menu m where m.parent = parent order by m.sortOrder";
+        String hql = "from Menu m where m.parent = ? order by m.sortOrder";
+        List<Menu> menus = (List<Menu>) hibernateTemplate.find(hql, parent);
+        return normalizeMenus(menus);
+    }
+
+    public List<Menu> getMenus() {
+        String hql = "from Menu m";
         List<Menu> menus = (List<Menu>) hibernateTemplate.find(hql);
         return normalizeMenus(menus);
     }
@@ -153,7 +158,6 @@ public class MenuDao {
     }
 
     public void update(Menu menu) {
-        hibernateTemplate.clear();
         hibernateTemplate.update(menu);
     }
 
@@ -204,7 +208,10 @@ public class MenuDao {
     }
 
     public void delete(Menu menu) {
-        hibernateTemplate.clear();
         hibernateTemplate.delete(menu);
+    }
+
+    public void merge(Menu menu) {
+        hibernateTemplate.merge(menu);
     }
 }

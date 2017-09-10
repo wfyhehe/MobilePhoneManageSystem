@@ -2,6 +2,7 @@ package com.wfy.web.service.impl;
 
 import com.wfy.web.dao.MenuDao;
 import com.wfy.web.dao.RoleDao;
+import com.wfy.web.dto.MenuRoleDto;
 import com.wfy.web.model.Menu;
 import com.wfy.web.model.Role;
 import com.wfy.web.service.IMenuService;
@@ -70,7 +71,7 @@ public class MenuServiceImpl implements IMenuService {
     }
 
     @Override
-    public void update(Menu menu) throws Exception {
+    public void update(Menu menu) {
         Menu oldMenu = menuDao.getMenuById(menu.getId());
         if (menu.getName() == null) {
             menu.setName(oldMenu.getName());
@@ -99,8 +100,23 @@ public class MenuServiceImpl implements IMenuService {
         if (menu.getRemark() == null) {
             menu.setRemark(oldMenu.getRemark());
         }
-        System.out.println(menu);
         menuDao.update(menu);
+    }
+
+    @Override
+    public void updateFromRole(MenuRoleDto roleDto) {
+        Role role = roleDto.getRole();
+        List<Menu> menus = menuDao.getMenus();
+        for (Menu menu : menus) {
+            if (roleDto.getMenuIds().contains(menu.getId())) {
+                if (!menu.getRoles().contains(role)) {
+                    menu.getRoles().add(role);
+                }
+            } else {
+                menu.getRoles().remove(role);
+            }
+            menuDao.merge(menu);
+        }
     }
 
     @Override
@@ -142,4 +158,5 @@ public class MenuServiceImpl implements IMenuService {
         menuDao.update(sucMenu);
         return true;
     }
+
 }

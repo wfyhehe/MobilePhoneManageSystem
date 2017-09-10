@@ -145,7 +145,6 @@ public class UserDao {
     }
 
     public void update(User user) {
-        hibernateTemplate.clear();
         hibernateTemplate.update(user);
     }
 

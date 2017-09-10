@@ -95,6 +95,7 @@ public class Menu implements Serializable {
     @JoinTable(name = "t_action_menu",
             joinColumns = @JoinColumn(name = "menu_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "action_url", referencedColumnName = "url"))
+    @OrderBy("url")
     public Set<Action> getActions() {
         return actions;
     }

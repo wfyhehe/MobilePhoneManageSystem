@@ -1,17 +1,15 @@
 package com.wfy.web.controller;
 
 import com.wfy.web.common.ServerResponse;
-import com.wfy.web.model.Action;
+import com.wfy.web.dto.MenuRoleDto;
 import com.wfy.web.model.Menu;
 import com.wfy.web.service.IActionService;
 import com.wfy.web.service.IMenuService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 /**
  * Created by Administrator on 2017/8/18.
@@ -69,9 +67,6 @@ public class MenuController {
 //            System.out.println(action);
 //        }
         try {
-            System.out.println(menu);
-            System.out.println(menu.getRoles());
-            System.out.println(menu.getActions());
             iMenuService.update(menu);
         } catch (Exception e) {
             e.printStackTrace();
@@ -93,7 +88,43 @@ public class MenuController {
 //        menu.setRemark(remark);
 //        menu.setRoles(roles);
 //        try {
-//            iMenuService.update(menu);
+//            iMenuService.updateFromRole(menu);
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//            return ServerResponse.createByErrorMessage("更新失败");
+//        }
+        return ServerResponse.createBySuccess();
+    }
+
+    @RequestMapping(value = "update_menus_from_role.do", method = RequestMethod.POST)
+    public ServerResponse<String> updateMenusFromRole(@RequestBody MenuRoleDto roleDto) {
+//        for (Action action : menu.getActions()) {
+//            iActionService.addOrUpdateAction(action);
+//            System.out.println(action);
+//        }
+        try {
+            iMenuService.updateFromRole(roleDto);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.createByErrorMessage("添加失败");
+        }
+//        Menu menu = new Menu();
+//        String id = (String) menuMap.get("id");
+//        String name = (String) menuMap.get("name");
+//        String path = (String) menuMap.get("path");
+//        String remark = (String) menuMap.get("remark");
+//        Set<Role> roles = new HashSet<>();
+//        List<String> roleList = (List<String>) menuMap.get("roleNames");
+//        for (String roleName : roleList) {
+//            roles.add(iRoleService.getRoleByName(roleName));
+//        }
+//        menu.setId(id);
+//        menu.setName(name);
+//        menu.setPath(path);
+//        menu.setRemark(remark);
+//        menu.setRoles(roles);
+//        try {
+//            iMenuService.updateFromRole(menu);
 //        } catch (Exception e) {
 //            e.printStackTrace();
 //            return ServerResponse.createByErrorMessage("更新失败");

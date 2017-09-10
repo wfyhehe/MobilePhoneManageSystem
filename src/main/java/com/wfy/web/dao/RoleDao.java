@@ -1,5 +1,7 @@
 package com.wfy.web.dao;
 
+import com.wfy.web.model.Action;
+import com.wfy.web.model.Menu;
 import com.wfy.web.model.Role;
 import com.wfy.web.model.enums.RoleStatus;
 import org.springframework.orm.hibernate5.HibernateTemplate;
@@ -26,6 +28,26 @@ public class RoleDao {
     }
 
     private Role normalizeRole(Role role) {
+//        hibernateTemplate.evict(role);
+//        if (role != null && role.getActions() != null) {
+//            for (Action action : role.getActions()) {
+//                for (Role subRole : action.getRoles()) {
+//                    if (subRole.equals(role)) {
+//                        action.setRoles(null);
+//                    }
+//                }
+//            }
+//        }
+//        if (role != null && role.getMenus() != null) {
+//            for (Menu menu : role.getMenus()) {
+//                for (Role subRole : menu.getRoles()) {
+//                    if (subRole.equals(role)) {
+//                        menu.setRoles(null);
+//                    }
+//                }
+//            }
+//        }
+//        hibernateTemplate.clear();
         return role;
     }
 

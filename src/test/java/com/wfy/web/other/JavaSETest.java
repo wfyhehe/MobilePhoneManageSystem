@@ -8,10 +8,7 @@ import org.junit.Test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Administrator on 2017/8/16.
@@ -79,5 +76,17 @@ public class JavaSETest {
 //        DateUtils.parseDate(dateStr, SimpleDateFormat.);
 //        Date date = new Date();
 //        System.out.println(date);
+    }
+
+    @Test
+    public void iterateSet() {
+        Set<Integer> set = new HashSet<>();
+        for (int i = 0; i < 10; i++) {
+            set.add(i);
+        }
+        Iterator iterator = set.iterator();
+        while(iterator.hasNext()) {
+            iterator.next();
+        }
     }
 }

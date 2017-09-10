@@ -1,7 +1,10 @@
 package com.wfy.web.service.impl;
 
 import com.wfy.web.dao.ActionDao;
+import com.wfy.web.dto.ActionRoleDto;
 import com.wfy.web.model.Action;
+import com.wfy.web.model.Menu;
+import com.wfy.web.model.Role;
 import com.wfy.web.service.IActionService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -28,10 +31,41 @@ public class ActionServiceImpl implements IActionService {
     public void addOrUpdateAction(Action action) {
         actionDao.saveOrUpdate(action);
     }
-
+    
     @Override
-    public void updateAction(Action action) {
+    public void update(Action action) {
+        Action oldAction = actionDao.getActionByUrl(action.getUrl());
+        if (action.getName() == null) {
+            action.setName(oldAction.getName());
+        }
+        if (action.getRemark() == null) {
+            action.setRemark(oldAction.getRemark());
+        }
+        if (action.getRoles() == null) {
+            action.setRoles(oldAction.getRoles());
+        }
+        if (action.getType() == null) {
+            action.setType(oldAction.getType());
+        }
         actionDao.update(action);
+    }
+    
+    @Override
+    public void updateFromRole(ActionRoleDto actionRoleDto) {
+        Role role = actionRoleDto.getRole();
+        List<Action> actions = actionDao.getActions();
+        for (Action action : actions) {
+            System.out.println(action);
+            if (actionRoleDto.getActionUrls().contains(action.getUrl())) {
+                if (!action.getRoles().contains(role)) {
+                    action.getRoles().add(role);
+                }
+            } else {
+                action.getRoles().remove(role);
+            }
+            System.out.println(action);
+            actionDao.merge(action);
+        }
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.wfy.web.service;
 
+import com.wfy.web.dto.ActionRoleDto;
 import com.wfy.web.model.Action;
 
 import java.util.List;
@@ -12,7 +13,9 @@ public interface IActionService {
 
     void addOrUpdateAction(Action action);
 
-    void updateAction(Action action);
+    void updateFromRole(ActionRoleDto actionRoleDto);
+
+    void update(Action action);
 
     Action getActionByUrl(String url);
 

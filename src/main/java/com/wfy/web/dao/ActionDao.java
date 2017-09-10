@@ -67,4 +67,13 @@ public class ActionDao {
         return list.get(0) > 0;
     }
 
+    public void merge(Action action) {
+        hibernateTemplate.merge(action);
+    }
+
+    public List<Action> getActions() {
+        String hql = "from Action a";
+        List<Action> actions = (List<Action>) hibernateTemplate.find(hql);
+        return normalizeActions(actions);
+    }
 }

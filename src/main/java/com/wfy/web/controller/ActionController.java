@@ -1,6 +1,7 @@
 package com.wfy.web.controller;
 
 import com.wfy.web.common.ServerResponse;
+import com.wfy.web.dto.ActionRoleDto;
 import com.wfy.web.model.Action;
 import com.wfy.web.service.IActionService;
 import org.springframework.web.bind.annotation.*;
@@ -52,25 +53,17 @@ public class ActionController {
         }
     }
 
-//
-//    @RequestMapping(value = "update_action.do", method = RequestMethod.POST)
-//    public ServerResponse<String> updateAction(@RequestBody Map<String, Object> actionMap) {
-//        Action action = new Action();
-//        String url = (String) actionMap.get("url");
-//        String name = (String) actionMap.get("name");
-//        String remark = (String) actionMap.get("remark");
-//        action.setId(url);
-//        action.setName(name);
-//        action.setRemark(remark);
-//        try {
-//            action.setDeleted(false);
-//            iActionService.updateAction(action);
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//            return ServerResponse.createByErrorMessage("更新失败");
-//        }
-//        return ServerResponse.createBySuccess();
-//    }
+
+    @RequestMapping(value = "update_actions_from_role.do", method = RequestMethod.POST)
+    public ServerResponse<String> updateActionsFormRole(@RequestBody ActionRoleDto actionRoleDto) {
+        try {
+            iActionService.updateFromRole(actionRoleDto);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.createByErrorMessage("更新失败");
+        }
+        return ServerResponse.createBySuccess();
+    }
 //
 //    @RequestMapping(value = "delete_action.do", method = RequestMethod.GET)
 //    public ServerResponse<String> delete(String url) {
