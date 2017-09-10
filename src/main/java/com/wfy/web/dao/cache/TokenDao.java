@@ -1,14 +1,13 @@
 package com.wfy.web.dao.cache;
 
-import com.wfy.web.model.TokenModel;
+import com.wfy.web.model.Token;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
-import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -23,39 +22,31 @@ public class TokenDao {
     @Resource
     private RedisTemplate<String, String> template;
 
-    public TokenModel createToken(String userId, long time, TimeUnit timeUnit) {
-        String token = UUID.randomUUID().toString();
-        TokenModel tokenModel = new TokenModel(userId, token);
-        logger.debug("createToken:");
-        logger.debug("userId = " + userId);
-        logger.debug("token = " + token);
+    public String createToken(String userId, long time, TimeUnit timeUnit) {
+        String token = Token.getToken(userId);
         template.boundValueOps(userId).set(token, time, timeUnit);
-        return tokenModel;
+        return token;
     }
 
-    public TokenModel getToken(String userId) {
-        String token = template.boundValueOps(userId).get();
-        return new TokenModel(userId, token);
+    public String getToken(String userId) {
+        return template.boundValueOps(userId).get();
     }
 
-    public boolean checkToken(TokenModel model) {
-        if (model == null || model.getToken() == null || model.getUserId() == null) {
+    public boolean checkToken(String token) {
+        if (StringUtils.isBlank(token)) {
             return false;
         }
-        String token = template.boundValueOps(model.getUserId()).get();
-        if (token == null || !token.equals(model.getToken())) {
-            return false;
-        }
-        return true;
+        String tokenInRedis = template.boundValueOps(Token.parseUserId(token)).get();
+        return !token.equals(tokenInRedis);
+
     }
 
     public void deleteToken(String userId) {
-        logger.debug("deleteToken:");
-        logger.debug("userId = " + userId);
         template.delete(userId);
     }
 
     public void expireToken(String userId, long time, TimeUnit timeUnit) {
         template.boundValueOps(userId).expire(time, timeUnit);
     }
+
 }

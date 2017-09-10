@@ -1,14 +1,14 @@
 package com.wfy.web.service;
 
-import com.wfy.web.model.TokenModel;
+import com.wfy.web.model.Token;
 
 /**
  * Created by Administrator on 2017/8/16.
  */
 public interface ITokenService {
-    TokenModel createToken(String userId);
+    String createToken(String userId);
 
-    boolean checkToken(TokenModel model);
+    boolean checkToken(String token);
 
     void deleteToken(String userId);
 }

@@ -2,7 +2,7 @@ package com.wfy.web.controller;
 
 import com.wfy.web.common.ServerResponse;
 import com.wfy.web.model.Role;
-import com.wfy.web.model.TokenModel;
+import com.wfy.web.model.Token;
 import com.wfy.web.model.User;
 import com.wfy.web.service.IRoleService;
 import com.wfy.web.service.ITokenService;
@@ -33,20 +33,20 @@ public class UserController {
     private IRoleService iRoleService;
 
 //    @RequestMapping(value = "login.do", method = RequestMethod.POST)
-//    public ServerResponse<TokenModel> login(@RequestBody Map<String, String> userMap) {
+//    public ServerResponse<Token> login(@RequestBody Map<String, String> userMap) {
 //        return iUserService.login(userMap.get("username"), userMap.get("password"));
 //    }
 
     @RequestMapping(value = "login.do", method = RequestMethod.POST)
-    public ServerResponse<TokenModel> login(@RequestBody User user) {
+    public ServerResponse<String> login(@RequestBody User user) {
         return iUserService.login(user.getUsername(), user.getPassword());
     }
 
     @RequestMapping(value = "logout.do", method = RequestMethod.GET)
-    public ServerResponse<String> logout(TokenModel tokenModel) {
-        if (iTokenService.checkToken(tokenModel)) {
-            iTokenService.deleteToken(tokenModel.getUserId());
-            iUserService.logout(tokenModel.getUserId());
+    public ServerResponse<String> logout(String token) {
+        if (iTokenService.checkToken(token)) {
+            iTokenService.deleteToken(Token.parseUserId(token));
+            iUserService.logout(Token.parseUserId(token));
             return ServerResponse.createBySuccess();
         }
         return ServerResponse.createByErrorMessage("注销出错");
@@ -68,9 +68,9 @@ public class UserController {
     }
 
     @RequestMapping(value = "get_user_info.do", method = RequestMethod.GET)
-    public ServerResponse<User> getUserInfo(TokenModel tokenModel) {
-        if (iTokenService.checkToken(tokenModel)) {
-            return ServerResponse.createBySuccess(iUserService.getUser(tokenModel.getUserId()));
+    public ServerResponse<User> getUserInfo(String token) {
+        if (iTokenService.checkToken(token)) {
+            return ServerResponse.createBySuccess(iUserService.getUser(Token.parseUserId(token)));
         }
         return ServerResponse.createBySuccessMessage("用户未登录，无法获取当前用户信息");
     }
@@ -82,17 +82,17 @@ public class UserController {
      }
  */
     @RequestMapping(value = "reset_password.do", method = RequestMethod.GET)
-    public ServerResponse<String> resetPassword(TokenModel tokenModel, String passwordOld, String
+    public ServerResponse<String> resetPassword(String token, String passwordOld, String
             passwordNew) {
-        if (iTokenService.checkToken(tokenModel)) {
-            return iUserService.resetPassword(passwordOld, passwordNew, tokenModel.getUserId());
+        if (iTokenService.checkToken(token)) {
+            return iUserService.resetPassword(passwordOld, passwordNew, Token.parseUserId(token));
         }
         return ServerResponse.createByErrorMessage("用户未登录");
     }
 
     @RequestMapping(value = "update_information.do", method = RequestMethod.GET)
-    public ServerResponse<User> updateInformation(TokenModel tokenModel, User user) {
-        if (iTokenService.checkToken(tokenModel)) {
+    public ServerResponse<User> updateInformation(String token, User user) {
+        if (iTokenService.checkToken(token)) {
             if (user != null) {
                 //TODO
                 return null;
@@ -102,8 +102,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "validate_token.do")
-    public ServerResponse<String> validateToken(TokenModel tokenModel) {
-        if (iTokenService.checkToken(tokenModel)) {
+    public ServerResponse<String> validateToken(String token) {
+        if (iTokenService.checkToken(token)) {
             return ServerResponse.createBySuccess();
         } else {
             return ServerResponse.createByErrorMessage("token已过期");

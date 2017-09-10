@@ -3,7 +3,6 @@ package com.wfy.web.service.impl;
 import com.wfy.web.common.Const;
 import com.wfy.web.common.ServerResponse;
 import com.wfy.web.dao.UserDao;
-import com.wfy.web.model.TokenModel;
 import com.wfy.web.model.User;
 import com.wfy.web.model.enums.UserStatus;
 import com.wfy.web.service.ITokenService;
@@ -39,7 +38,7 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public ServerResponse<TokenModel> login(String username, String password) {
+    public ServerResponse<String> login(String username, String password) {
         boolean exists = userDao.exists(username);
         if (!exists) {
             return ServerResponse.createByErrorMessage("用户名不存在");
