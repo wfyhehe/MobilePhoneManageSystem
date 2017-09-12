@@ -7,7 +7,9 @@
       <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-ehcache/5.2.10.Final/hibernate-ehcache-5.2.10.Final-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
-      <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-ehcache/5.2.10.Final/hibernate-ehcache-5.2.10.Final-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-ehcache/5.2.10.FINAL/hibernate-ehcache-5.2.10.Final-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-ehcache/5.2.10.FINAL/hibernate-ehcache-5.2.10.Final-sources.jar!/" />
+      <root url="jar://$MAVEN_REPOSITORY$/org/hibernate/hibernate-ehcache/5.2.10.FINAL/hibernate-ehcache-5.2.10.Final-sources.jar!/" />
     </SOURCES>
   </library>
 </component>

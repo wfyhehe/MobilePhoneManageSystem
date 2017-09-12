@@ -24,21 +24,21 @@
 
     <!-- Servlet Filters ================================================ -->
 
- <!--   <filter>
-        <filter-name>hibernateFilter</filter-name>
-        <filter-class>
-            org.springframework.orm.hibernate4.support.OpenSessionInViewFilter
-        </filter-class>
-        &lt;!&ndash; singleSession默认为true,若设为false则等于没用OpenSessionInView &ndash;&gt;
-        <init-param>
-            <param-name>singleSession</param-name>
-            <param-value>true</param-value>
-        </init-param>
-    </filter>
-    <filter-mapping>
-        <filter-name>hibernateFilter</filter-name>
-        <url-pattern>/*</url-pattern>
-    </filter-mapping>-->
+    <!--   <filter>
+           <filter-name>hibernateFilter</filter-name>
+           <filter-class>
+               org.springframework.orm.hibernate4.support.OpenSessionInViewFilter
+           </filter-class>
+           &lt;!&ndash; singleSession默认为true,若设为false则等于没用OpenSessionInView &ndash;&gt;
+           <init-param>
+               <param-name>singleSession</param-name>
+               <param-value>true</param-value>
+           </init-param>
+       </filter>
+       <filter-mapping>
+           <filter-name>hibernateFilter</filter-name>
+           <url-pattern>/*</url-pattern>
+       </filter-mapping>-->
 
     <!-- Filter mappings ================================================ -->
 
@@ -60,7 +60,16 @@
         <url-pattern>/*</url-pattern>
     </filter-mapping>
 
-
+    <!-- Shiro配置 -->
+ <!--   <filter>
+        <filter-name>shiroFilter</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>shiroFilter</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping>
+-->
     <!-- Servlet Context Listener ======================================= -->
 
     <!--

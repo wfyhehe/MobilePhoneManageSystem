@@ -9,6 +9,10 @@ import com.wfy.web.service.ITokenService;
 import com.wfy.web.service.IUserService;
 import com.wfy.web.utils.MD5Util;
 import com.wfy.web.utils.RefCount;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.DisabledAccountException;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,18 +41,19 @@ public class UserServiceImpl implements IUserService {
         }
     }
 
-    @Override
+/*    @Override
     public ServerResponse<String> login(String username, String password) {
         boolean exists = userDao.exists(username);
         if (!exists) {
-            return ServerResponse.createByErrorMessage("用户名不存在");
+            throw new UnknownAccountException("用户名不存在");
+//            return ServerResponse.createByErrorMessage("用户名不存在");
         }
 
-        //TODO 密码登陆MD5
         String md5Password = MD5Util.getMD5(password);
         User user = userDao.selectLogin(username, md5Password);
         if (user == null) {
-            return ServerResponse.createByErrorMessage("密码错误");
+            throw new IncorrectCredentialsException("密码错误");
+//            return ServerResponse.createByErrorMessage("密码错误");
         } else {
             user.setLastLoginTime(new Date(System.currentTimeMillis()));
             user.setStatus(UserStatus.ONLINE);
@@ -56,7 +61,7 @@ public class UserServiceImpl implements IUserService {
             return ServerResponse.createBySuccess("登陆成功",
                     iTokenService.createToken(user.getId()));
         }
-    }
+    }*/
 
     @Override
     public void logout(String userId) {

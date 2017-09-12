@@ -10,7 +10,7 @@ import java.util.List;
  * Created by Administrator on 2017/8/8.
  */
 public interface IUserService {
-    ServerResponse<String> login(String username, String password);
+//    ServerResponse<String> login(String username, String password);
 
     List<User> getUsers(RefCount refCount, String username, String name
             , Integer pageIndex, Integer pageSize);

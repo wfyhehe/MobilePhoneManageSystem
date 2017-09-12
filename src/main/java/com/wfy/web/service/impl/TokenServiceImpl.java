@@ -5,13 +5,13 @@ import com.wfy.web.dao.UserDao;
 import com.wfy.web.dao.cache.TokenDao;
 import com.wfy.web.model.Token;
 import com.wfy.web.service.ITokenService;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -28,8 +28,11 @@ public class TokenServiceImpl implements ITokenService {
     @Autowired
     private UserDao userDao;
 
-    public String createToken(String userId) {
-        return tokenDao.createToken(userId, Const.TOKEN_EXPIRES_MINUTE, TimeUnit.MINUTES);
+    @Override
+    public Token createToken(String userId) {
+        Token token = new Token(userId, UUID.randomUUID().toString());
+        tokenDao.setToken(token, Const.TOKEN_EXPIRES_MINUTE, TimeUnit.MINUTES);
+        return token;
     }
 
 //    public Token getToken(String authentication) {
@@ -46,18 +49,19 @@ public class TokenServiceImpl implements ITokenService {
 //        return new Token(userId, token);
 //    }
 
-    public boolean checkToken(String token) {
-        if (StringUtils.isBlank(token)) {
+    @Override
+    public boolean checkToken(Token token) {
+        if (!tokenDao.checkToken(token)) {
             return false;
         }
-
         //如果验证成功，说明此用户进行了一次有效操作，延长token的过期时间
-        tokenDao.expireToken(Token.parseUserId(token), Const.TOKEN_EXPIRES_MINUTE, TimeUnit
+        tokenDao.expireToken(token, Const.TOKEN_EXPIRES_MINUTE, TimeUnit
                 .MINUTES);
         return true;
     }
 
-    public void deleteToken(String userId) {
-        tokenDao.deleteToken(userId);
+    @Override
+    public void deleteToken(Token token) {
+        tokenDao.deleteToken(token);
     }
 }

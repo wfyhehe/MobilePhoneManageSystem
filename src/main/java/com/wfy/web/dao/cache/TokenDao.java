@@ -2,8 +2,6 @@ package com.wfy.web.dao.cache;
 
 import com.wfy.web.model.Token;
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -16,37 +14,35 @@ import java.util.concurrent.TimeUnit;
 @Repository
 public class TokenDao {
 
-    private final Logger logger = LoggerFactory.getLogger(this.getClass());
-
     // inject the actual template
     @Resource
-    private RedisTemplate<String, String> template;
+    private RedisTemplate<String, Token> template;
 
-    public String createToken(String userId, long time, TimeUnit timeUnit) {
-        String token = Token.getToken(userId);
-        template.boundValueOps(userId).set(token, time, timeUnit);
-        return token;
+    public void setToken(Token token, long time, TimeUnit timeUnit) {
+        template.boundValueOps(token.getUserId()).set(token, time, timeUnit);
     }
 
-    public String getToken(String userId) {
+    public Token getToken(String userId) {
         return template.boundValueOps(userId).get();
     }
 
-    public boolean checkToken(String token) {
-        if (StringUtils.isBlank(token)) {
+    public boolean checkToken(Token token) {
+        if (token == null
+                || StringUtils.isBlank(token.getUserId())
+                || StringUtils.isBlank(token.getCredentials())) {
             return false;
         }
-        String tokenInRedis = template.boundValueOps(Token.parseUserId(token)).get();
-        return !token.equals(tokenInRedis);
+        Token tokenInRedis = template.boundValueOps(token.getUserId()).get();
+        return token.equals(tokenInRedis);
 
     }
 
-    public void deleteToken(String userId) {
-        template.delete(userId);
+    public void deleteToken(Token token) {
+        template.delete(token.getUserId());
     }
 
-    public void expireToken(String userId, long time, TimeUnit timeUnit) {
-        template.boundValueOps(userId).expire(time, timeUnit);
+    public void expireToken(Token token, long time, TimeUnit timeUnit) {
+        template.boundValueOps(token.getUserId()).expire(time, timeUnit);
     }
 
 }

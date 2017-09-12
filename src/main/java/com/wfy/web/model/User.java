@@ -17,6 +17,7 @@ import java.util.List;
 /**
  * Created by Administrator on 2017/7/14.
  */
+//TODO 使用hibernate-validator进行后端验证
 @Entity
 @Table(name = "t_user")
 @JsonIgnoreProperties(ignoreUnknown = true)

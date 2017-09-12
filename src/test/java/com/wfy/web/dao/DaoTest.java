@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext.xml",
-        "classpath:hibernate-config.xml"})
+        "classpath:hibernate-config.xml", "classpath:shiro-config.xml"})
 @Rollback
 @Transactional(transactionManager = "transactionManager")
 public class DaoTest extends AbstractJUnit4SpringContextTests {

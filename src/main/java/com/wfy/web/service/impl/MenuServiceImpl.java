@@ -100,7 +100,7 @@ public class MenuServiceImpl implements IMenuService {
         if (menu.getRemark() == null) {
             menu.setRemark(oldMenu.getRemark());
         }
-        menuDao.update(menu);
+        menuDao.merge(menu);
     }
 
     @Override

@@ -16,6 +16,7 @@
   limitations under the License.
 -->
 <!-- @versiapplicationContext.xml.xml.xml 561608 2007-08-01 00:33:12Z vgritsenko $ -->
+<!--TODO 数据库定时备份-->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:context="http://www.springframework.org/schema/context"
@@ -38,6 +39,16 @@
     <bean id="redisTemplate"
           class="org.springframework.data.redis.core.RedisTemplate"
           p:connection-factory-ref="jedisConnFactory"/>
+    <!--配置拦截器, 多个拦截器,顺序执行 -->
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <!-- 匹配的是url路径， 如果不配置或/**,将拦截所有的Controller -->
+            <mvc:mapping path="/**/*.do" />
+            <bean class="com.wfy.web.interceptor.AuthInterceptor"/>
+        </mvc:interceptor>
+        <!-- 当设置多个拦截器时，先按顺序调用preHandle方法，然后逆序调用每个拦截器的postHandle和afterCompletion方法 -->
+    </mvc:interceptors>
 
     <mvc:annotation-driven/>
 </beans>

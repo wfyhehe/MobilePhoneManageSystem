@@ -6,9 +6,9 @@ import com.wfy.web.model.Token;
  * Created by Administrator on 2017/8/16.
  */
 public interface ITokenService {
-    String createToken(String userId);
+    Token createToken(String userId);
 
-    boolean checkToken(String token);
+    boolean checkToken(Token token);
 
-    void deleteToken(String userId);
+    void deleteToken(Token token);
 }
