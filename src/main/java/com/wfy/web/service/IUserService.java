@@ -15,21 +15,11 @@ public interface IUserService {
     List<User> getUsers(RefCount refCount, String username, String name
             , Integer pageIndex, Integer pageSize);
 
-    ServerResponse<String> register(User user);
-
-    ServerResponse<String> checkUsername(String username);
-
-    ServerResponse<String> checkValid(String str, String type);
-
-//    ServerResponse<String> forgetResetPassword(String username, String passwordNew, String forgetToken);
-
-    ServerResponse<String> resetPassword(String passwordOld, String passwordNew, String id);
+    boolean usernameExists(String username);
 
     User getUser(String id);
 
     User getUserByName(String name);
-
-    void logout(String userId);
 
     List<User> getDeletedUsers();
 

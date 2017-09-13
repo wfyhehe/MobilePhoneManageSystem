@@ -73,7 +73,7 @@ public class UserDao {
         return ((List<Long>) hibernateTemplate.find(hql, username)).get(0) > 0;
     }
 
-    public User selectLogin(String username, String password) {
+    public User getUserByUsernameAndPassword(String username, String password) {
         String hql = "from User u where u.username = ? and u.password = ? and u.status <> 2";
         List<User> users = (List<User>) hibernateTemplate.find(hql, username, password);
         return extractAndNormalizeFirstUser(users);

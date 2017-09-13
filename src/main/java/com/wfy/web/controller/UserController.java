@@ -32,39 +32,11 @@ public class UserController {
     @Resource
     private IRoleService iRoleService;
 
-//    @RequestMapping(value = "login.do", method = RequestMethod.POST)
-//    public ServerResponse<Token> login(@RequestBody Map<String, String> userMap) {
-//        return iUserService.login(userMap.get("username"), userMap.get("password"));
-//    }
-
-  /*  @RequestMapping(value = "login.do", method = RequestMethod.POST)
-    public ServerResponse<String> login(@RequestBody User user) {
-        return iUserService.login(user.getUsername(), user.getPassword());
-    }
-
-    @RequestMapping(value = "logout.do", method = RequestMethod.GET)
-    public ServerResponse<String> logout(String token) {
-        if (iTokenService.checkToken(token)) {
-            iTokenService.deleteToken(token);
-            iUserService.logout(Token.parseUserId(token));
-            return ServerResponse.createBySuccess();
-        }
-        return ServerResponse.createByErrorMessage("注销出错");
-    }*/
-
-    @RequestMapping(value = "register.do", method = RequestMethod.POST)
-    public ServerResponse<String> register(@RequestBody User user) {
-        return iUserService.register(user);
-    }
-
     @RequestMapping(value = "check_username.do", method = RequestMethod.GET)
     public ServerResponse<String> checkUsername(String username) {
-        return iUserService.checkUsername(username);
-    }
-
-    @RequestMapping(value = "check_valid.do", method = RequestMethod.GET)
-    public ServerResponse<String> checkValid(String str, String type) {
-        return iUserService.checkValid(str, type);
+        return iUserService.usernameExists(username)
+                ? ServerResponse.createByErrorMessage("用户名已存在")
+                : ServerResponse.createBySuccess();
     }
 
 //    @RequestMapping(value = "get_user_info.do", method = RequestMethod.GET)
@@ -75,23 +47,9 @@ public class UserController {
 //        return ServerResponse.createBySuccessMessage("用户未登录，无法获取当前用户信息");
 //    }
 
-    /* @RequestMapping(value = "forget_reset_password.do", method = RequestMethod.GET)
-     public ServerResponse<String> forgetResetPassword(String username, String
-             passwordNew, String forgetToken) {
-         return iUserService.forgetResetPassword(username, passwordNew, forgetToken);
-     }
- */
-   /* @RequestMapping(value = "reset_password.do", method = RequestMethod.GET)
-    public ServerResponse<String> resetPassword(String token, String passwordOld, String
-            passwordNew) {
-        if (iTokenService.checkToken(token)) {
-            return iUserService.resetPassword(passwordOld, passwordNew, Token.parseUserId(token));
-        }
-        return ServerResponse.createByErrorMessage("用户未登录");
-    }
 
     @RequestMapping(value = "update_information.do", method = RequestMethod.GET)
-    public ServerResponse<User> updateInformation(String token, User user) {
+    public ServerResponse<User> updateInformation(Token token, User user) {
         if (iTokenService.checkToken(token)) {
             if (user != null) {
                 //TODO
@@ -101,15 +59,6 @@ public class UserController {
         return ServerResponse.createByErrorMessage("用户未登录");
     }
 
-    @RequestMapping(value = "validate_token.do")
-    public ServerResponse<String> validateToken(String token) {
-        if (iTokenService.checkToken(token)) {
-            return ServerResponse.createBySuccess();
-        } else {
-            return ServerResponse.createByErrorMessage("token已过期");
-        }
-    }
-*/
     @RequestMapping(value = "get_users.do", method = RequestMethod.POST)
     public ServerResponse<List<User>> getUsers(@RequestBody Map<String, Object> map) {
         String empName = (String) map.get("name");

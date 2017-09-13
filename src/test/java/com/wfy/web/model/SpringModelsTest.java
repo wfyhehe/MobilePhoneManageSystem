@@ -165,14 +165,14 @@ public class SpringModelsTest extends AbstractJUnit4SpringContextTests {
         session.close();
     }
 
-    @Test
-    public void testInsert() {
-        User user = new User("admin", "admin", UserStatus.ONLINE);
-        user.setCreateTime(new Date());
-        user.setLastLoginTime(new Date());
-
-        iUserService.register(user);
-    }
+//    @Test
+//    public void testInsert() {
+//        User user = new User("admin", "admin", UserStatus.ONLINE);
+//        user.setCreateTime(new Date());
+//        user.setLastLoginTime(new Date());
+//
+//        iUserService.signUp(user);
+//    }
 
     @Test
     public void testRole() {

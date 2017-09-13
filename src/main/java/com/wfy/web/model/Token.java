@@ -3,10 +3,12 @@ package com.wfy.web.model;
 import com.wfy.web.common.Const;
 import org.apache.commons.lang3.StringUtils;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2017/8/14.
  */
-public class Token {
+public class Token implements Serializable {
     private String userId;
     private String credentials;
 
@@ -22,8 +24,8 @@ public class Token {
         if (StringUtils.isBlank(tokenStr)) {
             return null;
         }
-        String userId = tokenStr.split(Const.TOKEN_SEPERATOR)[0];
-        String credentials = tokenStr.split(Const.TOKEN_SEPERATOR)[1];
+        String userId = tokenStr.split(Const.TOKEN_SEPARATOR)[0];
+        String credentials = tokenStr.split(Const.TOKEN_SEPARATOR)[1];
         return new Token(userId, credentials);
     }
 
@@ -45,7 +47,7 @@ public class Token {
 
     @Override
     public String toString() {
-        return this.userId + Const.TOKEN_SEPERATOR + this.credentials;
+        return this.userId + Const.TOKEN_SEPARATOR + this.credentials;
     }
 
     @Override
@@ -55,8 +57,7 @@ public class Token {
 
         Token token = (Token) o;
 
-        if (!userId.equals(token.userId)) return false;
-        return credentials.equals(token.credentials);
+        return userId.equals(token.userId) && credentials.equalsIgnoreCase(token.credentials);
     }
 
     @Override

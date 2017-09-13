@@ -73,7 +73,7 @@
             <tx:method name="get*" propagation="REQUIRED" read-only="true"/>
             <tx:method name="query*" propagation="REQUIRED" read-only="true"/>
             <tx:method name="check*" propagation="REQUIRED" read-only="true"/>
-            <tx:method name="login" propagation="REQUIRED" read-only="true"/>
+            <tx:method name="signIn" propagation="REQUIRED" read-only="true"/>
             <tx:method name="*" read-only="false"/>
         </tx:attributes>
     </tx:advice>

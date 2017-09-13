@@ -42,8 +42,14 @@
     <!--配置拦截器, 多个拦截器,顺序执行 -->
 
     <mvc:interceptors>
+        <!--<mvc:interceptor>-->
+            <!--&lt;!&ndash; 匹配的是url路径， 如果不配置或/**,将拦截所有的Controller &ndash;&gt;-->
+            <!--<mvc:mapping path="/auth/signIn.do" />-->
+            <!--<mvc:mapping path="/auth/signUp.do" />-->
+            <!--<mvc:mapping path="/util/*.do" />-->
+            <!--<bean class="com.wfy.web.interceptor.SignInUpInterceptor"/>-->
+        <!--</mvc:interceptor>-->
         <mvc:interceptor>
-            <!-- 匹配的是url路径， 如果不配置或/**,将拦截所有的Controller -->
             <mvc:mapping path="/**/*.do" />
             <bean class="com.wfy.web.interceptor.AuthInterceptor"/>
         </mvc:interceptor>

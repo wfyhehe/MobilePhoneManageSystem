@@ -25,13 +25,14 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
     public static List<String> exceptionalUrls = new ArrayList<>();
 
     static {
-        exceptionalUrls.add(Const.LOGIN_URL);
-        exceptionalUrls.add(Const.REGISTER_URL);
+        exceptionalUrls.add(Const.SIGN_IN_URL);
+        exceptionalUrls.add(Const.SIGN_UP_URL);
         exceptionalUrls.add(Const.VCODE_URL);
         exceptionalUrls.add(Const.CHECK_VCODE_URL);
     }
 
     private final Logger log = LoggerFactory.getLogger(AuthInterceptor.class);
+
     @Resource
     private ITokenService iTokenService;
 
@@ -49,18 +50,20 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
     @Override
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response, Object handler) throws Exception {
+
+        log.info("============== AuthInterceptor ================");
         // TODO 跨域设置
-        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Origin", Const.FRONT_END_URL);
         response.setHeader("Access-Control-Allow-Methods", "*");
         response.setHeader("Access-Control-Max-Age", "3600");
-        response.setHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+        response.setHeader("Access-Control-Allow-Headers",
+                "Authorization, Origin, X-Requested-With, Content-Type, Accept");
         response.setHeader("Access-Control-Allow-Credentials", "true"); //是否允许浏览器携带用户身份信息（cookie）
         String method = request.getMethod();
-        if(method.equals("OPTIONS")) { // 预请求OPTIONS直接放过
+        if (method.equals("OPTIONS")) { // 预请求OPTIONS直接放过
             return true;
         }
 
-        log.info("==============执行顺序: 1、preHandle================");
         String requestUri = request.getRequestURI();
         String contextPath = request.getContextPath();
         String url = requestUri.substring(contextPath.length());
@@ -80,18 +83,20 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 //            response.setContentType("application/json; charset=utf-8");
 //            PrintWriter out = null;
 
-            log.error("Interceptor：错误代码401：未授权，跳转到login页面！");
+            log.error("Interceptor：错误代码401：未授权，跳转到signIn页面！");
             ServerResponse serverResponse = ServerResponse.createByErrorCodeMessage(
                     ResponseCode.UNAUTHORIZED.getCode(), ResponseCode.UNAUTHORIZED.getDesc());
             ObjectMapper mapper = new ObjectMapper();
             String responseJson = mapper.writeValueAsString(serverResponse);
             log.info(responseJson);
             response.setStatus(ResponseCode.UNAUTHORIZED.getCode());
+            return false;
 //            response.sendError(401);
 //            response.getWriter().append(responseJson);
-//            request.getRequestDispatcher("/WEB-INF/jsp/login.jsp").forward(request, response);
+//            request.getRequestDispatcher("/WEB-INF/jsp/signIn.jsp").forward(request, response);
         }
-        return false;
+
+        return true;
     }
 
     /**
@@ -102,11 +107,10 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
     public void postHandle(HttpServletRequest request,
                            HttpServletResponse response, Object handler,
                            ModelAndView modelAndView) throws Exception {
-        System.out.println("postHandle");
-        log.info("==============执行顺序: 2、postHandle================");
-        if (modelAndView != null) {  //加入当前时间
-            modelAndView.addObject("var", "测试postHandle");
-        }
+//        log.info("==============执行顺序: 2、postHandle================");
+//        if (modelAndView != null) {  //加入当前时间
+//            modelAndView.addObject("var", "测试postHandle");
+//        }
     }
 
     /**
@@ -119,8 +123,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
     public void afterCompletion(HttpServletRequest request,
                                 HttpServletResponse response, Object handler, Exception ex)
             throws Exception {
-        System.out.println("afterCompletion");
-        log.info("==============执行顺序: 3、afterCompletion================");
+//        log.info("==============执行顺序: 3、afterCompletion================");
     }
 
 

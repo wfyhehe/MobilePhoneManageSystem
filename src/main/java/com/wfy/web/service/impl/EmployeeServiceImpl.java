@@ -61,7 +61,7 @@ public class EmployeeServiceImpl implements IEmployeeService {
             return ServerResponse.createByErrorMessage("用户名不存在");
         }
         String md5Password = MD5Util.getMD5(password);
-        User user = userDao.selectLogin(username, md5Password);
+        User user = userDao.getUserByUsernameAndPassword(username, md5Password);
         if (user == null) {
             return ServerResponse.createByErrorMessage("密码错误");
         }

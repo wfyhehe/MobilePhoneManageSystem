@@ -61,7 +61,7 @@ public class TokenServiceImpl implements ITokenService {
     }
 
     @Override
-    public void deleteToken(Token token) {
-        tokenDao.deleteToken(token);
+    public void deleteToken(String userId) {
+        tokenDao.deleteToken(userId);
     }
 }

@@ -10,5 +10,5 @@ public interface ITokenService {
 
     boolean checkToken(Token token);
 
-    void deleteToken(Token token);
+    void deleteToken(String userId);
 }

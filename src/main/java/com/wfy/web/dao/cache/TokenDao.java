@@ -37,8 +37,8 @@ public class TokenDao {
 
     }
 
-    public void deleteToken(Token token) {
-        template.delete(token.getUserId());
+    public void deleteToken(String userId) {
+        template.delete(userId);
     }
 
     public void expireToken(Token token, long time, TimeUnit timeUnit) {
