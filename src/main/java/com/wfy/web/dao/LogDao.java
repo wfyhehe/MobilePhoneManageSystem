@@ -8,6 +8,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
 import org.hibernate.criterion.DetachedCriteria;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.orm.hibernate5.HibernateTemplate;
@@ -53,16 +54,17 @@ public class LogDao {
         DetachedCriteria criteria = DetachedCriteria.forClass(Log.class, "l")
                 .setFetchMode("action", FetchMode.SELECT)
                 .setFetchMode("user", FetchMode.SELECT)
-                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY);
+                .setResultTransformer(Criteria.DISTINCT_ROOT_ENTITY)
+                .addOrder(Order.desc("l.createDate"));
         if (startTime != null && endTime != null) {
-            criteria.add(Restrictions.between("l.createTime", startTime, endTime));
+            criteria.add(Restrictions.between("l.createDate", startTime, endTime));
         }
         if (status != null) {
             criteria.add(Restrictions.eq("l.status", status));
         }
         if (StringUtils.isNotBlank(actionUrl)) {
             criteria.createAlias("action", "a")
-                    .add(Restrictions.like("a.name", "%" + actionUrl + "%"));
+                    .add(Restrictions.like("a.url", "%" + actionUrl + "%"));
         }
         if (StringUtils.isNotBlank(username)) {
             criteria.createAlias("user", "u")
@@ -84,7 +86,7 @@ public class LogDao {
         return normalizeLogs(logs);
     }
 
-    public String save(Log log) {
+    public String save(Log log) throws Exception {
         return (String) hibernateTemplate.save(log);
     }
 

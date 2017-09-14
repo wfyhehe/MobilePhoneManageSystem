@@ -11,6 +11,7 @@ import com.wfy.web.service.IActionService;
 import com.wfy.web.service.ILogService;
 import com.wfy.web.service.ITokenService;
 import com.wfy.web.service.IUserService;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
@@ -50,6 +51,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 
     @Resource
     private ILogService iLogService;
+
     /**
      * 在业务处理器处理请求之前被调用
      * 如果返回false
@@ -92,6 +94,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
         log.info("ip:" + ip);
         Token token = Token.parse(header);
         if (exceptionalUrls.contains(url)) {
+            log.info("exceptionalUrl:" + url);
             this.log(url, ip, token, status); // 数据库中加日志
             return true; // 例外url（无需token的）可以直接通过
         }
@@ -106,6 +109,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
         // TODO 把取到的actions存入redis，不然太慢
         boolean isAuthorized;
         if (iUserService.isSuperAdmin(token.getUserId())) {
+            log.info("isSuperAdmin:" + token.getUserId());
             isAuthorized = true;
         } else {
             List<String> actionUrls = iActionService.getActionsByUser(new User(token.getUserId()));
@@ -115,6 +119,10 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
         }
         status = isAuthorized ? LogStatus.ACCEPTED : LogStatus.UNAUTHORIZED;
         this.log(url, ip, token, status); // 数据库中加日志
+        if (!isAuthorized) {
+            log.error("Interceptor：错误代码403：权限不足！");
+            response.setStatus(ResponseCode.FORBIDDEN.getCode());
+        }
         return isAuthorized;
     }
 
@@ -151,9 +159,14 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
         log.setCreateDate(new Date(System.currentTimeMillis()));
         log.setIp(ip);
         String userId = token != null ? token.getUserId() : null;
-        log.setUser(new User(userId));
+        if (StringUtils.isNotBlank(userId)) {
+            log.setUser(new User(userId));
+        }
         log.setStatus(status);
-        System.out.println(log);
-        iLogService.addLog(log);
+        try {
+            iLogService.addLog(log);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

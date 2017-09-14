@@ -30,7 +30,7 @@ public class LogServiceImpl implements ILogService {
     }
 
     @Override
-    public Log addLog(Log log) {
+    public Log addLog(Log log) throws Exception {
         String id = logDao.save(log);
         log.setId(id);
         return log;

@@ -92,7 +92,7 @@ public class UserServiceImpl implements IUserService {
         if (user.getPassword() == null) {
             user.setPassword(oldUser.getPassword());
         }
-        userDao.update(user);
+        userDao.merge(user);
     }
 
     @Override

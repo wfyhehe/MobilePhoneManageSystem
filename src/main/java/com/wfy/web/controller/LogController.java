@@ -2,10 +2,7 @@ package com.wfy.web.controller;
 
 import com.wfy.web.common.ServerResponse;
 import com.wfy.web.model.Log;
-import com.wfy.web.model.MobileStock;
-import com.wfy.web.model.enums.CheckStatus;
 import com.wfy.web.model.enums.LogStatus;
-import com.wfy.web.service.IBrandService;
 import com.wfy.web.service.ILogService;
 import com.wfy.web.utils.RefCount;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +35,7 @@ public class LogController {
         Long endTimeL = (Long) map.get("endTime");
         Date startTime = (startTimeL != null) ? new Date(startTimeL) : null;
         Date endTime = (endTimeL != null) ? new Date(endTimeL) : null;
-        switch (statusStr) {
+        switch (statusStr != null ? statusStr : "") {
             case "ACCEPTED": {
                 status = LogStatus.ACCEPTED;
                 break;
@@ -64,7 +61,7 @@ public class LogController {
             return ServerResponse.createByErrorMessage("获取日志失败");
         }
     }
-    
+
     @RequestMapping(value = "get_log.do", method = RequestMethod.GET)
     public ServerResponse<Log> getLog(String id) {
         Log log = iLogService.getLogById(id);

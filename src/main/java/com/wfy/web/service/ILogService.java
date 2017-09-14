@@ -14,7 +14,7 @@ public interface ILogService {
     List<Log> getLogs(RefCount refCount, Date startTime, Date endTime, LogStatus
             status, String actionUrl, String username, Integer pageIndex, Integer pageSize);
 
-    Log addLog(Log log);
+    Log addLog(Log log) throws Exception;
 
     void updateLog(Log log);
 

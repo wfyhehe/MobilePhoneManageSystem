@@ -2,6 +2,7 @@ package com.wfy.web.dao;
 
 import com.wfy.web.model.Action;
 import com.wfy.web.model.User;
+import org.hibernate.query.NativeQuery;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -79,10 +80,24 @@ public class ActionDao {
     }
 
     public List<String> getActionsByUser(User user) {
-        String hql = "select distinct a.url from Action a, User u, Role r where u = ? or a.type =" +
-                " 0";
+        String sql = "select distinct t_action.url " +
+                "from t_action " +
+                "inner join t_role_action " +
+                "inner join t_role " +
+                "inner join t_role_user " +
+                "inner join t_user " +
+                "on t_action.url = t_role_action.action_url " +
+                "and t_role.id = t_role_action.role_id " +
+                "and t_role.id = t_role_user.role_id " +
+                "and t_user.id = t_role_user.user_id " +
+                "where t_user.id = :id " +
+                "or t_action.type = 0";
+        List<String> actionUrls = hibernateTemplate.executeWithNativeSession(session -> {
+            NativeQuery query = session.createNativeQuery(sql);
+            query.setParameter("id", user.getId());
+            return query.list();
+        });
         // ActionType = 0 的为普通动作，无需授权即可访问
-        List<String> actionUrls = (List<String>) hibernateTemplate.find(hql, user);
         return actionUrls;
     }
 }

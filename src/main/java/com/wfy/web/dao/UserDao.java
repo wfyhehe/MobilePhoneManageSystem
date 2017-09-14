@@ -10,10 +10,12 @@ import org.hibernate.FetchMode;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.hibernate.query.NativeQuery;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.math.BigInteger;
 import java.util.List;
 
 /**
@@ -148,6 +150,10 @@ public class UserDao {
         hibernateTemplate.update(user);
     }
 
+    public void merge(User user) {
+        hibernateTemplate.merge(user);
+    }
+
     public long count() {
         String hql = "select count(*) from User u where u.status <> 2";
         List<Long> list = (List<Long>) hibernateTemplate.find(hql);
@@ -155,8 +161,18 @@ public class UserDao {
     }
 
     public boolean isSuperAdmin(String id) {
-        String hql = "select count(*) from User u, Role r where u.id = ? and r.name = ?";
-        List<Long> list = (List<Long>) hibernateTemplate.find(hql, id, "超级管理员");
-        return list.get(0) > 0;
+        String sql = "select count(*) " +
+                "from t_user inner join t_role_user inner join t_role" +
+                " on t_user.id = t_role_user.user_id " +
+                "and t_role.id = t_role_user.role_id " +
+                "where t_user.id = :id and t_role.name = :name";
+        Object count = hibernateTemplate.executeWithNativeSession(session -> {
+            NativeQuery query = session.createNativeQuery(sql);
+            query.setParameter("id", id);
+            query.setParameter("name", "超级管理员");
+            return query.uniqueResult();
+        });
+        System.out.println((BigInteger) count);
+        return ((BigInteger) count).longValue() > 0;
     }
 }
