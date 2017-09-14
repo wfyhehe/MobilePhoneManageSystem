@@ -8,7 +8,7 @@ CREATE TABLE t_log
   id          INT NOT NULL,
   ip          VARCHAR(32),
   create_date DATETIME,
-  status      TINYINT,
+  status      TINYINT, # 0: 通过 1: 未登录 2: 无权限
   action_url  VARCHAR(64),
   user_id     CHAR(32),
   remark      TEXT,

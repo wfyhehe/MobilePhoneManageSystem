@@ -6,7 +6,7 @@ import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Administrator on 2017/7/15.
@@ -22,9 +22,14 @@ public class Action implements Serializable {
     private String remark;
     private ActionType type;
     private String url;
-    private List<Role> roles;
+    private Set<Role> roles;
 
     public Action() {
+
+    }
+
+    public Action(String url) {
+        this.url = url;
     }
 
     public Action(String name, String url, ActionType type) {
@@ -76,11 +81,11 @@ public class Action implements Serializable {
     @JoinTable(name = "t_role_action",
             joinColumns = @JoinColumn(name = "action_url", referencedColumnName = "url"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 

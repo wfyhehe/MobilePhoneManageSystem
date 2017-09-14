@@ -3,10 +3,12 @@ package com.wfy.web.interceptor;
 import com.wfy.web.common.Const;
 import com.wfy.web.common.ResponseCode;
 import com.wfy.web.model.Action;
-import com.wfy.web.model.Role;
+import com.wfy.web.model.Log;
 import com.wfy.web.model.Token;
 import com.wfy.web.model.User;
+import com.wfy.web.model.enums.LogStatus;
 import com.wfy.web.service.IActionService;
+import com.wfy.web.service.ILogService;
 import com.wfy.web.service.ITokenService;
 import com.wfy.web.service.IUserService;
 import org.slf4j.Logger;
@@ -18,6 +20,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -45,6 +48,8 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
     @Resource
     private IUserService iUserService;
 
+    @Resource
+    private ILogService iLogService;
     /**
      * 在业务处理器处理请求之前被调用
      * 如果返回false
@@ -73,30 +78,34 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
         if (method.equals("OPTIONS")) { // 预请求OPTIONS直接放过
             return true;
         }
-
+        LogStatus status = LogStatus.ACCEPTED;
         String requestUri = request.getRequestURI();
         String contextPath = request.getContextPath();
         String url = requestUri.substring(contextPath.length());
         String header = request.getHeader(Const.AUTHORIZATION);
-
+        String ip = request.getRemoteAddr();
         log.info("method:" + request.getMethod());
         log.info("requestUri:" + requestUri);
         log.info("contextPath:" + contextPath);
         log.info("url:" + url);
         log.info("header:" + header);
+        log.info("ip:" + ip);
+        Token token = Token.parse(header);
         if (exceptionalUrls.contains(url)) {
+            this.log(url, ip, token, status); // 数据库中加日志
             return true; // 例外url（无需token的）可以直接通过
         }
-        Token token = Token.parse(header);
         if (!iTokenService.checkToken(token)) { // 验证身份 Authentication
+            status = LogStatus.UNAUTHENTICATED;
             log.error("Interceptor：错误代码401：未授权，跳转到signIn页面！");
             response.setStatus(ResponseCode.UNAUTHORIZED.getCode());
+            this.log(url, ip, token, status); // 数据库中加日志
             return false;
         }
         // 授权 Authorization
         // TODO 把取到的actions存入redis，不然太慢
         boolean isAuthorized;
-        if(iUserService.isSuperAdmin(token.getUserId())) {
+        if (iUserService.isSuperAdmin(token.getUserId())) {
             isAuthorized = true;
         } else {
             List<String> actionUrls = iActionService.getActionsByUser(new User(token.getUserId()));
@@ -104,6 +113,8 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
             System.out.println(url);
             isAuthorized = actionUrls.contains(url);
         }
+        status = isAuthorized ? LogStatus.ACCEPTED : LogStatus.UNAUTHORIZED;
+        this.log(url, ip, token, status); // 数据库中加日志
         return isAuthorized;
     }
 
@@ -134,5 +145,15 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 //        log.info("==============执行顺序: 3、afterCompletion================");
     }
 
-
+    private void log(String url, String ip, Token token, LogStatus status) {
+        Log log = new Log();
+        log.setAction(new Action(url));
+        log.setCreateDate(new Date(System.currentTimeMillis()));
+        log.setIp(ip);
+        String userId = token != null ? token.getUserId() : null;
+        log.setUser(new User(userId));
+        log.setStatus(status);
+        System.out.println(log);
+        iLogService.addLog(log);
+    }
 }
