@@ -3,8 +3,8 @@ package com.wfy.web.service.impl;
 import com.wfy.web.dao.ActionDao;
 import com.wfy.web.dto.ActionRoleDto;
 import com.wfy.web.model.Action;
-import com.wfy.web.model.Menu;
 import com.wfy.web.model.Role;
+import com.wfy.web.model.User;
 import com.wfy.web.service.IActionService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,7 +31,7 @@ public class ActionServiceImpl implements IActionService {
     public void addOrUpdateAction(Action action) {
         actionDao.saveOrUpdate(action);
     }
-    
+
     @Override
     public void update(Action action) {
         Action oldAction = actionDao.getActionByUrl(action.getUrl());
@@ -49,7 +49,7 @@ public class ActionServiceImpl implements IActionService {
         }
         actionDao.update(action);
     }
-    
+
     @Override
     public void updateFromRole(ActionRoleDto actionRoleDto) {
         Role role = actionRoleDto.getRole();
@@ -76,6 +76,11 @@ public class ActionServiceImpl implements IActionService {
     @Override
     public Action getActionByName(String name) {
         return actionDao.getActionByName(name);
+    }
+
+    @Override
+    public List<String> getActionsByUser(User user) {
+        return actionDao.getActionsByUser(user);
     }
 
     @Override

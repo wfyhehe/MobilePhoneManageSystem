@@ -1,6 +1,7 @@
 package com.wfy.web.dao;
 
 import com.wfy.web.model.Action;
+import com.wfy.web.model.User;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -75,5 +76,13 @@ public class ActionDao {
         String hql = "from Action a";
         List<Action> actions = (List<Action>) hibernateTemplate.find(hql);
         return normalizeActions(actions);
+    }
+
+    public List<String> getActionsByUser(User user) {
+        String hql = "select distinct a.url from Action a, User u, Role r where u = ? or a.type =" +
+                " 0";
+        // ActionType = 0 的为普通动作，无需授权即可访问
+        List<String> actionUrls = (List<String>) hibernateTemplate.find(hql, user);
+        return actionUrls;
     }
 }

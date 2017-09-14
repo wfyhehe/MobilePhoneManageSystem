@@ -15,7 +15,7 @@ public interface IAuthService {
 
     void signOut(String userId);
 
-    void signUp(User user) throws Exception;
+    void signUp(User user, VCode vCode) throws Exception;
 
     void resetPassword(String passwordOld, String passwordNew, String id) throws WrongPasswordException;
 }

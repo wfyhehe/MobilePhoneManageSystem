@@ -30,4 +30,6 @@ public interface IUserService {
     boolean delete(String id);
 
     long countUser();
+
+    boolean isSuperAdmin(String id);
 }

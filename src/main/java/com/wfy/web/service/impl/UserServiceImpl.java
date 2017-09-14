@@ -110,4 +110,9 @@ public class UserServiceImpl implements IUserService {
     public long countUser() {
         return userDao.count();
     }
+
+    @Override
+    public boolean isSuperAdmin(String id) {
+        return userDao.isSuperAdmin(id);
+    }
 }

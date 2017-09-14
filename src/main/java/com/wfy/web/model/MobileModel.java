@@ -14,7 +14,7 @@ import java.util.Set;
 @Entity
 @Table(name = "t_mobile_model")
 @JsonIgnoreProperties(ignoreUnknown = true,value = {"hibernateLazyInitializer","handler","fieldHandler"})
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @DynamicUpdate
 public class MobileModel {
     private String id;

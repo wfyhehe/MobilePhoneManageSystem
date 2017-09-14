@@ -88,10 +88,10 @@ public class Action implements Serializable {
     @Override
     public String toString() {
         return "Action{" +
-                ", url='" + url + '\'' +
-                ", name='" + name + '\'' +
+                "name='" + name + '\'' +
                 ", remark='" + remark + '\'' +
                 ", type=" + type +
+                ", url='" + url + '\'' +
 //                ", roles=" + roles +
                 '}';
     }

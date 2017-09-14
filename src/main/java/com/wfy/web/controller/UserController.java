@@ -1,5 +1,6 @@
 package com.wfy.web.controller;
 
+import com.wfy.web.common.Const;
 import com.wfy.web.common.ServerResponse;
 import com.wfy.web.model.Role;
 import com.wfy.web.model.Token;
@@ -8,9 +9,11 @@ import com.wfy.web.service.IRoleService;
 import com.wfy.web.service.ITokenService;
 import com.wfy.web.service.IUserService;
 import com.wfy.web.utils.RefCount;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -103,6 +106,20 @@ public class UserController {
         } else {
             return ServerResponse.createByErrorMessage("获取用户失败");
         }
+    }
+
+    @RequestMapping(value = "get_me.do", method = RequestMethod.GET)
+    public ServerResponse<User> getMe(HttpServletRequest request) {
+        String tokenStr = request.getHeader(Const.AUTHORIZATION);
+        System.out.println("tokenStr at get_me.do: " + tokenStr);
+        if (StringUtils.isNotBlank(tokenStr)) {
+            String id = Token.parse(tokenStr).getUserId();
+            User user = iUserService.getUser(id);
+            if (user != null) {
+                return ServerResponse.createBySuccess(user);
+            }
+        }
+        return ServerResponse.createByErrorMessage("获取用户失败");
     }
 
     @RequestMapping(value = "update_user.do", method = RequestMethod.POST)

@@ -5,20 +5,20 @@ import com.wfy.web.exceptions.UsernameExistsException;
 import com.wfy.web.exceptions.UsernameNotExistsException;
 import com.wfy.web.exceptions.WrongPasswordException;
 import com.wfy.web.exceptions.WrongVCodeException;
+import com.wfy.web.model.Role;
 import com.wfy.web.model.Token;
 import com.wfy.web.model.User;
 import com.wfy.web.model.VCode;
 import com.wfy.web.model.enums.UserStatus;
-import com.wfy.web.service.IAuthService;
-import com.wfy.web.service.ITokenService;
-import com.wfy.web.service.IUserService;
-import com.wfy.web.service.IVCodeService;
+import com.wfy.web.service.*;
 import com.wfy.web.utils.MD5Util;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by Administrator on 2017/7/14.
@@ -39,6 +39,9 @@ public class AuthServiceImpl implements IAuthService {
     @Resource
     private IVCodeService ivCodeService;
 
+    @Resource
+    private IRoleService iRoleService;
+
     @Override
     public Token signIn(String username, String password, VCode vCode)
             throws UsernameNotExistsException, WrongPasswordException, WrongVCodeException {
@@ -57,6 +60,7 @@ public class AuthServiceImpl implements IAuthService {
             user.setLastLoginTime(new Date(System.currentTimeMillis()));
             user.setStatus(UserStatus.ONLINE);
             token = iTokenService.createToken(user.getId());
+            userDao.update(user);
         }
         return token;
     }
@@ -69,12 +73,19 @@ public class AuthServiceImpl implements IAuthService {
     }
 
     @Override
-    public void signUp(User user) throws Exception {
+    public void signUp(User user, VCode vCode) throws Exception {
         if (iUserService.usernameExists(user.getUsername())) {
             throw new UsernameExistsException("用户名已存在");
         }
+        if (!ivCodeService.checkVCode(vCode)) {
+            throw new WrongVCodeException("验证码错误");
+        }
+        List<Role> defaultRoles = new ArrayList<>();
+        defaultRoles.add(iRoleService.getRoleByName("游客"));
+        user.setRoles(defaultRoles);
         user.setPassword((MD5Util.getMD5(user.getPassword())));
         user.setCreateTime(new Date(System.currentTimeMillis()));
+        user.setLastLoginTime(new Date(System.currentTimeMillis()));
         user.setStatus(UserStatus.ONLINE);
         userDao.insert(user);
     }

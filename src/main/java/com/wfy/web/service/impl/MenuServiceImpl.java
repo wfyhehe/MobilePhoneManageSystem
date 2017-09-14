@@ -122,6 +122,17 @@ public class MenuServiceImpl implements IMenuService {
     @Override
     public void delete(String id) {
         Menu menu = menuDao.getMenuById(id);
+//        if (menu.getParent() != null) {
+//            List<Menu> siblings = menu.getParent().getChildren();
+//            for (int i = 0; i < siblings.size(); i++) {
+//                Menu sibling = siblings.get(i);
+//                if (sibling.getId().equals(id)) {
+//                    siblings.remove(i);
+//                }
+//            }
+//            System.out.println(menu.getParent());
+//        }
+//        System.out.println(menu);
         menuDao.delete(menu);
     }
 

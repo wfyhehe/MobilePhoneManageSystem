@@ -1,5 +1,6 @@
 package com.wfy.web.dao;
 
+import com.wfy.web.model.Action;
 import com.wfy.web.model.Menu;
 import com.wfy.web.model.User;
 import com.wfy.web.service.IMenuService;
@@ -15,12 +16,15 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
+import java.util.List;
+
 /**
  * Created by Administrator on 2017/8/20.
  */
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = {"classpath:applicationContext.xml",
-        "classpath:hibernate-config.xml", "classpath:shiro-config.xml"})
+        "classpath:hibernate-config.xml"})
 @Rollback
 @Transactional(transactionManager = "transactionManager")
 public class DaoTest extends AbstractJUnit4SpringContextTests {
@@ -36,6 +40,9 @@ public class DaoTest extends AbstractJUnit4SpringContextTests {
 
     @Autowired
     private UserDao userDao;
+
+    @Resource
+    private ActionDao actionDao;
 
     @Autowired
     @Qualifier("iMenuService")
@@ -68,6 +75,13 @@ public class DaoTest extends AbstractJUnit4SpringContextTests {
         User user = userDao.getUserByName("admin");
         String hql = "select count(*) from Employee e where e.user.id = ?";
         System.out.println(hibernateTemplate.find(hql, user.getId()));
+    }
+
+    @Test
+    public void ActionTest() {
+        User user = userDao.getUserByName("admin");
+        List<String> actions =  actionDao.getActionsByUser(user);
+        System.out.println(actions);
     }
 
 }

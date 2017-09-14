@@ -153,4 +153,10 @@ public class UserDao {
         List<Long> list = (List<Long>) hibernateTemplate.find(hql);
         return list.get(0);
     }
+
+    public boolean isSuperAdmin(String id) {
+        String hql = "select count(*) from User u, Role r where u.id = ? and r.name = ?";
+        List<Long> list = (List<Long>) hibernateTemplate.find(hql, id, "超级管理员");
+        return list.get(0) > 0;
+    }
 }

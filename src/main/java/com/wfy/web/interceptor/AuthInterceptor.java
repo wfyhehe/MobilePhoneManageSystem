@@ -1,11 +1,14 @@
 package com.wfy.web.interceptor;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wfy.web.common.Const;
 import com.wfy.web.common.ResponseCode;
-import com.wfy.web.common.ServerResponse;
+import com.wfy.web.model.Action;
+import com.wfy.web.model.Role;
 import com.wfy.web.model.Token;
+import com.wfy.web.model.User;
+import com.wfy.web.service.IActionService;
 import com.wfy.web.service.ITokenService;
+import com.wfy.web.service.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.ModelAndView;
@@ -21,20 +24,26 @@ import java.util.List;
  * Created by Administrator on 2017/9/11, good luck.
  */
 public class AuthInterceptor extends HandlerInterceptorAdapter {
-    public static final String LAST_PAGE = "com.wfy.web.lastPage";
-    public static List<String> exceptionalUrls = new ArrayList<>();
+    private static List<String> exceptionalUrls = new ArrayList<>(); // 无需token身份的url
 
     static {
-        exceptionalUrls.add(Const.SIGN_IN_URL);
-        exceptionalUrls.add(Const.SIGN_UP_URL);
-        exceptionalUrls.add(Const.VCODE_URL);
-        exceptionalUrls.add(Const.CHECK_VCODE_URL);
+        exceptionalUrls.add(Const.SIGN_IN_URL); // 登陆
+        exceptionalUrls.add(Const.SIGN_UP_URL); // 注册
+        exceptionalUrls.add(Const.VCODE_URL); // 获取验证码图片
+        exceptionalUrls.add(Const.CHECK_USERNAME_URL); // 登陆和注册时检查用户名是否存在
+        exceptionalUrls.add("/auth/test.do");
     }
 
     private final Logger log = LoggerFactory.getLogger(AuthInterceptor.class);
 
     @Resource
     private ITokenService iTokenService;
+
+    @Resource
+    private IActionService iActionService;
+
+    @Resource
+    private IUserService iUserService;
 
     /**
      * 在业务处理器处理请求之前被调用
@@ -60,6 +69,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
                 "Authorization, Origin, X-Requested-With, Content-Type, Accept");
         response.setHeader("Access-Control-Allow-Credentials", "true"); //是否允许浏览器携带用户身份信息（cookie）
         String method = request.getMethod();
+
         if (method.equals("OPTIONS")) { // 预请求OPTIONS直接放过
             return true;
         }
@@ -78,25 +88,23 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
             return true; // 例外url（无需token的）可以直接通过
         }
         Token token = Token.parse(header);
-        if (!iTokenService.checkToken(token)) {
-//            response.setCharacterEncoding("UTF-8");
-//            response.setContentType("application/json; charset=utf-8");
-//            PrintWriter out = null;
-
+        if (!iTokenService.checkToken(token)) { // 验证身份 Authentication
             log.error("Interceptor：错误代码401：未授权，跳转到signIn页面！");
-            ServerResponse serverResponse = ServerResponse.createByErrorCodeMessage(
-                    ResponseCode.UNAUTHORIZED.getCode(), ResponseCode.UNAUTHORIZED.getDesc());
-            ObjectMapper mapper = new ObjectMapper();
-            String responseJson = mapper.writeValueAsString(serverResponse);
-            log.info(responseJson);
             response.setStatus(ResponseCode.UNAUTHORIZED.getCode());
             return false;
-//            response.sendError(401);
-//            response.getWriter().append(responseJson);
-//            request.getRequestDispatcher("/WEB-INF/jsp/signIn.jsp").forward(request, response);
         }
-
-        return true;
+        // 授权 Authorization
+        // TODO 把取到的actions存入redis，不然太慢
+        boolean isAuthorized;
+        if(iUserService.isSuperAdmin(token.getUserId())) {
+            isAuthorized = true;
+        } else {
+            List<String> actionUrls = iActionService.getActionsByUser(new User(token.getUserId()));
+            System.out.println(actionUrls);
+            System.out.println(url);
+            isAuthorized = actionUrls.contains(url);
+        }
+        return isAuthorized;
     }
 
     /**

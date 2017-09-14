@@ -2,6 +2,7 @@ package com.wfy.web.service;
 
 import com.wfy.web.dto.ActionRoleDto;
 import com.wfy.web.model.Action;
+import com.wfy.web.model.User;
 
 import java.util.List;
 
@@ -20,6 +21,8 @@ public interface IActionService {
     Action getActionByUrl(String url);
 
     Action getActionByName(String name);
+
+    List<String> getActionsByUser(User user);
 
     boolean urlExists(String url);
 }

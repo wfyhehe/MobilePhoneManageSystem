@@ -14,7 +14,7 @@ public class Const {
     public static final String SIGN_IN_URL = "/auth/sign_in.do";
     public static final String SIGN_UP_URL = "/auth/sign_up.do";
     public static final String VCODE_URL = "/util/v-code.do";
-    public static final String CHECK_VCODE_URL = "/util/check_v-code.do";
+    public static final String CHECK_USERNAME_URL = "/user/check_username.do";
     public static final String COOKIE_NAME_VCODE_ID = "vCodeId";
 
 }

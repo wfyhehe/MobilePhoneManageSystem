@@ -1,5 +1,6 @@
 package com.wfy.web.other;
 
+import com.wfy.web.utils.MD5Util;
 import jdk.nashorn.internal.parser.DateParser;
 import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.commons.lang3.time.DateUtils;
@@ -88,5 +89,11 @@ public class JavaSETest {
         while(iterator.hasNext()) {
             iterator.next();
         }
+    }
+
+    @Test
+    public void testMD5() {
+        String md5 = MD5Util.getMD5("123456");
+        System.out.println(md5);
     }
 }

@@ -69,7 +69,7 @@ public class Menu implements Serializable {
         this.path = path;
     }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER,
+    @OneToMany(fetch = FetchType.EAGER,
             mappedBy = "parent")
     public List<Menu> getChildren() {
         return children;
@@ -91,7 +91,7 @@ public class Menu implements Serializable {
         this.parent = parent;
     }
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "t_action_menu",
             joinColumns = @JoinColumn(name = "menu_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "action_url", referencedColumnName = "url"))
@@ -154,7 +154,7 @@ public class Menu implements Serializable {
     }
 
 
-    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "t_role_menu",
             joinColumns = @JoinColumn(name = "menu_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
