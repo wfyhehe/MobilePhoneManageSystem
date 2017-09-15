@@ -3,13 +3,17 @@ package com.wfy.web.controller;
 import com.wfy.web.common.ServerResponse;
 import com.wfy.web.model.MobileInbound;
 import com.wfy.web.model.MobileStock;
+import com.wfy.web.model.Token;
+import com.wfy.web.model.User;
 import com.wfy.web.model.enums.CheckStatus;
 import com.wfy.web.service.IBrandService;
 import com.wfy.web.service.IMobileInboundService;
 import com.wfy.web.utils.RefCount;
+import com.wfy.web.utils.TokenUtil;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -42,7 +46,6 @@ public class MobileInboundController {
         RefCount refCount = new RefCount(0);
         List<MobileInbound> mobileInbounds;
         mobileInbounds = iMobileInboundService.getMobileInbounds(refCount, startTime, endTime, supplier, mobileModel, pageIndex, pageSize);
-
         //noinspection Duplicates
         if (mobileInbounds != null) {
             ServerResponse<List<MobileInbound>> response = ServerResponse.createBySuccess(mobileInbounds);
@@ -55,11 +58,10 @@ public class MobileInboundController {
 
     @RequestMapping(value = "add_mobile_inbound.do", method = RequestMethod.POST)
     public ServerResponse<MobileInbound>
-    addMobileInbound(@RequestBody MobileInbound mobileInbound) {
+    addMobileInbound(@RequestBody MobileInbound mobileInbound, HttpServletRequest request) {
         try {
             mobileInbound.setStatus(CheckStatus.UNAUDITED);
-            System.out.println(mobileInbound);
-            for (int i = 0; i < mobileInbound.getMobiles().size(); i++) {
+            for (int i = 0; i < mobileInbound.getMobiles().size(); i++) { // 将每个手机入库
                 MobileStock mobile = mobileInbound.getMobiles().get(i);
                 mobile.setBuyPrice(mobileInbound.getBuyPrice());
                 mobile.setColor(mobileInbound.getColor());
@@ -73,12 +75,15 @@ public class MobileInboundController {
                 mobile = iMobileStockService.addMobileStock(mobile);
                 mobileInbound.getMobiles().set(i, mobile);
             }
-            mobileInbound = iMobileInboundService.addMobileInbound(mobileInbound);
-            System.out.println(mobileInbound);
+            Token token = TokenUtil.getTokenfromRequest(request);
+            if (token != null) {
+                mobileInbound.setInputUser(new User(token.getUserId()));
+            }
+            mobileInbound.setInputTime(new Date(System.currentTimeMillis()));
+            mobileInbound = iMobileInboundService.addMobileInbound(mobileInbound); // 持久化入库单
             for (MobileStock mobile : mobileInbound.getMobiles()) {
                 mobile.setMobileInbound(mobileInbound); //把有Id的mobileInbound外键设回去
                 iMobileInboundService.updateMobileInbound(mobileInbound);
-                System.out.println(mobile);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -106,10 +111,37 @@ public class MobileInboundController {
         }
     }
 
-    @RequestMapping(value = "update_mobile_inbound.do", method = RequestMethod.POST)
-    public ServerResponse<String> updateMobileInbound(@RequestBody MobileInbound mobileInbound) {
+    @RequestMapping(value = "pass_mobile_inbound.do", method = RequestMethod.GET)
+    public ServerResponse<String> passMobileInbound(String id, HttpServletRequest request) {
         try {
+            MobileInbound mobileInbound = iMobileInboundService.getMobileInboundById(id);
+            mobileInbound.setStatus(CheckStatus.PASSED);
+            Token token = TokenUtil.getTokenfromRequest(request);
+            if (token != null) {
+                mobileInbound.setCheckUser(new User(token.getUserId()));
+            }
+            mobileInbound.setCheckTime(new Date(System.currentTimeMillis()));
             System.out.println(mobileInbound);
+            iMobileInboundService.updateMobileInbound(mobileInbound);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ServerResponse.createByErrorMessage("更新失败");
+        }
+        return ServerResponse.createBySuccess();
+    }
+
+    @RequestMapping(value = "refuse_mobile_inbound.do", method = RequestMethod.GET)
+    public ServerResponse<String> refuseMobileInbound(String id, HttpServletRequest request) {
+        try {
+            MobileInbound mobileInbound = iMobileInboundService.getMobileInboundById(id);
+            mobileInbound.setStatus(CheckStatus.NOT_PASSED);
+            Token token = TokenUtil.getTokenfromRequest(request);
+            if (token != null) {
+                mobileInbound.setCheckUser(new User(token.getUserId()));
+            }
+            mobileInbound.setCheckTime(new Date(System.currentTimeMillis()));
+            System.out.println(mobileInbound);
+            iMobileInboundService.updateMobileInbound(mobileInbound);
         } catch (Exception e) {
             e.printStackTrace();
             return ServerResponse.createByErrorMessage("更新失败");

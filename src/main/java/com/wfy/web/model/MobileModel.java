@@ -98,7 +98,7 @@ public class MobileModel {
                 ", name='" + name + '\'' +
                 ", brand=" + brand +
                 ", buyingPrice=" + buyingPrice +
-                ", rebatePrices=" + rebatePrices +
+//                ", rebatePrices=" + rebatePrices +
                 ", remark='" + remark + '\'' +
                 ", deleted=" + deleted +
                 '}';

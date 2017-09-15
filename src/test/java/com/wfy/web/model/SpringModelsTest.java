@@ -56,7 +56,7 @@ public class SpringModelsTest extends AbstractJUnit4SpringContextTests {
         session.beginTransaction();
 
         Role role = new Role("admi3478631232112332n", RoleStatus.ONLINE);
-        List<Role> roles = new ArrayList<>();
+        Set<Role> roles = new HashSet<>();
         roles.add(role);
         User user = new User("asd1314738882123", "123123", UserStatus.ONLINE);
         user.setRoles(roles);

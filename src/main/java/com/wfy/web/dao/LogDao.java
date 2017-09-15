@@ -7,10 +7,7 @@ import com.wfy.web.utils.RefCount;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
-import org.hibernate.criterion.DetachedCriteria;
-import org.hibernate.criterion.Order;
-import org.hibernate.criterion.Projections;
-import org.hibernate.criterion.Restrictions;
+import org.hibernate.criterion.*;
 import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -48,7 +45,7 @@ public class LogDao {
     }
 
     public List<Log> search(RefCount refCount, Date startTime, Date endTime,
-                            LogStatus status, String actionUrl, String username, Integer pageIndex,
+                            List<LogStatus> status, String actionUrl, String username, Integer pageIndex,
                             Integer pageSize) {
         List<Log> logs;
         DetachedCriteria criteria = DetachedCriteria.forClass(Log.class, "l")
@@ -59,8 +56,12 @@ public class LogDao {
         if (startTime != null && endTime != null) {
             criteria.add(Restrictions.between("l.createDate", startTime, endTime));
         }
-        if (status != null) {
-            criteria.add(Restrictions.eq("l.status", status));
+        if (status != null && status.size() > 0) {
+            Disjunction disjunction = Restrictions.disjunction();
+            for (LogStatus logStatus : status) {
+                disjunction.add(Restrictions.eq("l.status", logStatus));
+            }
+            criteria.add(disjunction);
         }
         if (StringUtils.isNotBlank(actionUrl)) {
             criteria.createAlias("action", "a")

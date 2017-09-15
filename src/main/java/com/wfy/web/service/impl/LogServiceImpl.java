@@ -23,7 +23,7 @@ public class LogServiceImpl implements ILogService {
     private LogDao logDao;
 
     @Override
-    public List<Log> getLogs(RefCount refCount, Date startTime, Date endTime, LogStatus
+    public List<Log> getLogs(RefCount refCount, Date startTime, Date endTime, List<LogStatus>
             status, String actionUrl, String username, Integer pageIndex, Integer pageSize) {
         return logDao.search(refCount, startTime, endTime, status, actionUrl, username, pageIndex,
                 pageSize);

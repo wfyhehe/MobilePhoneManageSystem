@@ -6,7 +6,6 @@ import com.wfy.web.utils.RefCount;
 import org.apache.commons.lang3.StringUtils;
 import org.hibernate.Criteria;
 import org.hibernate.FetchMode;
-import org.hibernate.Hibernate;
 import org.hibernate.criterion.DetachedCriteria;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
@@ -72,6 +71,7 @@ public class MobileInboundDao {
         }
         DetachedCriteria countCriteria = CloneUtil.clone(criteria);
         countCriteria.setProjection(Projections.rowCount());
+        long start = System.currentTimeMillis();
         long count = ((List<Long>) hibernateTemplate.findByCriteria(countCriteria)).get(0);
         refCount.setCount(count);
         if (pageIndex != null && pageSize != null) {
@@ -80,9 +80,13 @@ public class MobileInboundDao {
         } else {
             mobileInbounds = (List<MobileInbound>) hibernateTemplate.findByCriteria(criteria);
         }
+        long end = System.currentTimeMillis();
 //        for (MobileInbound mobileInbound : mobileInbounds) {
 //            Hibernate.initialize(mobileInbound.getMobiles());
 //        }
+        System.out.println(criteria);
+        System.out.println(count);
+        System.out.println("Timespan: " + (end - start) + "ms");
         return normalizeMobileInbounds(mobileInbounds);
     }
 
@@ -93,13 +97,13 @@ public class MobileInboundDao {
     }
 
     public MobileInbound getMobileInboundByName(String name) {
-        String hql = "from MobileInbound mi where mi.name = ? and mi.deleted <> 1";
+        String hql = "from MobileInbound mi where mi.name = ?";
         List<MobileInbound> list = (List<MobileInbound>) hibernateTemplate.find(hql, name);
         return extractAndNormalizeFirstMobileInbound(list);
     }
 
     public MobileInbound getMobileInboundById(String id) {
-        String hql = "from MobileInbound mi where mi.id = ? and mi.deleted <> 1";
+        String hql = "from MobileInbound mi where mi.id = ?";
         List<MobileInbound> list = (List<MobileInbound>) hibernateTemplate.find(hql, id);
         return extractAndNormalizeFirstMobileInbound(list);
     }
@@ -114,7 +118,7 @@ public class MobileInboundDao {
     }
 
     public boolean recover(String id) {
-        String hql = "from MobileInbound mi where mi.id = ? and mi.deleted = 1";
+        String hql = "from MobileInbound mi where mi.id = ?";
         List<MobileInbound> list = (List<MobileInbound>) hibernateTemplate.find(hql, id);
         if (list.size() <= 0) {
             return false;

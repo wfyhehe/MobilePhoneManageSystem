@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by Administrator on 2017/8/7.
@@ -127,7 +125,7 @@ public class UserController {
         User user = new User();
         String id = (String) userMap.get("id");
         String remark = (String) userMap.get("remark");
-        List<Role> roles = new ArrayList<>();
+        Set<Role> roles = new HashSet<>();
         List<String> roleList = (List<String>) userMap.get("roleNames");
         for (String roleName : roleList) {
             roles.add(iRoleService.getRoleByName(roleName));

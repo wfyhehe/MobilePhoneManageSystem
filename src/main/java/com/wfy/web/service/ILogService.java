@@ -11,7 +11,7 @@ import java.util.List;
  * Created by Administrator on 2017/9/14, good luck.
  */
 public interface ILogService {
-    List<Log> getLogs(RefCount refCount, Date startTime, Date endTime, LogStatus
+    List<Log> getLogs(RefCount refCount, Date startTime, Date endTime, List<LogStatus>
             status, String actionUrl, String username, Integer pageIndex, Integer pageSize);
 
     Log addLog(Log log) throws Exception;

@@ -16,9 +16,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Administrator on 2017/7/14.
@@ -80,7 +78,7 @@ public class AuthServiceImpl implements IAuthService {
         if (!ivCodeService.checkVCode(vCode)) {
             throw new WrongVCodeException("验证码错误");
         }
-        List<Role> defaultRoles = new ArrayList<>();
+        Set<Role> defaultRoles = new HashSet<>();
         defaultRoles.add(iRoleService.getRoleByName("游客"));
         user.setRoles(defaultRoles);
         user.setPassword((MD5Util.getMD5(user.getPassword())));

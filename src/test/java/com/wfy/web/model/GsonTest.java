@@ -4,9 +4,7 @@ import com.wfy.web.model.enums.RoleStatus;
 import com.wfy.web.model.enums.UserStatus;
 import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * Created by Administrator on 2017/7/16.
@@ -21,7 +19,7 @@ public class GsonTest {
         user.setCreateTime(new Date());
         user.setLastLoginTime(new Date());
         Role role = new Role("idiot", RoleStatus.ONLINE);
-        List<Role> roles = new ArrayList<>();
+        Set<Role> roles = new HashSet<>();
         roles.add(role);
         user.setRoles(roles);
 //        Gson gson = new Gson();

@@ -8,6 +8,7 @@ import com.wfy.web.utils.RefCount;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -25,8 +26,8 @@ public class LogController {
 
     @RequestMapping(value = "get_logs.do", method = RequestMethod.POST)
     public ServerResponse<List<Log>> getLogs(@RequestBody Map<String, Object> map) {
-        String statusStr = (String) map.get("status");
-        LogStatus status = null;
+        List<String> statusStr = (List<String>) map.get("status");
+        List<LogStatus> status = new ArrayList<>();
         String actionUrl = (String) map.get("actionUrl");
         String username = (String) map.get("username");
         Integer pageIndex = (Integer) map.get("pageIndex");
@@ -35,20 +36,23 @@ public class LogController {
         Long endTimeL = (Long) map.get("endTime");
         Date startTime = (startTimeL != null) ? new Date(startTimeL) : null;
         Date endTime = (endTimeL != null) ? new Date(endTimeL) : null;
-        switch (statusStr != null ? statusStr : "") {
-            case "ACCEPTED": {
-                status = LogStatus.ACCEPTED;
-                break;
-            }
-            case "UNAUTHENTICATED": {
-                status = LogStatus.UNAUTHENTICATED;
-                break;
-            }
-            case "UNAUTHORIZED": {
-                status = LogStatus.UNAUTHORIZED;
-                break;
+        for (String str : statusStr) {
+            switch (str) {
+                case "ACCEPTED": {
+                    status.add(LogStatus.ACCEPTED);
+                    break;
+                }
+                case "UNAUTHENTICATED": {
+                    status.add(LogStatus.UNAUTHENTICATED);
+                    break;
+                }
+                case "UNAUTHORIZED": {
+                    status.add(LogStatus.UNAUTHORIZED);
+                    break;
+                }
             }
         }
+
         RefCount refCount = new RefCount(0);
         List<Log> logs;
         logs = iLogService.getLogs(refCount, startTime, endTime, status, actionUrl, username,

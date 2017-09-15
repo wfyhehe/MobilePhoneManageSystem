@@ -151,7 +151,8 @@ public class MobileInbound {
         this.inputTime = inputTime;
     }
 
-    @Column(name = "input_user_id")
+    @ManyToOne
+    @JoinColumn(name = "input_user_id")
     public User getInputUser() {
         return inputUser;
     }
@@ -170,7 +171,8 @@ public class MobileInbound {
         this.checkTime = checkTime;
     }
 
-    @Column(name = "check_user_id")
+    @ManyToOne
+    @JoinColumn(name = "check_user_id")
     public User getCheckUser() {
         return checkUser;
     }

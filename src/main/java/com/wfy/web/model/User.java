@@ -13,6 +13,7 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Created by Administrator on 2017/7/14.
@@ -32,7 +33,7 @@ public class User implements Serializable {
     private Date createTime;
     private Date lastLoginTime;
     private UserStatus status;
-    private List<Role> roles;
+    private Set<Role> roles;
 
     public User() {
     }
@@ -60,11 +61,11 @@ public class User implements Serializable {
     @JoinTable(name = "t_role_user",
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
-    public List<Role> getRoles() {
+    public Set<Role> getRoles() {
         return roles;
     }
 
-    public void setRoles(List<Role> roles) {
+    public void setRoles(Set<Role> roles) {
         this.roles = roles;
     }
 
@@ -157,7 +158,7 @@ public class User implements Serializable {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", remark='" + remark + '\'' +
-                ", employee=" + employee +
+//                ", employee=" + employee +
                 ", createTime=" + createTime +
                 ", lastLoginTime=" + lastLoginTime +
                 ", status=" + status +

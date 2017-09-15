@@ -309,7 +309,7 @@
     </foreign-key>
     <column id="97" parent="23" name="id">
       <Position>1</Position>
-      <DataType>int(11)|0</DataType>
+      <DataType>char(32)|0</DataType>
       <NotNull>1</NotNull>
     </column>
     <column id="98" parent="23" name="ip">
