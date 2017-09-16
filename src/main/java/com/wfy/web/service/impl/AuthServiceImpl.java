@@ -96,6 +96,7 @@ public class AuthServiceImpl implements IAuthService {
         }
         User user = userDao.getUser(id);
         user.setPassword(MD5Util.getMD5(passwordNew));
+        userDao.update(user);
     }
 
 

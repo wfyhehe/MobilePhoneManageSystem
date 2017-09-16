@@ -70,6 +70,7 @@ public class UserServiceImpl implements IUserService {
         }
         if (user.getEmployee() == null) {
             user.setEmployee(oldUser.getEmployee());
+            user.getEmployee().setUser(user);
         }
         if (user.getRoles() == null) {
             user.setRoles(oldUser.getRoles());

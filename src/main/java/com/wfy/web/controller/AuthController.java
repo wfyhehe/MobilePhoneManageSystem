@@ -88,9 +88,12 @@ public class AuthController {
          return iUserService.forgetResetPassword(username, passwordNew, forgetToken);
      }
  */
-    @RequestMapping(value = "reset_password.do", method = RequestMethod.GET)
-    public ServerResponse<String> resetPassword(String userId, String passwordOld, String
-            passwordNew) {
+    @RequestMapping(value = "reset_password.do", method = RequestMethod.POST)
+    public ServerResponse<String> resetPassword(@RequestBody Map<String, String> passwordMap,
+                                                HttpServletRequest request) {
+        String passwordOld = passwordMap.get("passwordOld");
+        String passwordNew = passwordMap.get("passwordNew");
+        String userId = Token.parse(request.getHeader(Const.AUTHORIZATION)).getUserId();
         try {
             iAuthService.resetPassword(passwordOld, passwordNew, userId);
         } catch (WrongPasswordException e) {
@@ -101,7 +104,7 @@ public class AuthController {
     }
 
     @RequestMapping(value = "test.do", method = RequestMethod.POST)
-    public void test(@ModelAttribute(value="user") User user, String vCode) {
+    public void test(@ModelAttribute(value = "user") User user, String vCode) {
         System.out.println(user);
         System.out.println(vCode);
     }

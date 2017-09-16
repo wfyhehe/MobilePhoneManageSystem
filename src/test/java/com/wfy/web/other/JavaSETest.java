@@ -96,4 +96,22 @@ public class JavaSETest {
         String md5 = MD5Util.getMD5("123456");
         System.out.println(md5);
     }
+
+    @Test
+    public void testUUID() {
+        for (int i = 0; i < 100; i++) {
+            System.out.println(UUID.randomUUID().toString());
+        }
+    }
+
+    @Test
+    public void testString() {
+        String str = "abcde";
+        char[] buffer = str.toCharArray();
+        buffer[str.length() - 1] = '-';
+        String newStr = String.valueOf(buffer);
+        System.out.println(newStr);
+    }
+
+
 }

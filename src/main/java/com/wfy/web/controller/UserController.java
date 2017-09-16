@@ -121,18 +121,8 @@ public class UserController {
     }
 
     @RequestMapping(value = "update_user.do", method = RequestMethod.POST)
-    public ServerResponse<String> updateUser(@RequestBody Map<String, Object> userMap) {
-        User user = new User();
-        String id = (String) userMap.get("id");
-        String remark = (String) userMap.get("remark");
-        Set<Role> roles = new HashSet<>();
-        List<String> roleList = (List<String>) userMap.get("roleNames");
-        for (String roleName : roleList) {
-            roles.add(iRoleService.getRoleByName(roleName));
-        }
-        user.setId(id);
-        user.setRemark(remark);
-        user.setRoles(roles);
+    public ServerResponse<String> updateUser(@RequestBody User user) {
+        System.out.println(user);
         try {
             iUserService.updateUser(user);
         } catch (Exception e) {

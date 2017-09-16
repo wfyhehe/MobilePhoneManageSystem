@@ -2,6 +2,7 @@ package com.wfy.web.service.impl;
 
 import com.wfy.web.dao.MobileModelDao;
 import com.wfy.web.model.MobileModel;
+import com.wfy.web.model.RebatePrice;
 import com.wfy.web.service.IMobileModelService;
 import com.wfy.web.utils.RefCount;
 import org.springframework.stereotype.Service;
@@ -71,6 +72,9 @@ public class MobileModelServiceImpl implements IMobileModelService {
             return false;
         }
         mobileModel.setDeleted(true);
+        for (RebatePrice rebatePrice: mobileModel.getRebatePrices()) {
+            rebatePrice.setMobileModel(mobileModel);
+        }
         mobileModelDao.update(mobileModel);
         return true;
     }

@@ -49,7 +49,7 @@ public class MenuController {
     public ServerResponse<Menu> addMenu(@RequestBody Map<String, Object> menuMap) {
         String parentId = (String) menuMap.get("parentId");
         String name = (String) menuMap.get("name");
-        int sortOrder = (int) menuMap.get("sortOrder");
+        Integer sortOrder = (Integer) menuMap.get("sortOrder");
         Menu menu;
         try {
             menu = iMenuService.addMenu(parentId, name, sortOrder);

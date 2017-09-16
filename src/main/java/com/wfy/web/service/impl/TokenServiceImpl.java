@@ -7,10 +7,10 @@ import com.wfy.web.model.Token;
 import com.wfy.web.service.ITokenService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.annotation.Resource;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
@@ -22,15 +22,21 @@ import java.util.concurrent.TimeUnit;
 public class TokenServiceImpl implements ITokenService {
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
+    @Resource
     private TokenDao tokenDao;
 
-    @Autowired
+    @Resource
     private UserDao userDao;
 
     @Override
     public Token createToken(String userId) {
-        Token token = new Token(userId, UUID.randomUUID().toString());
+        String uuid = UUID.randomUUID().toString();
+        if (userDao.isSuperAdmin(userId)) {
+            char[] buffer = uuid.toCharArray();
+            buffer[uuid.length() - 1] = '-'; // 超级管理员的token最后一位设为-, 方便前端判断（在后端无特权）
+            uuid = String.valueOf(buffer);
+        }
+        Token token = new Token(userId, uuid);
         tokenDao.setToken(token, Const.TOKEN_EXPIRES_MINUTE, TimeUnit.MINUTES);
         return token;
     }

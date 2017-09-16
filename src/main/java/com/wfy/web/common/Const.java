@@ -13,6 +13,7 @@ public class Const {
     public static final String TOKEN_SEPARATOR = "#";
     public static final String SIGN_IN_URL = "/auth/sign_in.do";
     public static final String SIGN_UP_URL = "/auth/sign_up.do";
+    public static final String GET_INFO_URL = "/info/get_infos.do";
     public static final String VCODE_URL = "/util/v-code.do";
     public static final String CHECK_USERNAME_URL = "/user/check_username.do";
     public static final String COOKIE_NAME_VCODE_ID = "vCodeId";

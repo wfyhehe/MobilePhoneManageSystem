@@ -33,6 +33,7 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
     static {
         exceptionalUrls.add(Const.SIGN_IN_URL); // 登陆
         exceptionalUrls.add(Const.SIGN_UP_URL); // 注册
+        exceptionalUrls.add(Const.GET_INFO_URL); // 获取首页信息
         exceptionalUrls.add(Const.VCODE_URL); // 获取验证码图片
         exceptionalUrls.add(Const.CHECK_USERNAME_URL); // 登陆和注册时检查用户名是否存在
         exceptionalUrls.add("/auth/test.do");
@@ -113,8 +114,6 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
             isAuthorized = true;
         } else {
             List<String> actionUrls = iActionService.getActionsByUser(new User(token.getUserId()));
-            System.out.println(actionUrls);
-            System.out.println(url);
             isAuthorized = actionUrls.contains(url);
         }
         status = isAuthorized ? LogStatus.ACCEPTED : LogStatus.UNAUTHORIZED;
