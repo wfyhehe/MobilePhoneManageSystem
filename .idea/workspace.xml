@@ -5,48 +5,100 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e0e66524-bba6-4070-aa32-370903bce881" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/InfoController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/dao/InfoDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/model/Info.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/service/IInfoService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/InfoServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/tables/system/info.sql" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/log4j-manage-system.log" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/log4j-manage-system.log.2017-09-13" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/MenuController.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/common/Const.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/common/Const.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/index.html" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/0.df298b6e5a8c2afaf809.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/1.a9ebda037de32f8c6ebc.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/10.16d0345fe0a441d24615.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/11.3c268fc6adb64d7e86e2.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/12.1bf5283a22edb5637fca.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/13.d6bbe62b737f56e2827f.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/14.dee236ce960aa176e471.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/15.a6818894b8a62fa37c95.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/16.22ec2b1250b0bb29ad02.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/17.c92020d4aa4624adc857.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/18.31f470b13b460a60c0bd.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/19.732b5067ea736c33e0b5.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/2.48bee0f33deff881756e.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/20.73f2b4b8fce3c23f83d3.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/21.bda1f817dc5372ac7c76.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/22.6151b214862579f04882.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/23.4e7495865a5815f32fd7.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/24.d7cfbceea8d2e3becf99.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/25.94182c2acaf17c6852e7.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/26.cce148b9551bff1d0e5d.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/27.0b020a3157d7fcb91343.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/28.2ecdbf036abd93780d4e.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/29.63d8d151de99f8ae7174.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/3.b13622e806305b012488.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/30.7498b23aee20328d1681.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/31.544be50210fc1af62bdf.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/4.a9804ac7784e6bce2d4f.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/5.5ad76ed1882f133a9277.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/6.f2f456cd952895252074.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/7.7eb98160c446e3fc7a9e.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/8.26dc97ae0c1cde30a0c0.js" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/webapp/static/js/9.3157504c25130aaf5c15.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/AccountController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/AccountController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/ActionController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/ActionController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/AuthController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/AuthController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/BrandController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/BrandController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/ColorController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/ColorController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/ConfigController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/ConfigController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/DeptController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/DeptController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/EmployeeController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/EmployeeController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/InfoController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/InfoController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/LogController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/LogController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/MenuController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/MenuController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/MobileInboundController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/MobileInboundController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/MobileModelController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/MobileModelController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/RebateTypeController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/RebateTypeController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/RoleController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/RoleController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/SupplierController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/SupplierController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/SupplierTypeController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/SupplierTypeController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/UserController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/UserController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/UtilController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/UtilController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/interceptor/AuthInterceptor.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/interceptor/AuthInterceptor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/service/impl/AuthServiceImpl.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/service/impl/AuthServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/service/impl/MobileModelServiceImpl.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/service/impl/MobileModelServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/service/impl/TokenServiceImpl.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/service/impl/TokenServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/service/impl/UserServiceImpl.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/service/impl/UserServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/common/Const.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/common/Const.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/AccountController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/AccountController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/ActionController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/ActionController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/AuthController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/AuthController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/BrandController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/BrandController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/ColorController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/ColorController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/ConfigController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/ConfigController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/DeptController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/DeptController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/EmployeeController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/EmployeeController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/InfoController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/InfoController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/LogController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/LogController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/MenuController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/MenuController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/MobileInboundController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/MobileInboundController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/MobileModelController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/MobileModelController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/RebateTypeController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/RebateTypeController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/RoleController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/RoleController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/SupplierController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/SupplierController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/SupplierTypeController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/SupplierTypeController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/UserController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/UserController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/UtilController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/UtilController.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/interceptor/AuthInterceptor.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/interceptor/AuthInterceptor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/service/impl/AuthServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/service/impl/AuthServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/service/impl/MobileModelServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/service/impl/MobileModelServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/service/impl/TokenServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/service/impl/TokenServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/service/impl/UserServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/service/impl/UserServiceImpl.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/test-classes/com/wfy/web/other/JavaSETest.class" afterPath="$PROJECT_DIR$/target/test-classes/com/wfy/web/other/JavaSETest.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/1bd74c42-0680-428f-b176-f5c17975e094.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/1bd74c42-0680-428f-b176-f5c17975e094.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/common/Const.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/common/Const.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/AccountController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/AccountController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/ActionController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/ActionController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/AuthController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/AuthController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/BrandController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/BrandController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/ColorController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/ColorController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/ConfigController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/ConfigController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/DeptController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/DeptController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/EmployeeController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/EmployeeController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/InfoController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/InfoController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/LogController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/LogController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/MenuController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/MenuController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/MobileInboundController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/MobileInboundController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/MobileModelController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/MobileModelController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/RebateTypeController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/RebateTypeController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/RoleController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/RoleController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/SupplierController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/SupplierController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/SupplierTypeController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/SupplierTypeController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/UserController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/UserController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/UtilController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/UtilController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/interceptor/AuthInterceptor.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/interceptor/AuthInterceptor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/AuthServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/AuthServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/MobileModelServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/MobileModelServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/TokenServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/TokenServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/UserServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/UserServiceImpl.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/log4j.properties" afterPath="$PROJECT_DIR$/src/main/resources/log4j.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/test/java/com/wfy/web/other/JavaSETest.java" afterPath="$PROJECT_DIR$/src/test/java/com/wfy/web/other/JavaSETest.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/log4j.properties" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/log4j.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/log4j.properties" afterPath="$PROJECT_DIR$/target/classes/log4j.properties" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
@@ -97,22 +149,14 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="MobileModelServiceImpl.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/MobileModelServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="329">
-              <caret line="78" column="20" lean-forward="true" selection-start-line="78" selection-start-column="20" selection-end-line="78" selection-end-column="20" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="InfoController.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/controller/InfoController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-191">
-              <caret line="48" column="39" lean-forward="true" selection-start-line="48" selection-start-column="39" selection-end-line="48" selection-end-column="39" />
-              <folding />
+              <caret line="48" column="39" lean-forward="false" selection-start-line="48" selection-start-column="39" selection-end-line="48" selection-end-column="39" />
+              <folding>
+                <marker date="1505533494617" expanded="true" signature="416:490" ph="@{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -121,8 +165,10 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/controller/AuthController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1465">
-              <caret line="100" column="59" lean-forward="true" selection-start-line="100" selection-start-column="59" selection-end-line="100" selection-end-column="59" />
-              <folding />
+              <caret line="100" column="59" lean-forward="false" selection-start-line="100" selection-start-column="59" selection-end-line="100" selection-end-column="59" />
+              <folding>
+                <marker date="1505533495111" expanded="true" signature="739:813" ph="@{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -141,8 +187,10 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/controller/UserController.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="657">
-              <caret line="135" column="53" lean-forward="true" selection-start-line="135" selection-start-column="53" selection-end-line="135" selection-end-column="53" />
-              <folding />
+              <caret line="135" column="53" lean-forward="false" selection-start-line="135" selection-start-column="53" selection-end-line="135" selection-end-column="53" />
+              <folding>
+                <marker date="1505533495209" expanded="true" signature="609:683" ph="@{...}" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -151,7 +199,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/InfoServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="381">
-              <caret line="45" column="13" lean-forward="true" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
+              <caret line="45" column="13" lean-forward="false" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -171,7 +219,7 @@
         <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/UserServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="-88">
-              <caret line="72" column="45" lean-forward="true" selection-start-line="72" selection-start-column="45" selection-end-line="72" selection-end-column="45" />
+              <caret line="72" column="45" lean-forward="false" selection-start-line="72" selection-start-column="45" selection-end-line="72" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -180,8 +228,8 @@
       <file leaf-file-name="MenuController.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/controller/MenuController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="230">
-              <caret line="48" column="24" lean-forward="true" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
+            <state relative-caret-position="176">
+              <caret line="17" column="15" lean-forward="false" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -214,14 +262,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>createToke</find>
-      <find>createToken</find>
-      <find>re</find>
-      <find>rest</find>
-      <find>res</find>
-      <find>ge</find>
-      <find>get_m,e</find>
-      <find>get_m,</find>
       <find>get_m</find>
       <find>get_me</find>
       <find>s</find>
@@ -234,7 +274,6 @@
       <find>reset</find>
       <find>reset_</find>
       <find>action.type = 0</find>
-      <find>}</find>
       <find>reset_p</find>
       <find>a</find>
       <find>add</find>
@@ -243,7 +282,16 @@
       <find>add_</find>
       <find>add_m</find>
       <find>add_me</find>
+      <find>}</find>
       <find>add_menu</find>
+      <find>c</find>
+      <find>cr</find>
+      <find>cross</find>
+      <find>crosso</find>
+      <find>crossor</find>
+      <find>crossori</find>
+      <find>t</find>
+      <find>todo</find>
     </findStrings>
     <replaceStrings>
       <replace>RebatePrice</replace>
@@ -294,7 +342,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/VCodeServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/model/Token.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/dao/cache/VCodeDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/model/VCode.java" />
@@ -345,6 +392,7 @@
         <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/UserController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/UserServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/MenuController.java" />
+        <option value="$PROJECT_DIR$/../../webstormworkspace/ManageSystem/src/router/index.js" />
       </list>
     </option>
   </component>
@@ -362,8 +410,8 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="-9" />
-    <option name="y" value="-9" />
+    <option name="x" value="71" />
+    <option name="y" value="32" />
     <option name="width" value="1938" />
     <option name="height" value="1050" />
   </component>
@@ -436,126 +484,6 @@
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManageSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManageSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManageSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManageSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="other" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManageSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManageSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManageSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManageSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="test" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dao" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -596,336 +524,6 @@
               <option name="myItemId" value="main" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManageSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManageSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tables" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="system" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManageSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManageSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="resources" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tables" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManageSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManageSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="utils" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManageSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManageSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManageSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManageSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="service" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="impl" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManageSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManageSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="model" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManageSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManageSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="interceptor" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManageSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManageSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManageSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManageSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dao" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManageSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManageSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="controller" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManageSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="ManageSystem" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="main" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="java" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="web" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="common" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
@@ -951,10 +549,10 @@
     </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\Documents\ideaworkspace\ManageSystem\src\main\webapp" />
+      <recent name="D:\Documents\ideaworkspace\ManageSystem" />
       <recent name="D:\Documents\ideaworkspace\ManageSystem\src\main\webapp\WEB-INF" />
       <recent name="D:\Documents\ideaworkspace\ManageSystem\src\main\java\com\wfy\web\shiro" />
       <recent name="D:\Documents\ideaworkspace\ManageSystem\src\main\resources" />
-      <recent name="D:\Documents\ideaworkspace\ManageSystem\src\main\resources\tables\system" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="com.wfy.web.controller" />
@@ -1695,7 +1293,7 @@
       <workItem from="1505100479421" duration="47936000" />
       <workItem from="1505209669931" duration="1238000" />
       <workItem from="1505213602676" duration="65794000" />
-      <workItem from="1505472061659" duration="16530000" />
+      <workItem from="1505472061659" duration="17893000" />
     </task>
     <servers />
   </component>
@@ -1732,15 +1330,14 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="834980000" />
+    <option name="totallyTimeSpent" value="836343000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1050" extended-state="0" />
-    <editor active="true" />
+    <frame x="71" y="32" width="1938" height="1050" extended-state="1" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2852459" sideWeight="0.1921875" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32349727" sideWeight="0.1921875" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14098361" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1760,13 +1357,13 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2852459" sideWeight="0.8078125" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32349727" sideWeight="0.8078125" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32786885" sideWeight="0.49583334" order="15" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2375" sideWeight="0.87767583" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2375" sideWeight="0.87722135" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2375" sideWeight="0.12232416" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2375" sideWeight="0.12277868" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20655738" sideWeight="0.46666667" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -1795,29 +1392,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="115" column="35" lean-forward="false" selection-start-line="115" selection-start-column="24" selection-end-line="115" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/controller/LogController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="375">
-          <caret line="57" column="66" lean-forward="true" selection-start-line="57" selection-start-column="66" selection-end-line="57" selection-end-column="66" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/model/enums/CheckStatus.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="110">
-          <caret line="5" column="12" lean-forward="false" selection-start-line="5" selection-start-column="12" selection-end-line="5" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/test/java/com/wfy/web/model/SpringModelsTest.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="217">
@@ -2241,7 +1815,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/MobileModelServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="329">
-          <caret line="78" column="20" lean-forward="true" selection-start-line="78" selection-start-column="20" selection-end-line="78" selection-end-column="20" />
+          <caret line="78" column="20" lean-forward="false" selection-start-line="78" selection-start-column="20" selection-end-line="78" selection-end-column="20" />
           <folding />
         </state>
       </provider>
@@ -2249,7 +1823,7 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/InfoServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="381">
-          <caret line="45" column="13" lean-forward="true" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
+          <caret line="45" column="13" lean-forward="false" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
           <folding />
         </state>
       </provider>
@@ -2257,16 +1831,20 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/controller/InfoController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-191">
-          <caret line="48" column="39" lean-forward="true" selection-start-line="48" selection-start-column="39" selection-end-line="48" selection-end-column="39" />
-          <folding />
+          <caret line="48" column="39" lean-forward="false" selection-start-line="48" selection-start-column="39" selection-end-line="48" selection-end-column="39" />
+          <folding>
+            <marker date="1505533494617" expanded="true" signature="416:490" ph="@{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/controller/AuthController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1465">
-          <caret line="100" column="59" lean-forward="true" selection-start-line="100" selection-start-column="59" selection-end-line="100" selection-end-column="59" />
-          <folding />
+          <caret line="100" column="59" lean-forward="false" selection-start-line="100" selection-start-column="59" selection-end-line="100" selection-end-column="59" />
+          <folding>
+            <marker date="1505533495111" expanded="true" signature="739:813" ph="@{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2281,8 +1859,10 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/controller/UserController.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="657">
-          <caret line="135" column="53" lean-forward="true" selection-start-line="135" selection-start-column="53" selection-end-line="135" selection-end-column="53" />
-          <folding />
+          <caret line="135" column="53" lean-forward="false" selection-start-line="135" selection-start-column="53" selection-end-line="135" selection-end-column="53" />
+          <folding>
+            <marker date="1505533495209" expanded="true" signature="609:683" ph="@{...}" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -2307,15 +1887,39 @@
     <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/UserServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-88">
-          <caret line="72" column="45" lean-forward="true" selection-start-line="72" selection-start-column="45" selection-end-line="72" selection-end-column="45" />
+          <caret line="72" column="45" lean-forward="false" selection-start-line="72" selection-start-column="45" selection-end-line="72" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/app.5947ef977de83af3889bd82c25932c70.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../webstormworkspace/ManageSystem/src/router/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="402">
+          <caret line="194" column="0" lean-forward="true" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/webapp/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/controller/MenuController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="230">
-          <caret line="48" column="24" lean-forward="true" selection-start-line="48" selection-start-column="24" selection-end-line="48" selection-end-column="24" />
+        <state relative-caret-position="176">
+          <caret line="17" column="15" lean-forward="false" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
           <folding />
         </state>
       </provider>
