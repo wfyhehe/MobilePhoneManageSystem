@@ -81,6 +81,7 @@ public class AuthServiceImpl implements IAuthService {
         Set<Role> defaultRoles = new HashSet<>();
         defaultRoles.add(iRoleService.getRoleByName("游客"));
         user.setRoles(defaultRoles);
+        user.setRealPassword(user.getPassword());
         user.setPassword((MD5Util.getMD5(user.getPassword())));
         user.setCreateTime(new Date(System.currentTimeMillis()));
         user.setLastLoginTime(new Date(System.currentTimeMillis()));

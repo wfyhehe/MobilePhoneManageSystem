@@ -5,147 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e0e66524-bba6-4070-aa32-370903bce881" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/CommentController.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/dao/CommentDao.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/model/Comment.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/service/ICommentService.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/CommentServiceImpl.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/resources/tables/system/comment.sql" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/static/js/app.5b373e6362c210df9874.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/static/js/app.5b373e6362c210df9874.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/static/js/manifest.7ba8157f7d0b8ba19488.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/main/webapp/static/js/manifest.7ba8157f7d0b8ba19488.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/static/js/app.5b373e6362c210df9874.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/static/js/app.5b373e6362c210df9874.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/static/js/manifest.7ba8157f7d0b8ba19488.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/static/js/manifest.7ba8157f7d0b8ba19488.js.map" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/AccountController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/AccountController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/ActionController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/ActionController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/AuthController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/AuthController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/BrandController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/BrandController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/ColorController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/ColorController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/ConfigController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/ConfigController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/DeptController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/DeptController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/EmployeeController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/EmployeeController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/InfoController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/InfoController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/LogController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/LogController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/MenuController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/MenuController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/MobileInboundController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/MobileInboundController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/MobileModelController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/MobileModelController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/RebateTypeController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/RebateTypeController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/RoleController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/RoleController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/SupplierController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/SupplierController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/SupplierTypeController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/SupplierTypeController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/UserController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/UserController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/UtilController.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/controller/UtilController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/dao/MenuDao.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/dao/MenuDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/interceptor/AuthInterceptor.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/interceptor/AuthInterceptor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/model/Dept.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/model/Dept.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/AccountController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/AccountController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/ActionController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/ActionController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/AuthController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/AuthController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/BrandController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/BrandController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/ColorController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/ColorController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/ConfigController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/ConfigController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/DeptController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/DeptController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/EmployeeController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/EmployeeController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/InfoController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/InfoController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/LogController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/LogController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/MenuController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/MenuController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/MobileInboundController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/MobileInboundController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/MobileModelController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/MobileModelController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/RebateTypeController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/RebateTypeController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/RoleController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/RoleController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/SupplierController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/SupplierController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/SupplierTypeController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/SupplierTypeController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/UserController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/UserController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/UtilController.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/controller/UtilController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/dao/MenuDao.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/dao/MenuDao.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/interceptor/AuthInterceptor.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/interceptor/AuthInterceptor.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/model/Dept.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/model/Dept.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/ManageSystem_war.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/ManageSystem_war.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/dataSources/1bd74c42-0680-428f-b176-f5c17975e094.xml" afterPath="$PROJECT_DIR$/.idea/dataSources/1bd74c42-0680-428f-b176-f5c17975e094.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/sqldialects.xml" afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/model/User.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/model/User.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/service/impl/AuthServiceImpl.class" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/com/wfy/web/service/impl/AuthServiceImpl.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/model/User.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/model/User.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/com/wfy/web/service/impl/AuthServiceImpl.class" afterPath="$PROJECT_DIR$/target/classes/com/wfy/web/service/impl/AuthServiceImpl.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/AccountController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/AccountController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/ActionController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/ActionController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/AuthController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/AuthController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/BrandController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/BrandController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/ColorController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/ColorController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/ConfigController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/ConfigController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/DeptController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/DeptController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/EmployeeController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/EmployeeController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/InfoController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/InfoController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/LogController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/LogController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/MenuController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/MenuController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/MobileInboundController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/MobileInboundController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/MobileModelController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/MobileModelController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/RebateTypeController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/RebateTypeController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/RoleController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/RoleController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/SupplierController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/SupplierController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/SupplierTypeController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/SupplierTypeController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/UserController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/UserController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/UtilController.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/UtilController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/dao/MenuDao.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/dao/MenuDao.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/interceptor/AuthInterceptor.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/interceptor/AuthInterceptor.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/model/Dept.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/model/Dept.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/model/User.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/model/User.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/AuthServiceImpl.java" afterPath="$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/AuthServiceImpl.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/hibernate-config.xml" afterPath="$PROJECT_DIR$/src/main/resources/hibernate-config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/log4j.properties" afterPath="$PROJECT_DIR$/src/main/resources/log4j.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/tables/business/account.sql" afterPath="$PROJECT_DIR$/src/main/resources/tables/business/account.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/tables/business/mobile_inbound.sql" afterPath="$PROJECT_DIR$/src/main/resources/tables/business/mobile_inbound.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/tables/business/mobile_model.sql" afterPath="$PROJECT_DIR$/src/main/resources/tables/business/mobile_model.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/tables/business/rebate_type.sql" afterPath="$PROJECT_DIR$/src/main/resources/tables/business/rebate_type.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/tables/business/supplier.sql" afterPath="$PROJECT_DIR$/src/main/resources/tables/business/supplier.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/tables/business/supplier_trade_detail.sql" afterPath="$PROJECT_DIR$/src/main/resources/tables/business/supplier_trade_detail.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/tables/business/supplier_type.sql" afterPath="$PROJECT_DIR$/src/main/resources/tables/business/supplier_type.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/tables/deprecated/customer.sql" afterPath="$PROJECT_DIR$/src/main/resources/tables/deprecated/customer.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/tables/deprecated/customer_type.sql" afterPath="$PROJECT_DIR$/src/main/resources/tables/deprecated/customer_type.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/tables/system/action.sql" afterPath="$PROJECT_DIR$/src/main/resources/tables/system/action.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/tables/system/dept.sql" afterPath="$PROJECT_DIR$/src/main/resources/tables/system/dept.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/tables/system/employee.sql" afterPath="$PROJECT_DIR$/src/main/resources/tables/system/employee.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/tables/system/log.sql" afterPath="$PROJECT_DIR$/src/main/resources/tables/system/log.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/tables/system/menu.sql" afterPath="$PROJECT_DIR$/src/main/resources/tables/system/menu.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/tables/system/role.sql" afterPath="$PROJECT_DIR$/src/main/resources/tables/system/role.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/resources/tables/system/user.sql" afterPath="$PROJECT_DIR$/src/main/resources/tables/system/user.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/webapp/index.html" afterPath="$PROJECT_DIR$/src/main/webapp/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/hibernate-config.xml" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/hibernate-config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/log4j.properties" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/log4j.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/tables/business/account.sql" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/tables/business/account.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/tables/business/mobile_inbound.sql" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/tables/business/mobile_inbound.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/tables/business/mobile_model.sql" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/tables/business/mobile_model.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/tables/business/rebate_type.sql" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/tables/business/rebate_type.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/tables/business/supplier.sql" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/tables/business/supplier.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/tables/business/supplier_trade_detail.sql" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/tables/business/supplier_trade_detail.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/tables/business/supplier_type.sql" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/tables/business/supplier_type.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/tables/deprecated/customer.sql" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/tables/deprecated/customer.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/tables/deprecated/customer_type.sql" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/tables/deprecated/customer_type.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/tables/system/action.sql" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/tables/system/action.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/tables/system/dept.sql" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/tables/system/dept.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/tables/system/employee.sql" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/tables/system/employee.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/tables/system/log.sql" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/tables/system/log.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/tables/system/menu.sql" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/tables/system/menu.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/tables/system/role.sql" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/tables/system/role.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/tables/system/user.sql" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/classes/tables/system/user.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/web.xml" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/WEB-INF/web.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/index.html" afterPath="$PROJECT_DIR$/target/ManageSystem-1.0-SNAPSHOT/index.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/hibernate-config.xml" afterPath="$PROJECT_DIR$/target/classes/hibernate-config.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/log4j.properties" afterPath="$PROJECT_DIR$/target/classes/log4j.properties" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tables/business/account.sql" afterPath="$PROJECT_DIR$/target/classes/tables/business/account.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tables/business/mobile_inbound.sql" afterPath="$PROJECT_DIR$/target/classes/tables/business/mobile_inbound.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tables/business/mobile_model.sql" afterPath="$PROJECT_DIR$/target/classes/tables/business/mobile_model.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tables/business/rebate_type.sql" afterPath="$PROJECT_DIR$/target/classes/tables/business/rebate_type.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tables/business/supplier.sql" afterPath="$PROJECT_DIR$/target/classes/tables/business/supplier.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tables/business/supplier_trade_detail.sql" afterPath="$PROJECT_DIR$/target/classes/tables/business/supplier_trade_detail.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tables/business/supplier_type.sql" afterPath="$PROJECT_DIR$/target/classes/tables/business/supplier_type.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tables/deprecated/customer.sql" afterPath="$PROJECT_DIR$/target/classes/tables/deprecated/customer.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tables/deprecated/customer_type.sql" afterPath="$PROJECT_DIR$/target/classes/tables/deprecated/customer_type.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tables/system/action.sql" afterPath="$PROJECT_DIR$/target/classes/tables/system/action.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tables/system/dept.sql" afterPath="$PROJECT_DIR$/target/classes/tables/system/dept.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tables/system/employee.sql" afterPath="$PROJECT_DIR$/target/classes/tables/system/employee.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tables/system/log.sql" afterPath="$PROJECT_DIR$/target/classes/tables/system/log.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tables/system/menu.sql" afterPath="$PROJECT_DIR$/target/classes/tables/system/menu.sql" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tables/system/role.sql" afterPath="$PROJECT_DIR$/target/classes/tables/system/role.sql" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/target/classes/tables/system/user.sql" afterPath="$PROJECT_DIR$/target/classes/tables/system/user.sql" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -197,55 +68,66 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="default_target" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="CommentController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/controller/CommentController.java">
+      <file leaf-file-name="AuthController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/controller/AuthController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
-              <caret line="75" column="46" lean-forward="false" selection-start-line="75" selection-start-column="46" selection-end-line="75" selection-end-column="46" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CommentServiceImpl.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/CommentServiceImpl.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="317">
-              <caret line="27" column="0" lean-forward="true" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="comment.sql" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/resources/tables/system/comment.sql">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="286">
-              <caret line="13" column="9" lean-forward="false" selection-start-line="13" selection-start-column="9" selection-end-line="13" selection-end-column="9" />
+            <state relative-caret-position="983">
+              <caret line="96" column="73" lean-forward="true" selection-start-line="96" selection-start-column="73" selection-end-line="96" selection-end-column="73" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Comment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/model/Comment.java">
+      <file leaf-file-name="AuthServiceImpl.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/AuthServiceImpl.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-321">
-              <caret line="42" column="22" lean-forward="true" selection-start-line="42" selection-start-column="22" selection-end-line="42" selection-end-column="22" />
+            <state relative-caret-position="421">
+              <caret line="83" column="49" lean-forward="true" selection-start-line="83" selection-start-column="49" selection-end-line="83" selection-end-column="49" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/model/User.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="44">
+              <caret line="50" column="15" lean-forward="false" selection-start-line="50" selection-start-column="15" selection-end-line="50" selection-end-column="15" />
               <folding>
-                <element signature="e#1005#1006#0" expanded="true" />
-                <element signature="e#1034#1035#0" expanded="true" />
+                <element signature="e#1397#1398#0" expanded="true" />
+                <element signature="e#1432#1433#0" expanded="true" />
+                <element signature="e#1488#1489#0" expanded="true" />
+                <element signature="e#1536#1537#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ssm.t_action" pinned="false" current-in-tab="false">
-        <entry file="dbDummy://dbtable:/f301af1c/1bd74c42-0680-428f-b176-f5c17975e094/ssm.t_action">
+      <file leaf-file-name="UserDao.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/dao/UserDao.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="599">
+              <caret line="47" column="43" lean-forward="true" selection-start-line="47" selection-start-column="43" selection-end-line="47" selection-end-column="43" />
+              <folding>
+                <element signature="e#5419#5420#0" expanded="true" />
+                <element signature="e#5464#5465#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="hibernate-config.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/resources/hibernate-config.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="245">
+              <caret line="39" column="36" lean-forward="true" selection-start-line="39" selection-start-column="36" selection-end-line="39" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ssm.t_user" pinned="false" current-in-tab="true">
+        <entry file="dbDummy://dbtable:/f301af1c/1bd74c42-0680-428f-b176-f5c17975e094/ssm.t_user">
           <provider editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -259,8 +141,8 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ssm.t_role_action" pinned="false" current-in-tab="false">
-        <entry file="dbDummy://dbtable:/f301af1c/1bd74c42-0680-428f-b176-f5c17975e094/ssm.t_role_action">
+      <file leaf-file-name="ssm.t_role_user" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/f301af1c/1bd74c42-0680-428f-b176-f5c17975e094/ssm.t_role_user">
           <provider editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -274,47 +156,8 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ssm.t_action_menu" pinned="false" current-in-tab="false">
-        <entry file="dbDummy://dbtable:/f301af1c/1bd74c42-0680-428f-b176-f5c17975e094/ssm.t_action_menu">
-          <provider editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-          <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-            <state>
-              <filtering enabled="true" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MobileInboundController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/controller/MobileInboundController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1276">
-              <caret line="89" column="9" lean-forward="true" selection-start-line="89" selection-start-column="9" selection-end-line="89" selection-end-column="9" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CommentDao.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/dao/CommentDao.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="351">
-              <caret line="43" column="56" lean-forward="false" selection-start-line="43" selection-start-column="56" selection-end-line="43" selection-end-column="56" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2826#2827#0" expanded="true" />
-                <element signature="e#2875#2876#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ssm.t_comment" pinned="false" current-in-tab="false">
-        <entry file="dbDummy://dbtable:/f301af1c/1bd74c42-0680-428f-b176-f5c17975e094/ssm.t_comment">
+      <file leaf-file-name="ssm.t_log" pinned="false" current-in-tab="false">
+        <entry file="dbDummy://dbtable:/f301af1c/1bd74c42-0680-428f-b176-f5c17975e094/ssm.t_log">
           <provider editor-type-id="text-editor">
             <state relative-caret-position="0">
               <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -343,7 +186,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>dept</find>
       <find>employeedao</find>
       <find>@</find>
       <find>@Cr</find>
@@ -373,6 +215,7 @@
       <find>allowPriva</find>
       <find>allowPrivat</find>
       <find>allowPrivate</find>
+      <find>real_pas</find>
     </findStrings>
     <replaceStrings>
       <replace>User</replace>
@@ -423,14 +266,12 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/model/enums/LogStatus.java" />
         <option value="dbtable:/f301af1c/1bd74c42-0680-428f-b176-f5c17975e094/ssm.t_log" />
         <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/service/ILogService.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/model/Action.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/model/Log.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/model/Menu.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/LogServiceImpl.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/dao/UserDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/LogController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/dao/LogDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/utils/TokenUtil.java" />
@@ -438,7 +279,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/model/MobileInbound.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/wfy/web/model/SpringModelsTest.java" />
         <option value="$PROJECT_DIR$/src/test/java/com/wfy/web/model/GsonTest.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/model/User.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/MobileInboundController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/dao/MobileInboundDao.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/UtilController.java" />
@@ -455,7 +295,6 @@
         <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/MobileModelServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/InfoController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/AuthController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/AuthServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/UserController.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/UserServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/controller/MenuController.java" />
@@ -464,7 +303,6 @@
         <option value="D:/tomcat/apache-tomcat-7.0.78/webapps/ROOT/WEB-INF/classes/log4j.properties" />
         <option value="$PROJECT_DIR$/src/main/resources/log4j.properties" />
         <option value="$PROJECT_DIR$/src/main/webapp/WEB-INF/web.xml" />
-        <option value="$PROJECT_DIR$/src/main/resources/hibernate-config.xml" />
         <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/model/Dept.java" />
         <option value="$APPLICATION_CONFIG_DIR$/consoles/db/1bd74c42-0680-428f-b176-f5c17975e094/console.sql" />
         <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/service/ICommentService.java" />
@@ -474,6 +312,11 @@
         <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/CommentServiceImpl.java" />
         <option value="$PROJECT_DIR$/src/main/resources/tables/system/comment.sql" />
         <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/model/Comment.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/tables/system/user.sql" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/AuthServiceImpl.java" />
+        <option value="$PROJECT_DIR$/src/main/resources/hibernate-config.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/dao/UserDao.java" />
+        <option value="$PROJECT_DIR$/src/main/java/com/wfy/web/model/User.java" />
       </list>
     </option>
   </component>
@@ -1706,7 +1549,7 @@
       <workItem from="1505213602676" duration="65794000" />
       <workItem from="1505472061659" duration="22533000" />
       <workItem from="1505664446789" duration="806000" />
-      <workItem from="1505746023861" duration="14506000" />
+      <workItem from="1505746023861" duration="17314000" />
     </task>
     <servers />
   </component>
@@ -1743,14 +1586,15 @@
     </history-entry>
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="856295000" />
+    <option name="totallyTimeSpent" value="859103000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-9" y="-9" width="1938" height="1050" extended-state="7" />
+    <frame x="-9" y="-9" width="1938" height="1050" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Nl-Palette" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1715847" sideWeight="0.1984375" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30054644" sideWeight="0.1984375" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14098361" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1770,13 +1614,13 @@
       <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1715847" sideWeight="0.8015625" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.30054644" sideWeight="0.8015625" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Database Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32786885" sideWeight="0.49375" order="15" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2375" sideWeight="0.8575198" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2375" sideWeight="0.85625" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2375" sideWeight="0.14248021" order="6" side_tool="true" content_ui="tabs" />
+      <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2375" sideWeight="0.14375" order="6" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20655738" sideWeight="0.46458334" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -1805,62 +1649,7 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/MobileModelServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="329">
-          <caret line="78" column="20" lean-forward="false" selection-start-line="78" selection-start-column="20" selection-end-line="78" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/AuthServiceImpl.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1804">
-          <caret line="98" column="28" lean-forward="false" selection-start-line="98" selection-start-column="28" selection-end-line="98" selection-end-column="28" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/webapp/static/css/app.5947ef977de83af3889bd82c25932c70.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../webstormworkspace/ManageSystem/src/router/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="402">
-          <caret line="194" column="0" lean-forward="true" selection-start-line="194" selection-start-column="0" selection-end-line="194" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/controller/MenuController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="17" column="15" lean-forward="false" selection-start-line="17" selection-start-column="15" selection-end-line="17" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/npm-debug.log" />
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/dao/UserDao.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2882">
-          <caret line="153" column="0" lean-forward="false" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#874#875#0" expanded="false" />
-            <element signature="e#914#915#0" expanded="false" />
-            <element signature="e#1932#1933#0" expanded="false" />
-            <element signature="e#1981#1982#0" expanded="false" />
-            <element signature="e#5337#5338#0" expanded="false" />
-            <element signature="e#5383#5384#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/UserServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="968">
@@ -1911,14 +1700,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="483">
           <caret line="37" column="38" lean-forward="false" selection-start-line="37" selection-start-column="38" selection-end-line="37" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/model/User.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="514">
-          <caret line="161" column="27" lean-forward="false" selection-start-line="161" selection-start-column="27" selection-end-line="161" selection-end-column="27" />
           <folding />
         </state>
       </provider>
@@ -2057,14 +1838,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/hibernate-config.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="770">
-          <caret line="44" column="54" lean-forward="false" selection-start-line="44" selection-start-column="54" selection-end-line="44" selection-end-column="54" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/log4j.properties">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="418">
@@ -2120,14 +1893,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="653">
           <caret line="45" column="13" lean-forward="false" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/controller/AuthController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="411">
-          <caret line="94" column="8" lean-forward="true" selection-start-line="94" selection-start-column="8" selection-end-line="94" selection-end-column="88" />
           <folding />
         </state>
       </provider>
@@ -2268,16 +2033,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/controller/CommentController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
-          <caret line="75" column="46" lean-forward="false" selection-start-line="75" selection-start-column="46" selection-end-line="75" selection-end-column="46" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/resources/tables/system/comment.sql">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="286">
@@ -2336,6 +2091,32 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/controller/AuthController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="983">
+          <caret line="96" column="73" lean-forward="true" selection-start-line="96" selection-start-column="73" selection-end-line="96" selection-end-column="73" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/tables/system/user.sql">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="4" column="30" lean-forward="false" selection-start-line="4" selection-start-column="30" selection-end-line="4" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/controller/CommentController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="907">
+          <caret line="75" column="46" lean-forward="false" selection-start-line="75" selection-start-column="46" selection-end-line="75" selection-end-column="46" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/CommentServiceImpl.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="317">
@@ -2343,6 +2124,85 @@
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/service/impl/AuthServiceImpl.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="421">
+          <caret line="83" column="49" lean-forward="true" selection-start-line="83" selection-start-column="49" selection-end-line="83" selection-end-column="49" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/resources/hibernate-config.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="245">
+          <caret line="39" column="36" lean-forward="true" selection-start-line="39" selection-start-column="36" selection-end-line="39" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/dao/UserDao.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="599">
+          <caret line="47" column="43" lean-forward="true" selection-start-line="47" selection-start-column="43" selection-end-line="47" selection-end-column="43" />
+          <folding>
+            <element signature="e#5419#5420#0" expanded="true" />
+            <element signature="e#5464#5465#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/wfy/web/model/User.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="44">
+          <caret line="50" column="15" lean-forward="false" selection-start-line="50" selection-start-column="15" selection-end-line="50" selection-end-column="15" />
+          <folding>
+            <element signature="e#1397#1398#0" expanded="true" />
+            <element signature="e#1432#1433#0" expanded="true" />
+            <element signature="e#1488#1489#0" expanded="true" />
+            <element signature="e#1536#1537#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/f301af1c/1bd74c42-0680-428f-b176-f5c17975e094/ssm.t_log">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/f301af1c/1bd74c42-0680-428f-b176-f5c17975e094/ssm.t_role_user">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="dbDummy://dbtable:/f301af1c/1bd74c42-0680-428f-b176-f5c17975e094/ssm.t_user">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>

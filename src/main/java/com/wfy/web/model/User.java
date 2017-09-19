@@ -2,9 +2,8 @@ package com.wfy.web.model;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import com.wfy.web.model.enums.UserStatus;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
@@ -12,7 +11,6 @@ import org.hibernate.annotations.GenericGenerator;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -28,6 +26,7 @@ public class User implements Serializable {
     private String id;
     private String username;
     private String password;
+    private String realPassword;
     private String remark;
     private Employee employee;
     private Date createTime;
@@ -46,6 +45,16 @@ public class User implements Serializable {
 
     public User(String id) {
         this.id = id;
+    }
+
+    @Column(name = "real_password")
+    @JsonIgnore
+    public String getRealPassword() {
+        return realPassword;
+    }
+
+    public void setRealPassword(String realPassword) {
+        this.realPassword = realPassword;
     }
 
     @OneToOne(mappedBy = "user")
