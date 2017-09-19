@@ -70,12 +70,12 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 
         log.info("============== AuthInterceptor ================");
         // TODO 跨域设置
-        response.setHeader("Access-Control-Allow-Origin", Const.FRONT_END_URL);
+        /*response.setHeader("Access-Control-Allow-Origin", Const.FRONT_END_URL);
         response.setHeader("Access-Control-Allow-Methods", "*");
         response.setHeader("Access-Control-Max-Age", "3600");
         response.setHeader("Access-Control-Allow-Headers",
                 "Authorization, Origin, X-Requested-With, Content-Type, Accept");
-        response.setHeader("Access-Control-Allow-Credentials", "true"); //是否允许浏览器携带用户身份信息（cookie）
+        response.setHeader("Access-Control-Allow-Credentials", "true"); //是否允许浏览器携带用户身份信息（cookie）*/
         String method = request.getMethod();
 
         if (method.equals("OPTIONS")) { // 预请求OPTIONS直接放过
@@ -99,23 +99,31 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
             this.log(url, ip, token, status); // 数据库中加日志
             return true; // 例外url（无需token的）可以直接通过
         }
+        String userId = null;
+        List<String> actionUrls = new ArrayList<>();
+        boolean isAuthorized = false;
         if (!iTokenService.checkToken(token)) { // 验证身份 Authentication
-            status = LogStatus.UNAUTHENTICATED;
-            log.error("Interceptor：错误代码401：未授权，跳转到signIn页面！");
-            response.setStatus(ResponseCode.UNAUTHORIZED.getCode());
-            this.log(url, ip, token, status); // 数据库中加日志
-            return false;
-        }
-        // 授权 Authorization
-        // TODO 把取到的actions存入redis，不然太慢
-        boolean isAuthorized;
-        if (iUserService.isSuperAdmin(token.getUserId())) {
-            log.info("isSuperAdmin:" + token.getUserId());
-            isAuthorized = true;
-        } else {
-            List<String> actionUrls = iActionService.getActionsByUser(new User(token.getUserId()));
+            actionUrls = iActionService.getTouristActions();
             isAuthorized = actionUrls.contains(url);
+//            status = LogStatus.UNAUTHENTICATED;
+//            log.error("Interceptor：错误代码401：未授权，跳转到signIn页面！");
+//            response.setStatus(ResponseCode.UNAUTHORIZED.getCode());
+//            this.log(url, ip, token, status); // 数据库中加日志
+//            return false;
+        } else {
+            // 授权 Authorization
+            // TODO 把取到的actions存入redis，不然太慢
+            userId = token.getUserId();
+            if (iUserService.isSuperAdmin(userId)) {
+                log.info("isSuperAdmin:" + userId);
+                isAuthorized = true;
+            } else {
+                actionUrls = iActionService.getActionsByUser(new User(userId));
+                isAuthorized = actionUrls.contains(url);
+            }
         }
+
+
         status = isAuthorized ? LogStatus.ACCEPTED : LogStatus.UNAUTHORIZED;
         this.log(url, ip, token, status); // 数据库中加日志
         if (!isAuthorized) {

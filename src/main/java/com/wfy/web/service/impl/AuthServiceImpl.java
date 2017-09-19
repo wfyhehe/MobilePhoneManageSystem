@@ -16,7 +16,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.util.*;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Created by Administrator on 2017/7/14.
@@ -65,6 +67,9 @@ public class AuthServiceImpl implements IAuthService {
 
     @Override
     public void signOut(String userId) {
+        if (userId == null) {
+            return;
+        }
         User user = userDao.getUser(userId);
         user.setStatus(UserStatus.OFFLINE);
         iTokenService.deleteToken(userId);

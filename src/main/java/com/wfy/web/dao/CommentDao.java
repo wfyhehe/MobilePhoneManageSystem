@@ -31,8 +31,7 @@ public class CommentDao {
     }
 
     public List<Comment> search(RefCount refCount, String userId, boolean allowSecret, Integer
-            pageIndex, Integer
-                                        pageSize) {
+            pageIndex, Integer pageSize) {
         List<Comment> comments;
         DetachedCriteria criteria = DetachedCriteria.forClass(Comment.class, "c")
                 .setFetchMode("user", FetchMode.SELECT)
@@ -42,7 +41,9 @@ public class CommentDao {
         if (!allowSecret) {
             Disjunction disjunction = Restrictions.disjunction();
             disjunction.add(Restrictions.ne("c.secret", true)); // 不能看secret
-            disjunction.add(Restrictions.eq("c.user", new User(userId))); // 除非是他自己的
+            if (userId != null) {
+                disjunction.add(Restrictions.eq("c.user", new User(userId))); // 除非是他自己的
+            }
             criteria.add(disjunction);
         }
         DetachedCriteria countCriteria = CloneUtil.clone(criteria);

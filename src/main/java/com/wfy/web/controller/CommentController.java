@@ -37,7 +37,8 @@ public class CommentController {
     public ServerResponse<List<Comment>> getComments(@RequestBody Map<String, Object> map,
                                                      HttpServletRequest request) {
         boolean allowSecret = false;
-        String userId = Token.parse(request.getHeader(Const.AUTHORIZATION)).getUserId();
+        Token token = Token.parse(request.getHeader(Const.AUTHORIZATION));
+        String userId = token != null ? token.getUserId() : null;
         if (iUserService.isSuperAdmin(userId)) {
             allowSecret = true;
         }

@@ -110,7 +110,8 @@ public class UserController {
         String tokenStr = request.getHeader(Const.AUTHORIZATION);
         System.out.println("tokenStr at get_me.do: " + tokenStr);
         if (StringUtils.isNotBlank(tokenStr)) {
-            String id = Token.parse(tokenStr).getUserId();
+            Token token = Token.parse(request.getHeader(Const.AUTHORIZATION));
+            String id = token != null ? token.getUserId() : null;
             User user = iUserService.getUser(id);
             if (user != null) {
                 return ServerResponse.createBySuccess(user);

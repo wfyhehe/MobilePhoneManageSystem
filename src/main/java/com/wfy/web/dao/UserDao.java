@@ -161,6 +161,9 @@ public class UserDao {
     }
 
     public boolean isSuperAdmin(String id) {
+        if (id == null) {
+            return false;
+        }
         String sql = "select count(*) " +
                 "from t_user inner join t_role_user inner join t_role" +
                 " on t_user.id = t_role_user.user_id " +

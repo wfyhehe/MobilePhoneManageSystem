@@ -18,6 +18,8 @@ public interface IActionService {
 
     void update(Action action);
 
+    List<String> getTouristActions();
+
     Action getActionByUrl(String url);
 
     Action getActionByName(String name);

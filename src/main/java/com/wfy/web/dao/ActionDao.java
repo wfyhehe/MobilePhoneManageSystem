@@ -100,4 +100,22 @@ public class ActionDao {
         // ActionType = 0 的为普通动作，无需授权即可访问
         return actionUrls;
     }
+
+    public List<String> getTouristActions() {
+        String sql = "select distinct t_action.url " +
+                "from t_action " +
+                "inner join t_role_action " +
+                "inner join t_role " +
+                "on t_action.url = t_role_action.action_url " +
+                "and t_role.id = t_role_action.role_id " +
+                "where t_role.name = :name " +
+                "or t_action.type = 0";
+        List<String> actionUrls = hibernateTemplate.executeWithNativeSession(session -> {
+            NativeQuery query = session.createNativeQuery(sql);
+            query.setParameter("name", "游客");
+            return query.list();
+        });
+        // ActionType = 0 的为普通动作，无需授权即可访问
+        return actionUrls;
+    }
 }

@@ -1,23 +1,14 @@
 package com.wfy.web.service.impl;
 
-import com.wfy.web.common.Const;
-import com.wfy.web.common.ServerResponse;
 import com.wfy.web.dao.UserDao;
 import com.wfy.web.model.User;
 import com.wfy.web.model.enums.UserStatus;
-import com.wfy.web.service.ITokenService;
 import com.wfy.web.service.IUserService;
-import com.wfy.web.utils.MD5Util;
 import com.wfy.web.utils.RefCount;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.DisabledAccountException;
-import org.apache.shiro.authc.IncorrectCredentialsException;
-import org.apache.shiro.authc.UnknownAccountException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -70,7 +61,9 @@ public class UserServiceImpl implements IUserService {
         }
         if (user.getEmployee() == null) {
             user.setEmployee(oldUser.getEmployee());
-            user.getEmployee().setUser(user);
+            if (user.getEmployee() != null) {
+                user.getEmployee().setUser(user);
+            }
         }
         if (user.getRoles() == null) {
             user.setRoles(oldUser.getRoles());

@@ -69,6 +69,11 @@ public class ActionServiceImpl implements IActionService {
     }
 
     @Override
+    public List<String> getTouristActions() {
+        return actionDao.getTouristActions();
+    }
+
+    @Override
     public Action getActionByUrl(String url) {
         return actionDao.getActionByUrl(url);
     }

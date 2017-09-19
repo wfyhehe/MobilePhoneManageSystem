@@ -58,7 +58,8 @@ public class AuthController {
 
     @RequestMapping(value = "sign_out.do", method = RequestMethod.GET)
     public ServerResponse<String> signOut(HttpServletRequest request) {
-        String id = Token.parse(request.getHeader(Const.AUTHORIZATION)).getUserId();
+        Token token = Token.parse(request.getHeader(Const.AUTHORIZATION));
+        String id = token != null ? token.getUserId() : null;
         iAuthService.signOut(id);
         return ServerResponse.createBySuccess();
     }
@@ -92,7 +93,8 @@ public class AuthController {
                                                 HttpServletRequest request) {
         String passwordOld = passwordMap.get("passwordOld");
         String passwordNew = passwordMap.get("passwordNew");
-        String userId = Token.parse(request.getHeader(Const.AUTHORIZATION)).getUserId();
+        Token token = Token.parse(request.getHeader(Const.AUTHORIZATION));
+        String userId = token != null ? token.getUserId() : null;
         try {
             iAuthService.resetPassword(passwordOld, passwordNew, userId);
         } catch (WrongPasswordException e) {
