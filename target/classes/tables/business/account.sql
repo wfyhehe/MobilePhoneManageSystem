@@ -2,7 +2,7 @@ CREATE TABLE t_account(
   id CHAR(32) PRIMARY KEY ,
   name    VARCHAR(32) NOT NULL,
   balance DECIMAL(20,2) NOT NULL,
-  remark  TEXT,
+  content  TEXT,
   dept_id CHAR(32) NOT NULL,
   deleted TINYINT(1),
   CONSTRAINT fk_account_dept_id

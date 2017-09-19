@@ -12,7 +12,7 @@ CREATE TABLE t_mobile_inbound (
   check_time    DATETIME,
   check_user_id CHAR(32),
   status  TINYINT, # 0: 未审核 1: 已审核 2: 删除
-  remark        TEXT,
+  content        TEXT,
   dept_id       CHAR(32),
   CONSTRAINT fk_mobile_inbound_model_id
   FOREIGN KEY (model_id) REFERENCES ssm.t_mobile_model (id),

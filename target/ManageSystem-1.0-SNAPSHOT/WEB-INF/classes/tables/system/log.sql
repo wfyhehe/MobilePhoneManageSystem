@@ -11,7 +11,7 @@ CREATE TABLE t_log
   status      TINYINT, # 0: 通过 1: 未登录 2: 无权限
   action_url  VARCHAR(64),
   user_id     CHAR(32),
-  remark      TEXT,
+  content      TEXT,
   PRIMARY KEY (id)
 );
 

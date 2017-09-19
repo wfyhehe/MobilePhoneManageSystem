@@ -2,7 +2,7 @@ CREATE TABLE t_employee (
   id         CHAR(32) PRIMARY KEY,
   name       VARCHAR(30),
   tel        VARCHAR(20),
-  remark     TEXT,
+  content     TEXT,
   type       TINYINT    NOT NULL, # 0:销售员 1:其他
   dept_id    CHAR(32),
   user_id    CHAR(32),

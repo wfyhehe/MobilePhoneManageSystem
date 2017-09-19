@@ -15,7 +15,6 @@ import java.util.Map;
 /**
  * Created by Administrator on 2017/8/26, good luck.
  */
-//@CrossOrigin //TODO 开发使用，发布时必须取消
 @RestController
 @RequestMapping("/account/")
 public class AccountController {

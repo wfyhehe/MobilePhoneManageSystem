@@ -13,7 +13,6 @@ import java.util.Map;
 /**
  * Created by Administrator on 2017/8/26.
  */
-//@CrossOrigin //TODO 开发使用，发布时必须取消
 @RestController
 @RequestMapping("/action/")
 public class ActionController {

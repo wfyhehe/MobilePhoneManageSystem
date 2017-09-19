@@ -21,7 +21,7 @@
                   value="com.mysql.cj.jdbc.Driver">
         </property>
         <property name="url" value="jdbc:mysql://localhost:3306/ssm
-        ?useSSL=true&amp;useUnicode=true&amp;serverTimezone=GMT%2b8&amp;characterEncoding=UTF-8"/>
+        ?useUnicode=true&amp;serverTimezone=GMT%2b8&amp;characterEncoding=UTF-8"/>
         <property name="username" value="root"/>
         <property name="password" value="190035"/>
     </bean>
@@ -35,8 +35,8 @@
                 <prop key="hibernate.dialect">
                     org.hibernate.dialect.MySQL57Dialect
                 </prop>
-                <prop key="hibernate.show_sql">true</prop>
-                <prop key="hibernate.format_sql">true</prop>
+                <!--<prop key="hibernate.show_sql">true</prop>-->
+                <!--<prop key="hibernate.format_sql">true</prop>-->
                 <prop key="hibernate.event.merge.entity_copy_observer">allow</prop>
                 <!--<pnname key="hibernate.hbm2ddl.auto">create</prop>-->
                 <!--<pnname key="hibernate.current_session_context_class">thread</prop>-->

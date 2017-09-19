@@ -21,7 +21,6 @@ import java.util.UUID;
 /**
  * Created by Administrator on 2017/8/9.
  */
-//@CrossOrigin // 开发使用，发布时必须取消
 @RestController
 @RequestMapping("/util/")
 public class UtilController {

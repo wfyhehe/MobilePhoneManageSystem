@@ -6,6 +6,7 @@ import org.springframework.orm.hibernate5.HibernateTemplate;
 import org.springframework.stereotype.Repository;
 
 import javax.annotation.Resource;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -25,6 +26,9 @@ public class MenuDao {
     }
 
     private Menu normalizeMenu(Menu menu) {
+        if (menu.getChildren() != null) {
+            menu.getChildren().sort(Comparator.comparingInt(Menu::getSortOrder));
+        }
         return menu;
     }
 
@@ -130,7 +134,7 @@ public class MenuDao {
     }
 
     public List<Menu> getMenus() {
-        String hql = "from Menu m";
+        String hql = "from Menu m order by m.sortOrder";
         List<Menu> menus = (List<Menu>) hibernateTemplate.find(hql);
         return normalizeMenus(menus);
     }

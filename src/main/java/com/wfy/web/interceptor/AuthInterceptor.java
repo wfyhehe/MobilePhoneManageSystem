@@ -70,12 +70,12 @@ public class AuthInterceptor extends HandlerInterceptorAdapter {
 
         log.info("============== AuthInterceptor ================");
         // TODO 跨域设置
-//        response.setHeader("Access-Control-Allow-Origin", Const.FRONT_END_URL);
-//        response.setHeader("Access-Control-Allow-Methods", "*");
-//        response.setHeader("Access-Control-Max-Age", "3600");
-//        response.setHeader("Access-Control-Allow-Headers",
-//                "Authorization, Origin, X-Requested-With, Content-Type, Accept");
-//        response.setHeader("Access-Control-Allow-Credentials", "true"); //是否允许浏览器携带用户身份信息（cookie）
+        response.setHeader("Access-Control-Allow-Origin", Const.FRONT_END_URL);
+        response.setHeader("Access-Control-Allow-Methods", "*");
+        response.setHeader("Access-Control-Max-Age", "3600");
+        response.setHeader("Access-Control-Allow-Headers",
+                "Authorization, Origin, X-Requested-With, Content-Type, Accept");
+        response.setHeader("Access-Control-Allow-Credentials", "true"); //是否允许浏览器携带用户身份信息（cookie）
         String method = request.getMethod();
 
         if (method.equals("OPTIONS")) { // 预请求OPTIONS直接放过

@@ -14,6 +14,7 @@
     <file url="file://$PROJECT_DIR$/src/main/resources/tables/deprecated/customer_type.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/tables/system/action.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/tables/system/action_menu.sql" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/src/main/resources/tables/system/comment.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/tables/system/dept.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/tables/system/employee.sql" dialect="MySQL" />
     <file url="file://$PROJECT_DIR$/src/main/resources/tables/system/info.sql" dialect="MySQL" />

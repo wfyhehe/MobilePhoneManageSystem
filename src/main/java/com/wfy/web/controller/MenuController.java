@@ -14,7 +14,6 @@ import java.util.Map;
 /**
  * Created by Administrator on 2017/8/18.
  */
-//@CrossOrigin //TODO 开发使用，发布时必须取消
 @RestController
 @RequestMapping("/menu/")
 public class MenuController {
@@ -85,7 +84,7 @@ public class MenuController {
 //        menu.setId(id);
 //        menu.setName(name);
 //        menu.setPath(path);
-//        menu.setRemark(remark);
+//        menu.setContent(remark);
 //        menu.setRoles(roles);
 //        try {
 //            iMenuService.updateFromRole(menu);
@@ -121,7 +120,7 @@ public class MenuController {
 //        menu.setId(id);
 //        menu.setName(name);
 //        menu.setPath(path);
-//        menu.setRemark(remark);
+//        menu.setContent(remark);
 //        menu.setRoles(roles);
 //        try {
 //            iMenuService.updateFromRole(menu);

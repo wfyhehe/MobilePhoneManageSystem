@@ -17,7 +17,7 @@ import java.util.List;
 @Entity
 @Table(name = "t_dept")
 @JsonIgnoreProperties(ignoreUnknown = true)
-@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
+//@JsonIdentityInfo(generator = ObjectIdGenerators.PropertyGenerator.class, property = "id")
 @DynamicUpdate
 public class Dept {
     private String id;

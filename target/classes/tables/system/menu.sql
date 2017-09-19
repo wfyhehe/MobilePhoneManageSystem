@@ -1,7 +1,7 @@
 CREATE TABLE t_menu (
   id         CHAR(32) PRIMARY KEY,
   name       VARCHAR(32) NOT NULL,
-  remark     TEXT,
+  content     TEXT,
   type       TINYINT            NOT NULL, # 0:父菜单, 1:叶子菜单
   sort_order TINYINT            NOT NULL,
   path       VARCHAR(32)        NULL,

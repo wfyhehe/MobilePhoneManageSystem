@@ -11,7 +11,7 @@ CREATE TABLE t_supplier_trade_detail (
   input_user_id CHAR(32),
   check_time    DATETIME,
   check_user_id CHAR(32),
-  remark        TEXT,
+  content        TEXT,
   dept_id       CHAR(32),
   CONSTRAINT fk_supplier_trade_detail_supplier_id
   FOREIGN KEY (supplier_id) REFERENCES ssm.t_supplier (id),

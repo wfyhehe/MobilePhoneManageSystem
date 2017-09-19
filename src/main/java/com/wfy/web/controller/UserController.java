@@ -19,7 +19,6 @@ import java.util.*;
 /**
  * Created by Administrator on 2017/8/7.
  */
-//@CrossOrigin //TODO 开发使用，发布时必须取消
 @RestController
 @RequestMapping("/user/")
 public class UserController {

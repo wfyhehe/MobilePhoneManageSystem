@@ -6,7 +6,7 @@ CREATE TABLE t_supplier (
   tel     VARCHAR(30),
   email   VARCHAR(64),
   address VARCHAR(200),
-  remark  TEXT,
+  content  TEXT,
   deleted BOOLEAN,
   CONSTRAINT fk_supplier_type
   FOREIGN KEY (type) REFERENCES ssm.t_supplier_type (id)
